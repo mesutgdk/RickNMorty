@@ -10,7 +10,7 @@ import Foundation
 enum AppCharacterStatus: String, Codable {
     // 'Alive, 'Dead', or 'unknown'
     case alive = "Alive"
-    case dead = "dead"
-    case unknown = "unkown"
+    case dead = "Dead"
+    case unknown = "Unknown"
     
 }

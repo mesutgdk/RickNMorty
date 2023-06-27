@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct Origin: Codable {
+struct AppOrigin: Codable {
     let name: String
     let url: String
 }

@@ -13,12 +13,12 @@ struct AppCharacters: Codable {
     let status: AppCharacterStatus
     let species: String
     let type: String
-    let gender: CharacterGender
-    let origin: Origin
+    let gender: AppCharacterGender
+    let origin: AppOrigin
     let location: AppCharLocation
     let image: String
     let episode: [String]
     let url: String
     let created: String
 }
-
+ 

@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum CharacterGender: String, Codable {
+enum AppCharacterGender: String, Codable {
     // "Female", "male", "Genderless" or "unknown"
     case male = "Male"
     case female = "Female"
     case genderless = "Genderlesss"
-    case unkown = "unknown"
+    case unknown = "Unknown"
 
 }
