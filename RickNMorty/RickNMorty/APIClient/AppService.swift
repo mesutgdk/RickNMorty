@@ -21,7 +21,7 @@ final class AppService {
     ///     - completion: Callback with data or error
     ///
     ///
-    public func execute(_ request: AppRequest, complition: @escaping () -> Void) {
+    public func execute(_ request: AppRequest, complition: @escaping (Result<String, Error>) -> Void) {
         
     }
 }
