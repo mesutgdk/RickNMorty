@@ -15,7 +15,13 @@ final class CharacterViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = "Character"
         
-        let request = AppRequest(endPoint: .character)
+        let request = AppRequest(
+            endPoint: .character,
+            queryParameters: ([
+                URLQueryItem(name: "name", value: "rick"),
+                URLQueryItem(name: "status", value: "alive")
+            ])
+        )
         print(request.url)
     }
 }
