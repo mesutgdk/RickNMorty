@@ -23,5 +23,7 @@ final class CharacterViewController: UIViewController {
             ])
         )
         print(request.url)
+        
+      
     }
 }
