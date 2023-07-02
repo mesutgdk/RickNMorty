@@ -25,29 +25,34 @@ final class AppRequest {
     
     private let queryParameters: [URLQueryItem]
     
-    private var stringUrl: String {
+    /// constructed url for the API request in string format
+    private var urlString: String {
         var string = Constants.baseUrl
         string += "/"
         string += endPoint.rawValue
         
         if !pathComponent.isEmpty {
-            pathComponent.forEach(string += "/\($0)")
+            pathComponent.forEach({
+                string += "/\($0)"
+            })
         }
         
         if !queryParameters.isEmpty {
             string += "?"
             // let name=value & name=value
             let argumentString = queryParameters.compactMap({
-                
-            })
-            queryParameters.forEach(string += "/\($0)")
+                guard let value = $0.value else {return nil}
+                return "\($0.name)=\(value)"
+            }).joined(separator: "&")
+            
+            string += argumentString
         }
         
         return string
     }
     
     public var url: URL? {
-        return nil
+        return URL(string: urlString)
     }
     // MARK: - public
 
