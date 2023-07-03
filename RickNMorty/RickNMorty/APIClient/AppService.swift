@@ -40,8 +40,9 @@ final class AppService {
             }
             // Decode response
             do {
-                let json = try JSONSerialization.jsonObject(with: data)
-                print( String(describing: json))
+                let result = try JSONDecoder().decode(type.self, from: data)
+                complition(.success(result))
+               
             }
             catch {
                 complition(.failure(error))

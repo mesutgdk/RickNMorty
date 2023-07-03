@@ -26,6 +26,7 @@
 		633D44182A4A3C84009FFECB /* AppOrigin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D44172A4A3C84009FFECB /* AppOrigin.swift */; };
 		633D441A2A4A3CEA009FFECB /* AppCharLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D44192A4A3CEA009FFECB /* AppCharLocation.swift */; };
 		633D441C2A4A3D74009FFECB /* AppCharacterGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D441B2A4A3D74009FFECB /* AppCharacterGender.swift */; };
+		63896C862A5353B000E732A2 /* AppGetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63896C852A5353B000E732A2 /* AppGetAllCharactersResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		633D44172A4A3C84009FFECB /* AppOrigin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOrigin.swift; sourceTree = "<group>"; };
 		633D44192A4A3CEA009FFECB /* AppCharLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharLocation.swift; sourceTree = "<group>"; };
 		633D441B2A4A3D74009FFECB /* AppCharacterGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterGender.swift; sourceTree = "<group>"; };
+		63896C852A5353B000E732A2 /* AppGetAllCharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGetAllCharactersResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,13 +114,8 @@
 		633D43FB2A4A19CE009FFECB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				633D44002A4A1A98009FFECB /* AppLocation.swift */,
-				633D44022A4A1AB6009FFECB /* AppCharacters.swift */,
-				633D44042A4A1ACB009FFECB /* AppEpisode.swift */,
-				633D44152A4A3C5A009FFECB /* AppCharacterStatus.swift */,
-				633D44192A4A3CEA009FFECB /* AppCharLocation.swift */,
-				633D44172A4A3C84009FFECB /* AppOrigin.swift */,
-				633D441B2A4A3D74009FFECB /* AppCharacterGender.swift */,
+				63896C842A53537C00E732A2 /* APIResponseTypes */,
+				63896C832A53535700E732A2 /* DataTypes */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -168,6 +165,28 @@
 				633D440D2A4A1BAC009FFECB /* SettingsViewController.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		63896C832A53535700E732A2 /* DataTypes */ = {
+			isa = PBXGroup;
+			children = (
+				633D44002A4A1A98009FFECB /* AppLocation.swift */,
+				633D44022A4A1AB6009FFECB /* AppCharacters.swift */,
+				633D44042A4A1ACB009FFECB /* AppEpisode.swift */,
+				633D44152A4A3C5A009FFECB /* AppCharacterStatus.swift */,
+				633D44192A4A3CEA009FFECB /* AppCharLocation.swift */,
+				633D44172A4A3C84009FFECB /* AppOrigin.swift */,
+				633D441B2A4A3D74009FFECB /* AppCharacterGender.swift */,
+			);
+			path = DataTypes;
+			sourceTree = "<group>";
+		};
+		63896C842A53537C00E732A2 /* APIResponseTypes */ = {
+			isa = PBXGroup;
+			children = (
+				63896C852A5353B000E732A2 /* AppGetAllCharactersResponse.swift */,
+			);
+			path = APIResponseTypes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +272,7 @@
 				633D43E82A49C30F009FFECB /* SceneDelegate.swift in Sources */,
 				633D44102A4A2EA3009FFECB /* AppService.swift in Sources */,
 				633D44012A4A1A98009FFECB /* AppLocation.swift in Sources */,
+				63896C862A5353B000E732A2 /* AppGetAllCharactersResponse.swift in Sources */,
 				633D440A2A4A1B83009FFECB /* LocationViewController.swift in Sources */,
 				633D441C2A4A3D74009FFECB /* AppCharacterGender.swift in Sources */,
 				633D44162A4A3C5A009FFECB /* AppCharacterStatus.swift in Sources */,

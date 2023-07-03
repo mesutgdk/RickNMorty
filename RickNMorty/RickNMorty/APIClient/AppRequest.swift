@@ -79,3 +79,7 @@ final class AppRequest {
         self.queryParameters = queryParameters
     }
 }
+
+extension AppRequest {
+    static let listCharacterRequests = AppRequest(endPoint: .character)
+}
