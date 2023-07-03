@@ -11,7 +11,7 @@ enum AppCharacterGender: String, Codable {
     // "Female", "male", "Genderless" or "unknown"
     case male = "Male"
     case female = "Female"
-    case genderless = "Genderlesss"
-    case unknown = "Unknown"
+    case genderless = "Genderless"
+    case unknown = "unknown"
 
 }

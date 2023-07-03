@@ -11,6 +11,6 @@ enum AppCharacterStatus: String, Codable {
     // 'Alive, 'Dead', or 'unknown'
     case alive = "Alive"
     case dead = "Dead"
-    case unknown = "Unknown"
+    case unknown = "unknown"
     
 }
