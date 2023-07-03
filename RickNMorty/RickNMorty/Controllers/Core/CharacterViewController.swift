@@ -15,7 +15,7 @@ final class CharacterViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = "Character"
 
-        AppService.shared.execute(.listCharacterRequests, expecting: String.self) { result in
+        AppService.shared.execute(.listCharacterRequests, expecting: AppGetAllCharactersResponse.self) { result in
             switch result {
             case .success(let model):
                 print(String(describing: model))
