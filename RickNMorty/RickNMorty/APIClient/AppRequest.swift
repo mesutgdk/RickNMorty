@@ -24,7 +24,7 @@ final class AppRequest {
     private let endPoint : AppEndpoint
     
     /// Path Components for API, if any
-    private let pathComponent: Set<String>
+    private let pathComponent: [String]
     
     /// Query arguments for API, if any
     private let queryParameters: [URLQueryItem]
@@ -71,7 +71,7 @@ final class AppRequest {
     ///     - quetryParameters: Collection of quert parameters
     public init(
         endPoint: AppEndpoint,
-        pathComponent: Set<String> = [],
+        pathComponent: [String] = [],
         queryParameters: [URLQueryItem] = []
     ) {
         self.endPoint = endPoint

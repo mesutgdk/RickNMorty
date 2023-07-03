@@ -17,13 +17,21 @@ final class CharacterViewController: UIViewController {
         
         let request = AppRequest(
             endPoint: .character,
-            queryParameters: ([
+            queryParameters: [
                 URLQueryItem(name: "name", value: "rick"),
                 URLQueryItem(name: "status", value: "alive")
-            ])
+            ]
         )
         print(request.url)
         
+        AppService.shared.execute(request, expecting: AppCharacters.self) { result in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                print(String(describing: error))
+            }
+        }
       
     }
 }

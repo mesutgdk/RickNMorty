@@ -15,6 +15,11 @@ final class AppService {
     /// Privatized constructor
     private init () {}
     
+    enum AppServiceError: Error {
+        case failureCreatingRequest
+        case failedToGetData
+    }
+    
     /// Send R&M API call
     ///- Parameters:
     ///     - request: Request instance
@@ -22,7 +27,39 @@ final class AppService {
     ///     - completion: Callback with data or error
     ///
     ///
-    public func execute<T: Codable>(_ request: AppRequest, expecting type: T.Type, complition: @escaping (Result<String, Error>) -> Void) {
+    public func execute<T: Codable>(_ request: AppRequest, expecting type: T.Type, complition: @escaping (Result<T, Error>) -> Void) {
+        
+        guard let urlRequest = self.request(from: request) else {
+            complition(.failure(AppServiceError.failureCreatingRequest))
+            return
+        }
+        let task  = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
+            guard let data = data, error == nil else {
+                complition(.failure(error ?? AppServiceError.failedToGetData))
+                return
+            }
+            // Decode response
+            do {
+                let json = try JSONSerialization.jsonObject(with: data)
+                print( String(describing: json))
+            }
+            catch {
+                complition(.failure(error))
+            }
+            
+        }
+        task.resume()
         
     }
+    
+    // MARK: - Private
+    
+    private func request(from appRequest: AppRequest) -> URLRequest? {
+        guard let url = appRequest.url else {return nil}
+        var request = URLRequest(url: url)
+        request.httpMethod = appRequest.httpMethod
+        
+        return request
+    }
+
 }
