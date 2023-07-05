@@ -19,6 +19,17 @@ final class CharacterListView: UIView {
         return spinner
     } ()
     
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.isHidden = true
+        collectionView.alpha = 0
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        
+        return collectionView
+    } ()
+    
     // MARK: -init
     
     override init(frame: CGRect) {
@@ -36,15 +47,26 @@ final class CharacterListView: UIView {
     private func setup(){
         translatesAutoresizingMaskIntoConstraints = false
         spinner.startAnimating()
+        viewModel.fetchCharacters()
     }
     
     private func layout(){
-        addSubview(spinner)
+        addSubviews(collectionView, spinner)
+        
+        // spinner
         NSLayoutConstraint.activate([
             spinner.widthAnchor.constraint(equalToConstant: 100),
             spinner.heightAnchor.constraint(equalToConstant: 100),
             spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+        
+        // collectionView
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }
