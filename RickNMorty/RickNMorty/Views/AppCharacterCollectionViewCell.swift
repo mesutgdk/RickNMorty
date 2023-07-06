@@ -52,8 +52,9 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubviews(imageView, nameLabel, statusLabel)
         
-        nameLabel.backgroundColor = .systemBlue
-        statusLabel.backgroundColor = .systemRed
+//        nameLabel.backgroundColor = .gray
+//        statusLabel.backgroundColor = .systemRed
+//        imageView.backgroundColor = .systemGreen
         
     }
     
@@ -66,17 +67,26 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
          
         //  statuLAbel
         NSLayoutConstraint.activate([
-            statusLabel.heightAnchor.constraint(equalToConstant: 50),
+            statusLabel.heightAnchor.constraint(equalToConstant: 40),
             statusLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             statusLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             statusLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -3)
         ])
+        
         //nameLAbel
         NSLayoutConstraint.activate([
-            nameLabel.heightAnchor.constraint(equalToConstant: 50),
+            nameLabel.heightAnchor.constraint(equalToConstant: 40),
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             nameLabel.bottomAnchor.constraint(equalTo: statusLabel.topAnchor, constant: -3)
+        ])
+        
+        //imageView
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -5)
         ])
     }
     
@@ -89,5 +99,19 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
     
     public func configure(with viewModel: AppCharacterCollectionViewCellViewModel){
         
+        nameLabel.text = viewModel.characterName
+        statusLabel.text = viewModel.characterStatusText
+        viewModel.fetchImage { [weak self] result in    // to avoid retain cycle
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    let image = UIImage(data: data)
+                    self?.imageView.image = image
+                }
+            case .failure(let error):
+                print(String(describing: error))
+                break
+            }
+        }
     }
 }

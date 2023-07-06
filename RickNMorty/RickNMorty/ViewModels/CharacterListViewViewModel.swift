@@ -13,8 +13,8 @@ final class CharacterListViewViewModel:NSObject {
         AppService.shared.execute(.listCharacterRequests, expecting: AppGetAllCharactersResponse.self) { result in
             switch result {
             case .success(let model):
-                print("Total: "+String(model.info.count))
-                print("Page result count: "+String(model.results.count))
+                print("Example image url : "+String(model.results.first?.image ?? " No image "))
+//                print("Page result count: "+String(model.results.count))
             case .failure(let error):
                 print(String(describing: error))
             }
@@ -31,7 +31,11 @@ extension CharacterListViewViewModel: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionViewCell.cellidentifier, for: indexPath) as? AppCharacterCollectionViewCell else {
             fatalError("Unspupported Cell")
         }
-        let viewModel = AppCharacterCollectionViewCellViewModel(characterName: "afraz", characterStatus: .alive, characterImageUrl: nil)
+        let viewModel = AppCharacterCollectionViewCellViewModel(
+            characterName: "afraz",
+            characterStatus: .alive,
+            characterImageUrl: URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")
+        )
         
         cell.configure(with: viewModel)
         return cell
