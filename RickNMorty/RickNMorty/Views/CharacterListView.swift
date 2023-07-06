@@ -20,7 +20,9 @@ final class CharacterListView: UIView {
     } ()
     
     private let collectionView: UICollectionView = {
-        let layout = UICollectionViewLayout()
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isHidden = true
         collectionView.alpha = 0
@@ -37,7 +39,6 @@ final class CharacterListView: UIView {
         
         setup()
         layout()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -46,12 +47,17 @@ final class CharacterListView: UIView {
     
     private func setup(){
         translatesAutoresizingMaskIntoConstraints = false
+        
         spinner.startAnimating()
+        
         viewModel.fetchCharacters()
+        
+        setupCollectionView()
     }
     
     private func layout(){
-        addSubviews(collectionView, spinner)
+        addSubviews(collectionView,spinner)
+
         
         // spinner
         NSLayoutConstraint.activate([
@@ -68,5 +74,20 @@ final class CharacterListView: UIView {
             collectionView.rightAnchor.constraint(equalTo: rightAnchor),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    private func setupCollectionView(){
+        collectionView.dataSource = viewModel
+        collectionView.delegate = viewModel
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
+            self.spinner.stopAnimating()
+            
+            self.collectionView.isHidden = false
+            
+            UIView.animate(withDuration: 0.4) {
+                self.collectionView.alpha = 1
+            }
+        })
     }
 }
