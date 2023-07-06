@@ -8,7 +8,7 @@
 import UIKit
 
 /// View that handles showing list of characters, loader, etc.
-final class CharacterListView: UIView {
+final class AppCharacterListView: UIView {
 
     private let viewModel = CharacterListViewViewModel()
     
@@ -27,7 +27,7 @@ final class CharacterListView: UIView {
         collectionView.isHidden = true
         collectionView.alpha = 0
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(AppCharacterCollectionViewCell.self, forCellWithReuseIdentifier: AppCharacterCollectionViewCell.cellidentifier)
         
         return collectionView
     } ()

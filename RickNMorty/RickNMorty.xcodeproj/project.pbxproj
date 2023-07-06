@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		630E6B902A54AE0600C17EFB /* CharacterListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B8F2A54AE0600C17EFB /* CharacterListViewViewModel.swift */; };
-		630E6B922A54AEAC00C17EFB /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B912A54AEAC00C17EFB /* CharacterListView.swift */; };
+		630E6B922A54AEAC00C17EFB /* AppCharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B912A54AEAC00C17EFB /* AppCharacterListView.swift */; };
 		630E6B942A55707300C17EFB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B932A55707300C17EFB /* Extensions.swift */; };
+		630E6B962A56B5A400C17EFB /* AppCharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B952A56B5A400C17EFB /* AppCharacterCollectionViewCell.swift */; };
+		630E6B982A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B972A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift */; };
 		633D43E62A49C30F009FFECB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D43E52A49C30F009FFECB /* AppDelegate.swift */; };
 		633D43E82A49C30F009FFECB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D43E72A49C30F009FFECB /* SceneDelegate.swift */; };
 		633D43EA2A49C30F009FFECB /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D43E92A49C30F009FFECB /* TabBarViewController.swift */; };
@@ -34,8 +36,10 @@
 
 /* Begin PBXFileReference section */
 		630E6B8F2A54AE0600C17EFB /* CharacterListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewViewModel.swift; sourceTree = "<group>"; };
-		630E6B912A54AEAC00C17EFB /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
+		630E6B912A54AEAC00C17EFB /* AppCharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterListView.swift; sourceTree = "<group>"; };
 		630E6B932A55707300C17EFB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		630E6B952A56B5A400C17EFB /* AppCharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterCollectionViewCell.swift; sourceTree = "<group>"; };
+		630E6B972A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		633D43E22A49C30F009FFECB /* RickNMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickNMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		633D43E52A49C30F009FFECB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		633D43E72A49C30F009FFECB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,7 +117,8 @@
 		633D43FA2A4A19B4009FFECB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				630E6B912A54AEAC00C17EFB /* CharacterListView.swift */,
+				630E6B912A54AEAC00C17EFB /* AppCharacterListView.swift */,
+				630E6B952A56B5A400C17EFB /* AppCharacterCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				630E6B8F2A54AE0600C17EFB /* CharacterListViewViewModel.swift */,
+				630E6B972A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -270,8 +276,9 @@
 			files = (
 				633D43EA2A49C30F009FFECB /* TabBarViewController.swift in Sources */,
 				633D44122A4A2EB7009FFECB /* AppRequest.swift in Sources */,
-				630E6B922A54AEAC00C17EFB /* CharacterListView.swift in Sources */,
+				630E6B922A54AEAC00C17EFB /* AppCharacterListView.swift in Sources */,
 				633D440C2A4A1B8F009FFECB /* EpisodeViewController.swift in Sources */,
+				630E6B962A56B5A400C17EFB /* AppCharacterCollectionViewCell.swift in Sources */,
 				633D44052A4A1ACB009FFECB /* AppEpisode.swift in Sources */,
 				633D441A2A4A3CEA009FFECB /* AppCharLocation.swift in Sources */,
 				633D44142A4A2FE0009FFECB /* AppEndpoint.swift in Sources */,
@@ -289,6 +296,7 @@
 				633D44162A4A3C5A009FFECB /* AppCharacterStatus.swift in Sources */,
 				630E6B902A54AE0600C17EFB /* CharacterListViewViewModel.swift in Sources */,
 				633D44182A4A3C84009FFECB /* AppOrigin.swift in Sources */,
+				630E6B982A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

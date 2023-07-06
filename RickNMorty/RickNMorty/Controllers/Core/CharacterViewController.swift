@@ -9,13 +9,12 @@ import UIKit
 
 final class CharacterViewController: UIViewController {
 
-    private let characterListView = CharacterListView()
+    private let characterListView = AppCharacterListView()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setup()
         layout()
-        
     }
 }
 extension CharacterViewController {
