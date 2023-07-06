@@ -52,10 +52,32 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubviews(imageView, nameLabel, statusLabel)
         
+        nameLabel.backgroundColor = .systemBlue
+        statusLabel.backgroundColor = .systemRed
+        
     }
     
     private func layout(){
-        
+        /*
+         | imageView    |
+         | nameLAbel    |
+         | statusLabel  |
+         */
+         
+        //  statuLAbel
+        NSLayoutConstraint.activate([
+            statusLabel.heightAnchor.constraint(equalToConstant: 50),
+            statusLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            statusLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            statusLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -3)
+        ])
+        //nameLAbel
+        NSLayoutConstraint.activate([
+            nameLabel.heightAnchor.constraint(equalToConstant: 50),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            nameLabel.bottomAnchor.constraint(equalTo: statusLabel.topAnchor, constant: -3)
+        ])
     }
     
     override func prepareForReuse() {

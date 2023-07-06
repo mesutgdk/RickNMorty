@@ -28,8 +28,12 @@ extension CharacterListViewViewModel: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionViewCell.cellidentifier, for: indexPath)
-
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionViewCell.cellidentifier, for: indexPath) as? AppCharacterCollectionViewCell else {
+            fatalError("Unspupported Cell")
+        }
+        let viewModel = AppCharacterCollectionViewCellViewModel(characterName: "afraz", characterStatus: .alive, characterImageUrl: nil)
+        
+        cell.configure(with: viewModel)
         return cell
     }
 }
