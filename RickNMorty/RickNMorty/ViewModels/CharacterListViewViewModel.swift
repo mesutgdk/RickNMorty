@@ -9,11 +9,29 @@ import UIKit
 
 final class CharacterListViewViewModel:NSObject {
     
-    func fetchCharacters(){
-        AppService.shared.execute(.listCharacterRequests, expecting: AppGetAllCharactersResponse.self) { result in
+    private var characters: [AppCharacters] = [] {
+        didSet {
+            for character in characters {
+                let viewModel = AppCharacterCollectionViewCellViewModel(
+                    characterName: character.name,
+                    characterStatus: character.status,
+                    characterImageUrl: URL(string: character.image))
+                cellViewModels.append(viewModel)
+        
+            }
+        }
+    }
+    
+    private var cellViewModels: [AppCharacterCollectionViewCellViewModel] = []
+    
+    public func fetchCharacters(){
+        AppService.shared.execute(.listCharacterRequests, expecting: AppGetAllCharactersResponse.self) { [weak self] result in
             switch result {
-            case .success(let model):
-                print("Example image url : "+String(model.results.first?.image ?? " No image "))
+            case .success(let responceModel):
+                let results = responceModel.results
+                self?.characters = results
+                
+//                print("Example image url : "+String(model.results.first?.image ?? " No image "))
 //                print("Page result count: "+String(model.results.count))
             case .failure(let error):
                 print(String(describing: error))
@@ -24,7 +42,7 @@ final class CharacterListViewViewModel:NSObject {
 }
 extension CharacterListViewViewModel: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return cellViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
