@@ -50,6 +50,7 @@ final class AppCharacterListView: UIView {
         
         spinner.startAnimating()
         
+        viewModel.delegate = self
         viewModel.fetchCharacters()
         
         setupCollectionView()
@@ -80,14 +81,25 @@ final class AppCharacterListView: UIView {
         collectionView.dataSource = viewModel
         collectionView.delegate = viewModel
         
-        DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
-            self.spinner.stopAnimating()
-            
-            self.collectionView.isHidden = false
-            
-            UIView.animate(withDuration: 0.4) {
-                self.collectionView.alpha = 1
-            }
-        })
+//        DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
+//            self.spinner.stopAnimating()
+//
+//            self.collectionView.isHidden = false
+//
+//            UIView.animate(withDuration: 0.4) {
+//                self.collectionView.alpha = 1
+//            }
+//        })
+    }
+}
+
+extension AppCharacterListView: AppCharacterListViewModelDelegate {
+    func didLoadInitialCharacter() {
+        spinner.stopAnimating()
+        collectionView.isHidden = false
+        collectionView.reloadData()  // initial fetcch characters
+        UIView.animate(withDuration: 0.4) {
+            self.collectionView.alpha = 1
+        }
     }
 }
