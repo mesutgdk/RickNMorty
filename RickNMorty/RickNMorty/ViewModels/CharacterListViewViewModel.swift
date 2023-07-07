@@ -9,6 +9,8 @@ import UIKit
 
 protocol AppCharacterListViewModelDelegate: AnyObject {
     func didLoadInitialCharacter()
+    func didSelectCharacter(_ character: AppCharacters)  //for going into detailed view
+    
 }
 
 final class CharacterListViewViewModel:NSObject {
@@ -65,6 +67,8 @@ extension CharacterListViewViewModel: UICollectionViewDataSource {
         cell.configure(with: viewModel)
         return cell
     }
+ 
+    
 }
 extension CharacterListViewViewModel:UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -73,5 +77,12 @@ extension CharacterListViewViewModel:UICollectionViewDelegate, UICollectionViewD
         return CGSize(
             width: width,
             height: width * 1.5)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let character = characters[indexPath.row]
+        delegate?.didSelectCharacter(character)
+        
     }
 }

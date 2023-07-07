@@ -22,7 +22,7 @@ extension CharacterViewController {
         view.backgroundColor = .systemBackground
         title = "Character"
         
-        
+        characterListView.delegate = self
     }
     
     private func layout() {
@@ -35,4 +35,16 @@ extension CharacterViewController {
             characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+}
+
+extension CharacterViewController: AppCharacterViewDelegate {
+    func appDetailedCharacterListView(_ characterListView: AppCharacterListView, didSelectCharacter character: AppCharacters) {
+        // open a detailed controller for that character
+        let viewModel = AppCharacterViewViewModel(character: character)
+        let detailedVC = AppCharacterDetailedViewController(viewModel: viewModel)
+        
+        navigationController?.pushViewController(detailedVC, animated: true)
+    }
+    
+    
 }
