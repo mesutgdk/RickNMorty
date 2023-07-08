@@ -68,7 +68,6 @@ extension CharacterListViewViewModel: UICollectionViewDataSource {
         return cell
     }
  
-    
 }
 extension CharacterListViewViewModel:UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
