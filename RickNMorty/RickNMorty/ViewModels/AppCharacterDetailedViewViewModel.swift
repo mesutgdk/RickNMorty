@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class AppCharacterViewViewModel{
+final class AppCharacterDetailedViewViewModel{
     
     private let character: AppCharacters
     

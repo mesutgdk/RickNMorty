@@ -16,7 +16,7 @@ final class AppCharacterListView: UIView {
     
     public weak var delegate: AppCharacterViewDelegate?
 
-    private let viewModel = CharacterListViewViewModel()
+    private let viewModel = AppCharacterListViewViewModel()
     
     private let spinner : UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
@@ -113,3 +113,5 @@ extension AppCharacterListView: AppCharacterListViewModelDelegate {
         }
     }
 }
+
+

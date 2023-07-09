@@ -36,14 +36,16 @@ extension CharacterViewController {
         ])
     }
 }
+// MARK: - AppCharacterListViewDelegate
 
 extension CharacterViewController: AppCharacterViewDelegate {
     func appDetailedCharacterListView(_ characterListView: AppCharacterListView, didSelectCharacter character: AppCharacters) {
         // open a detailed controller for that character
-        let viewModel = AppCharacterViewViewModel(character: character)
+        let viewModel = AppCharacterDetailedViewViewModel(character: character)
         let detailedVC = AppCharacterDetailedViewController(viewModel: viewModel)
         
-        navigationController?.pushViewController(detailedVC, animated: true)
+        detailedVC.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(detailedVC, animated: true)  // charVC is a rootVC with navC, so navC will push
     }
     
     

@@ -12,8 +12,8 @@ protocol AppCharacterListViewModelDelegate: AnyObject {
     func didSelectCharacter(_ character: AppCharacters)  //for going into detailed view
     
 }
-
-final class CharacterListViewViewModel:NSObject {
+///  View Model to handle character list view logic
+final class AppCharacterListViewViewModel:NSObject {
     
     public weak var delegate: AppCharacterListViewModelDelegate?
     
@@ -33,12 +33,17 @@ final class CharacterListViewViewModel:NSObject {
     
     private var cellViewModels: [AppCharacterCollectionViewCellViewModel] = []
     
+    private var apiInfo: AppGetAllCharactersResponse.Info? = nil
+    
+    /// Fetch initial set of characters (20 items)
     public func fetchCharacters(){
         AppService.shared.execute(.listCharacterRequests, expecting: AppGetAllCharactersResponse.self) { [weak self] result in
             switch result {
             case .success(let responceModel):
                 let results = responceModel.results
+                let info = responceModel.info
                 self?.characters = results
+                self?.apiInfo = info
                 DispatchQueue.main.async {
                     self?.delegate?.didLoadInitialCharacter()   // it will trigger update view so main thread
                 }
@@ -50,10 +55,22 @@ final class CharacterListViewViewModel:NSObject {
                 print(String(describing: error))
             }
         }
-
     }
+    
+    /// Paginate if additional characters are needed
+    public func fetchAdditionalCharacters(){
+        
+    }
+    
+    private var shouldLoadMoreIndicator: Bool {
+        return apiInfo?.next != nil
+    }
+    
+    
 }
-extension CharacterListViewViewModel: UICollectionViewDataSource {
+// MARK: - CollectionView
+
+extension AppCharacterListViewViewModel: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cellViewModels.count
     }
@@ -69,7 +86,7 @@ extension CharacterListViewViewModel: UICollectionViewDataSource {
     }
  
 }
-extension CharacterListViewViewModel:UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension AppCharacterListViewViewModel:UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let bounds = UIScreen.main.bounds
         let width = (bounds.width-30)/2
@@ -85,3 +102,14 @@ extension CharacterListViewViewModel:UICollectionViewDelegate, UICollectionViewD
         
     }
 }
+
+// MARK: - ScrollView
+extension AppCharacterListViewViewModel: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //
+        guard shouldLoadMoreIndicator else {
+            return
+        }
+    }
+}
+

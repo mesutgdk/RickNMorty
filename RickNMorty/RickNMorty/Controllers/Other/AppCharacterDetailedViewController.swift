@@ -9,9 +9,10 @@ import UIKit
 
 final class AppCharacterDetailedViewController: UIViewController {
 
-    private let viewModel: AppCharacterViewViewModel
+    private let viewModel: AppCharacterDetailedViewViewModel
     
-    init(viewModel: AppCharacterViewViewModel ) {
+    // to pass data with view model, it displays which cell we choose
+    init(viewModel: AppCharacterDetailedViewViewModel ) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

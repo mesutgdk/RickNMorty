@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		630E6B902A54AE0600C17EFB /* CharacterListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B8F2A54AE0600C17EFB /* CharacterListViewViewModel.swift */; };
+		630E6B902A54AE0600C17EFB /* AppCharacterListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B8F2A54AE0600C17EFB /* AppCharacterListViewViewModel.swift */; };
 		630E6B922A54AEAC00C17EFB /* AppCharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B912A54AEAC00C17EFB /* AppCharacterListView.swift */; };
 		630E6B942A55707300C17EFB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B932A55707300C17EFB /* Extensions.swift */; };
 		630E6B962A56B5A400C17EFB /* AppCharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B952A56B5A400C17EFB /* AppCharacterCollectionViewCell.swift */; };
 		630E6B982A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B972A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift */; };
 		630E6B9B2A58226400C17EFB /* AppCharacterDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B9A2A58226400C17EFB /* AppCharacterDetailedViewController.swift */; };
 		630E6B9D2A58231100C17EFB /* AppCharacterDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B9C2A58231100C17EFB /* AppCharacterDetailedView.swift */; };
-		630E6B9F2A58234600C17EFB /* AppCharacterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B9E2A58234600C17EFB /* AppCharacterViewViewModel.swift */; };
+		630E6B9F2A58234600C17EFB /* AppCharacterDetailedViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B9E2A58234600C17EFB /* AppCharacterDetailedViewViewModel.swift */; };
 		633D43E62A49C30F009FFECB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D43E52A49C30F009FFECB /* AppDelegate.swift */; };
 		633D43E82A49C30F009FFECB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D43E72A49C30F009FFECB /* SceneDelegate.swift */; };
 		633D43EA2A49C30F009FFECB /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D43E92A49C30F009FFECB /* TabBarViewController.swift */; };
@@ -38,14 +38,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		630E6B8F2A54AE0600C17EFB /* CharacterListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewViewModel.swift; sourceTree = "<group>"; };
+		630E6B8F2A54AE0600C17EFB /* AppCharacterListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterListViewViewModel.swift; sourceTree = "<group>"; };
 		630E6B912A54AEAC00C17EFB /* AppCharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterListView.swift; sourceTree = "<group>"; };
 		630E6B932A55707300C17EFB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		630E6B952A56B5A400C17EFB /* AppCharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterCollectionViewCell.swift; sourceTree = "<group>"; };
 		630E6B972A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		630E6B9A2A58226400C17EFB /* AppCharacterDetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterDetailedViewController.swift; sourceTree = "<group>"; };
 		630E6B9C2A58231100C17EFB /* AppCharacterDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterDetailedView.swift; sourceTree = "<group>"; };
-		630E6B9E2A58234600C17EFB /* AppCharacterViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterViewViewModel.swift; sourceTree = "<group>"; };
+		630E6B9E2A58234600C17EFB /* AppCharacterDetailedViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterDetailedViewViewModel.swift; sourceTree = "<group>"; };
 		633D43E22A49C30F009FFECB /* RickNMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickNMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		633D43E52A49C30F009FFECB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		633D43E72A49C30F009FFECB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,9 +151,9 @@
 		633D43FC2A4A19DF009FFECB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				630E6B8F2A54AE0600C17EFB /* CharacterListViewViewModel.swift */,
+				630E6B8F2A54AE0600C17EFB /* AppCharacterListViewViewModel.swift */,
 				630E6B972A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift */,
-				630E6B9E2A58234600C17EFB /* AppCharacterViewViewModel.swift */,
+				630E6B9E2A58234600C17EFB /* AppCharacterDetailedViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -303,7 +303,7 @@
 				633D440E2A4A1BAC009FFECB /* SettingsViewController.swift in Sources */,
 				633D44082A4A1B6E009FFECB /* CharacterViewController.swift in Sources */,
 				633D43E62A49C30F009FFECB /* AppDelegate.swift in Sources */,
-				630E6B9F2A58234600C17EFB /* AppCharacterViewViewModel.swift in Sources */,
+				630E6B9F2A58234600C17EFB /* AppCharacterDetailedViewViewModel.swift in Sources */,
 				633D44032A4A1AB6009FFECB /* AppCharacters.swift in Sources */,
 				633D43E82A49C30F009FFECB /* SceneDelegate.swift in Sources */,
 				633D44102A4A2EA3009FFECB /* AppService.swift in Sources */,
@@ -313,7 +313,7 @@
 				633D440A2A4A1B83009FFECB /* LocationViewController.swift in Sources */,
 				633D441C2A4A3D74009FFECB /* AppCharacterGender.swift in Sources */,
 				633D44162A4A3C5A009FFECB /* AppCharacterStatus.swift in Sources */,
-				630E6B902A54AE0600C17EFB /* CharacterListViewViewModel.swift in Sources */,
+				630E6B902A54AE0600C17EFB /* AppCharacterListViewViewModel.swift in Sources */,
 				633D44182A4A3C84009FFECB /* AppOrigin.swift in Sources */,
 				630E6B982A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift in Sources */,
 				630E6B9D2A58231100C17EFB /* AppCharacterDetailedView.swift in Sources */,
