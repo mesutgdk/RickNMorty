@@ -59,7 +59,7 @@ final class AppCharacterListViewViewModel:NSObject {
     
     /// Paginate if additional characters are needed
     public func fetchAdditionalCharacters(){
-        
+        // fetch new characters
     }
     
     private var shouldLoadMoreIndicator: Bool {
