@@ -35,6 +35,7 @@
 		633D441A2A4A3CEA009FFECB /* AppCharLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D44192A4A3CEA009FFECB /* AppCharLocation.swift */; };
 		633D441C2A4A3D74009FFECB /* AppCharacterGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D441B2A4A3D74009FFECB /* AppCharacterGender.swift */; };
 		63896C862A5353B000E732A2 /* AppGetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63896C852A5353B000E732A2 /* AppGetAllCharactersResponse.swift */; };
+		639DC9F82A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DC9F72A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		633D44192A4A3CEA009FFECB /* AppCharLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharLocation.swift; sourceTree = "<group>"; };
 		633D441B2A4A3D74009FFECB /* AppCharacterGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterGender.swift; sourceTree = "<group>"; };
 		63896C852A5353B000E732A2 /* AppGetAllCharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGetAllCharactersResponse.swift; sourceTree = "<group>"; };
+		639DC9F72A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				630E6B912A54AEAC00C17EFB /* AppCharacterListView.swift */,
 				630E6B952A56B5A400C17EFB /* AppCharacterCollectionViewCell.swift */,
 				630E6B9C2A58231100C17EFB /* AppCharacterDetailedView.swift */,
+				639DC9F72A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 			files = (
 				633D43EA2A49C30F009FFECB /* TabBarViewController.swift in Sources */,
 				633D44122A4A2EB7009FFECB /* AppRequest.swift in Sources */,
+				639DC9F82A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift in Sources */,
 				630E6B922A54AEAC00C17EFB /* AppCharacterListView.swift in Sources */,
 				633D440C2A4A1B8F009FFECB /* EpisodeViewController.swift in Sources */,
 				630E6B9B2A58226400C17EFB /* AppCharacterDetailedViewController.swift in Sources */,
