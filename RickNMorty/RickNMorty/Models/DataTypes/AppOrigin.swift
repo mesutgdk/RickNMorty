@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct AppOrigin: Codable {
     let name: String
     let url: String
