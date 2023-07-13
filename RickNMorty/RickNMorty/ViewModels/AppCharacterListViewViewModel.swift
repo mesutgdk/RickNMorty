@@ -68,7 +68,7 @@ final class AppCharacterListViewViewModel:NSObject {
     
     
 }
-// MARK: - CollectionView
+// MARK: - CollectionView datasource
 
 extension AppCharacterListViewViewModel: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -86,6 +86,8 @@ extension AppCharacterListViewViewModel: UICollectionViewDataSource {
     }
  
 }
+// MARK: - Collectionview delegate
+
 extension AppCharacterListViewViewModel:UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let bounds = UIScreen.main.bounds
@@ -112,4 +114,23 @@ extension AppCharacterListViewViewModel: UIScrollViewDelegate {
         }
     }
 }
+
+// MARK: - CollectionView Footer
+/// to install new chars, adjusting a footer
+extension AppCharacterListViewViewModel {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionFooter, shouldLoadMoreIndicator else {
+            return UICollectionReusableView()
+        }
+        
+        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AppFooterLoadingCollectionReusableView.identifier, for: indexPath)
+        
+        return footer
+    }
+    /// resize the footer
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 100)
+    }
+}
+
 
