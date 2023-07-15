@@ -23,6 +23,7 @@ final class AppFooterLoadingCollectionReusableView: UICollectionReusableView {
     private func setup (){
         backgroundColor = .systemBlue
     }
+    
     private func layyout(){
         
     }

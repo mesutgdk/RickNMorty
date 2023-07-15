@@ -101,7 +101,6 @@ extension AppCharacterListViewViewModel:UICollectionViewDelegate, UICollectionVi
         collectionView.deselectItem(at: indexPath, animated: true)
         let character = characters[indexPath.row]
         delegate?.didSelectCharacter(character)
-        
     }
 }
 
