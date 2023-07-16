@@ -28,7 +28,8 @@ final class AppCharacterDetailedViewController: UIViewController {
     }
     
     private func setup(){
-        view.backgroundColor = .systemBackground
+//        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemRed
         title = viewModel.title
     }
     
