@@ -118,16 +118,23 @@ extension AppCharacterListViewViewModel: UIScrollViewDelegate {
 /// to install new chars, adjusting a footer
 extension AppCharacterListViewViewModel {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard kind == UICollectionView.elementKindSectionFooter, shouldLoadMoreIndicator else {
-            return UICollectionReusableView()
+        guard kind == UICollectionView.elementKindSectionFooter,
+                let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: AppFooterLoadingCollectionReusableView.identifier,
+                                                                             for: indexPath
+                ) as? AppFooterLoadingCollectionReusableView else {
+            fatalError("Unsupported")
         }
         
-        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AppFooterLoadingCollectionReusableView.identifier, for: indexPath)
+        footer.startAnimatiıng()
         
         return footer
     }
     /// resize the footer
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        guard shouldLoadMoreIndicator else {
+            return .zero
+        }
         return CGSize(width: collectionView.frame.width, height: 100)
     }
 }
