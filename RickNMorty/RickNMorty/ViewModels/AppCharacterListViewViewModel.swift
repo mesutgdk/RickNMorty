@@ -17,6 +17,8 @@ final class AppCharacterListViewViewModel:NSObject {
     
     public weak var delegate: AppCharacterListViewModelDelegate?
     
+    private var isLoadingMoreCharacters = false
+    
     private var characters: [AppCharacters] = [] {
         didSet {
             for character in characters {
@@ -107,16 +109,24 @@ extension AppCharacterListViewViewModel:UICollectionViewDelegate, UICollectionVi
 // MARK: - ScrollView
 extension AppCharacterListViewViewModel: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //
-        guard shouldLoadMoreIndicator else {
+        
+        guard shouldLoadMoreIndicator, !isLoadingMoreCharacters else {
             return
         }
+        /*
+         offset scrollviewin y uç noktası
+         if statument: gives us that the edge of the scrollview and updates the page
+         -120 is the size of footer's y
+         with isLoadingMoreCharacter we dicard to fetch n times, after using isL it works only one times
+        */
         let offset = scrollView.contentOffset.y
         let totalContentHeight = scrollView.contentSize.height
         let totalScrollViewFixedHeight = scrollView.frame.size.height
-        print("offsett: \(offset)")
-        print("totalContentHeight: \(totalContentHeight)")
-        print("totalScrollViewFixedHeight: \(totalScrollViewFixedHeight)")
+
+        if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+            print("should start fetching more")
+            isLoadingMoreCharacters = true
+        }
         
     }
 }
