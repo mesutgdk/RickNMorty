@@ -111,6 +111,13 @@ extension AppCharacterListViewViewModel: UIScrollViewDelegate {
         guard shouldLoadMoreIndicator else {
             return
         }
+        let offset = scrollView.contentOffset.y
+        let totalContentHeight = scrollView.contentSize.height
+        let totalScrollViewFixedHeight = scrollView.frame.size.height
+        print("offsett: \(offset)")
+        print("totalContentHeight: \(totalContentHeight)")
+        print("totalScrollViewFixedHeight: \(totalScrollViewFixedHeight)")
+        
     }
 }
 
