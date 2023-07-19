@@ -10,7 +10,7 @@ import UIKit
 protocol AppCharacterListViewModelDelegate: AnyObject {
     func didLoadInitialCharacter()
     func didSelectCharacter(_ character: AppCharacters)  //for going into detailed view
-    
+    func didLoadMoreCharacters(with newIndexPath:[IndexPath])
 }
 ///  View Model to handle character list view logic
 final class AppCharacterListViewViewModel:NSObject {
@@ -21,6 +21,7 @@ final class AppCharacterListViewViewModel:NSObject {
     
     private var characters: [AppCharacters] = [] {
         didSet {
+//            print("Creating viewModels!")
             for character in characters {
                 let viewModel = AppCharacterCollectionViewCellViewModel(
                     characterName: character.name,
@@ -61,9 +62,49 @@ final class AppCharacterListViewViewModel:NSObject {
     
     /// Paginate if additional characters are needed
     public func fetchAdditionalCharacters(url:URL){
-        // fetch new characters
+        // ensure it is false, fetch new characters
+        guard !isLoadingMoreCharacters else{
+            return
+        }
         isLoadingMoreCharacters = true
-        AppService.shared.execute(<#T##request: AppRequest##AppRequest#>, expecting: <#T##(Decodable & Encodable).Protocol#>, complition: <#T##(Result<Decodable & Encodable, Error>) -> Void#>)
+        print("fetching more characters")
+        
+        guard let request = AppRequest(url: url) else {
+            isLoadingMoreCharacters = false
+            print("Failed to create a request")
+            return
+        }
+        
+        AppService.shared.execute(request, expecting: AppGetAllCharactersResponse.self) { [weak self] result in
+            guard let strongSelf = self else {
+                return
+            }
+            switch result {
+            case .success(let responseModel):
+                let moreResults = responseModel.results
+                let info = responseModel.info
+                strongSelf.apiInfo = info
+             
+                let originalCount = strongSelf.characters.count
+                let newCount  = moreResults.count
+                let totalCount = originalCount + newCount
+                let startingIndex = totalCount - newCount
+                
+                let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap({
+                    return IndexPath(row: $0, section: 0)
+                })
+//                print(indexPathsToAdd)
+//                print(strongSelf.characters.count)
+//                strongSelf.characters.append(contentsOf: moreResults)
+                DispatchQueue.main.async {
+                    strongSelf.delegate?.didLoadMoreCharacters(with: [])
+                    strongSelf.isLoadingMoreCharacters = false
+                }
+            case .failure(let failure):
+                print(String(describing: failure))
+                strongSelf.isLoadingMoreCharacters = false
+            }
+        }
 
     }
     
@@ -115,6 +156,7 @@ extension AppCharacterListViewViewModel: UIScrollViewDelegate {
         
         guard shouldLoadMoreIndicator,
               !isLoadingMoreCharacters,
+              !cellViewModels.isEmpty,
               let nextUrlString = apiInfo?.next,
               let url = URL(string: nextUrlString) else {
             return
@@ -125,14 +167,18 @@ extension AppCharacterListViewViewModel: UIScrollViewDelegate {
          -120 is the size of footer's y
           we dicard to fetch n times with using isLoadingMoreChar in fetchAdCh, after using isLo it works only one times
         */
-        let offset = scrollView.contentOffset.y
-        let totalContentHeight = scrollView.contentSize.height
-        let totalScrollViewFixedHeight = scrollView.frame.size.height
+        // timer is for the problem that offset detects top
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] tmr in
+            let offset = scrollView.contentOffset.y
+            let totalContentHeight = scrollView.contentSize.height
+            let totalScrollViewFixedHeight = scrollView.frame.size.height
 
-        if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
-//            print("should start fetching more")
-            fetchAdditionalCharacters(url:url)
+            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+                self?.fetchAdditionalCharacters(url:url)
+            }
+            tmr.invalidate()
         }
+        
         
     }
 }
