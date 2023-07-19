@@ -78,6 +78,13 @@ final class AppRequest {
         self.pathComponent = pathComponent
         self.queryParameters = queryParameters
     }
+    
+    convenience init?(url:URL) {
+        let string = url.absoluteString
+        if !string.contains(Constants.baseUrl){
+            return nil
+        }
+    }
 }
 
 extension AppRequest {

@@ -60,8 +60,11 @@ final class AppCharacterListViewViewModel:NSObject {
     }
     
     /// Paginate if additional characters are needed
-    public func fetchAdditionalCharacters(){
+    public func fetchAdditionalCharacters(url:URL){
         // fetch new characters
+        isLoadingMoreCharacters = true
+        AppService.shared.execute(<#T##request: AppRequest##AppRequest#>, expecting: <#T##(Decodable & Encodable).Protocol#>, complition: <#T##(Result<Decodable & Encodable, Error>) -> Void#>)
+
     }
     
     private var shouldLoadMoreIndicator: Bool {
@@ -110,22 +113,25 @@ extension AppCharacterListViewViewModel:UICollectionViewDelegate, UICollectionVi
 extension AppCharacterListViewViewModel: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        guard shouldLoadMoreIndicator, !isLoadingMoreCharacters else {
+        guard shouldLoadMoreIndicator,
+              !isLoadingMoreCharacters,
+              let nextUrlString = apiInfo?.next,
+              let url = URL(string: nextUrlString) else {
             return
         }
         /*
          offset scrollviewin y uç noktası
          if statument: gives us that the edge of the scrollview and updates the page
          -120 is the size of footer's y
-         with isLoadingMoreCharacter we dicard to fetch n times, after using isL it works only one times
+          we dicard to fetch n times with using isLoadingMoreChar in fetchAdCh, after using isLo it works only one times
         */
         let offset = scrollView.contentOffset.y
         let totalContentHeight = scrollView.contentSize.height
         let totalScrollViewFixedHeight = scrollView.frame.size.height
 
         if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
-            print("should start fetching more")
-            isLoadingMoreCharacters = true
+//            print("should start fetching more")
+            fetchAdditionalCharacters(url:url)
         }
         
     }
