@@ -115,6 +115,7 @@ extension AppCharacterListView: AppCharacterListViewModelDelegate {
     }
     
     func didLoadMoreCharacters(with newIndexPath:[IndexPath]) {
+        collectionView.reloadData()
         collectionView.performBatchUpdates {
             self.collectionView.insertItems(at: newIndexPath)
         }

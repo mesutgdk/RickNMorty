@@ -95,8 +95,9 @@ final class AppCharacterListViewViewModel:NSObject {
                 })
 //                print(indexPathsToAdd)
 //                print(strongSelf.characters.count)
-//                strongSelf.characters.append(contentsOf: moreResults)
+                strongSelf.characters.append(contentsOf: moreResults)
                 DispatchQueue.main.async {
+                    
                     strongSelf.delegate?.didLoadMoreCharacters(with: [])
                     strongSelf.isLoadingMoreCharacters = false
                 }

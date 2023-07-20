@@ -90,7 +90,7 @@ final class AppRequest {
             if !components.isEmpty {
                 let endpointString = components[0]
                 if let appEndpoint = AppEndpoint(rawValue: endpointString) {
-                    self.init(endPoint:appEndpoint)
+                    self.init(endPoint: appEndpoint)
                     return
                 }
                 
@@ -100,7 +100,7 @@ final class AppRequest {
             if !components.isEmpty {
                 let endpointString = components[0]
                 if let appEndpoint = AppEndpoint(rawValue: endpointString) {
-                    self.init(endPoint:appEndpoint)
+                    self.init(endPoint: appEndpoint)
                     return
                 }
                 
