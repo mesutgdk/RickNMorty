@@ -92,13 +92,16 @@ final class AppCharacterListViewViewModel:NSObject {
                 
                 let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap { return IndexPath(row: $0, section: 0) }
                 print("char = \(originalCount)", "newchars= \(newCount)", "totalchar= \(totalCount)")
-
+                
+                
                 strongSelf.characters.append(contentsOf: moreResults)
-               
+                
                 DispatchQueue.main.async {
                     strongSelf.delegate?.didLoadMoreCharacters(with: indexPathsToAdd)
                     strongSelf.isLoadingMoreCharacters = false
                 }
+                
+                
             case .failure(let failure):
                 print(String(describing: failure))
                 strongSelf.isLoadingMoreCharacters = false
