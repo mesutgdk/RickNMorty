@@ -66,8 +66,9 @@ final class AppCharacterListViewViewModel:NSObject {
         guard !isLoadingMoreCharacters else{
             return
         }
-        isLoadingMoreCharacters = true
         print("fetching more characters")
+
+        isLoadingMoreCharacters = true
         
         guard let request = AppRequest(url: url) else {
             isLoadingMoreCharacters = false
@@ -81,9 +82,13 @@ final class AppCharacterListViewViewModel:NSObject {
             }
             switch result {
             case .success(let responseModel):
+                print("pre-update:\(strongSelf.cellViewModels.count)")
                 let moreResults = responseModel.results
                 let info = responseModel.info
                 strongSelf.apiInfo = info
+                
+//                print(moreResults.count)
+//                print(moreResults.first?.name)
              
                 let originalCount = strongSelf.characters.count
                 let newCount  = moreResults.count
@@ -91,14 +96,17 @@ final class AppCharacterListViewViewModel:NSObject {
                 let startingIndex = totalCount - newCount
                 
                 let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap { return IndexPath(row: $0, section: 0) }
-                print("char = \(originalCount)", "newchars= \(newCount)", "totalchar= \(totalCount)")
+//                print("char = \(originalCount)", "newchars= \(newCount)", "totalchar= \(totalCount)")
                 
                 
                 strongSelf.characters.append(contentsOf: moreResults)
                 
                 DispatchQueue.main.async {
+                    print("post-update:\(strongSelf.cellViewModels.count)")
+
                     strongSelf.delegate?.didLoadMoreCharacters(with: indexPathsToAdd)
-                    strongSelf.isLoadingMoreCharacters = false
+
+//                    strongSelf.isLoadingMoreCharacters = false
                 }
                 
                 
