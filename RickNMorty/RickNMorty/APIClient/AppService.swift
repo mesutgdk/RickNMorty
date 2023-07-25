@@ -33,6 +33,8 @@ final class AppService {
             complition(.failure(AppServiceError.failureCreatingRequest))
             return
         }
+        
+        print("API Call: \(request.url?.absoluteString ?? "")")
         let task  = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
             guard let data = data, error == nil else {
                 complition(.failure(error ?? AppServiceError.failedToGetData))

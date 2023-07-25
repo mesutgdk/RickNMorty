@@ -22,7 +22,7 @@ final class AppCharacterListViewViewModel:NSObject {
     private var characters: [AppCharacters] = [] {
         didSet {
 //            print("Creating viewModels!")
-            for character in characters {
+            for character in characters where !cellViewModels.contains(where: { $0.characterName == character.name }){
                 let viewModel = AppCharacterCollectionViewCellViewModel(
                     characterName: character.name,
                     characterStatus: character.status,
@@ -82,27 +82,29 @@ final class AppCharacterListViewViewModel:NSObject {
             }
             switch result {
             case .success(let responseModel):
-                print("pre-update:\(strongSelf.cellViewModels.count)")
+//                print("pre-update:\(strongSelf.cellViewModels.count)")
+                
                 let moreResults = responseModel.results
                 let info = responseModel.info
                 strongSelf.apiInfo = info
-                
-//                print(moreResults.count)
-//                print(moreResults.first?.name)
              
                 let originalCount = strongSelf.characters.count
                 let newCount  = moreResults.count
                 let totalCount = originalCount + newCount
                 let startingIndex = totalCount - newCount
                 
-                let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap { return IndexPath(row: $0, section: 0) }
-//                print("char = \(originalCount)", "newchars= \(newCount)", "totalchar= \(totalCount)")
+                let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap {
+                    return IndexPath(row: $0, section: 0)
+                }
+                print("char = \(originalCount)", "newchars= \(newCount)", "totalchar= \(totalCount)")
+//                print(indexPathsToAdd.count)
                 
                 
                 strongSelf.characters.append(contentsOf: moreResults)
+//                print("post-update:\(strongSelf.cellViewModels.count)")
+
                 
                 DispatchQueue.main.async {
-                    print("post-update:\(strongSelf.cellViewModels.count)")
 
                     strongSelf.delegate?.didLoadMoreCharacters(with: indexPathsToAdd)
 

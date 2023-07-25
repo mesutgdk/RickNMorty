@@ -115,7 +115,7 @@ extension AppCharacterListView: AppCharacterListViewModelDelegate {
     }
     
     func didLoadMoreCharacters(with newIndexPath:[IndexPath]) {
-        collectionView.reloadData() // it is a bug, without loading it will crush
+//        collectionView.reloadData() // it is a bug, without loading it will crush
         collectionView.performBatchUpdates {
             self.collectionView.insertItems(at: newIndexPath)
         }

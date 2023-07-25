@@ -97,10 +97,24 @@ final class AppRequest {
             }
         } else if trimmed.contains("?"){
             let components = trimmed.components(separatedBy: "?")
-            if !components.isEmpty {
+            if !components.isEmpty, components.count >= 2 {
                 let endpointString = components[0]
+                let querryItemsString = components[1]
+                // value=name&value=name
+                let querryItem: [URLQueryItem] = querryItemsString.components(separatedBy: "&").compactMap({
+                    guard $0.contains("=") else {
+                        return nil
+                    }
+                    let parts = $0.components(separatedBy: "=")
+                    
+                    return URLQueryItem(
+                        name: parts[0],
+                        value: parts[1]
+                    )
+                })
+                
                 if let appEndpoint = AppEndpoint(rawValue: endpointString) {
-                    self.init(endPoint: appEndpoint)
+                    self.init(endPoint: appEndpoint, queryParameters: querryItem)
                     return
                 }
                 
