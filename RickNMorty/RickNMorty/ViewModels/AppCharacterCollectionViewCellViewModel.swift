@@ -7,12 +7,22 @@
 
 import Foundation
 
-final class AppCharacterCollectionViewCellViewModel {
+final class AppCharacterCollectionViewCellViewModel:Hashable {
+  
     
     public let characterName: String
     private let characterStatus: AppCharacterStatus
     private let characterImageUrl: URL?
     
+    static func == (lhs: AppCharacterCollectionViewCellViewModel, rhs: AppCharacterCollectionViewCellViewModel) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(characterName)
+        hasher.combine(characterStatus)
+        hasher.combine(characterImageUrl)
+    }
     // MARK: - init
 
     init(
