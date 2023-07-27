@@ -28,6 +28,7 @@ final class AppCharacterListViewViewModel:NSObject {
                     characterStatus: character.status,
                     characterImageUrl: URL(string: character.image)
                 )
+//               tekrar eklenmesinin önüne geçmek için
                 if !cellViewModels.contains(viewModel) {
                     
                     cellViewModels.append(viewModel)
@@ -109,9 +110,11 @@ final class AppCharacterListViewViewModel:NSObject {
                 DispatchQueue.main.async {
 
                     strongSelf.delegate?.didLoadMoreCharacters(with: indexPathsToAdd)
+                    strongSelf.isLoadingMoreCharacters = false
 
-//                    strongSelf.isLoadingMoreCharacters = false
+
                 }
+
                 
                 
             case .failure(let failure):
@@ -176,7 +179,7 @@ extension AppCharacterListViewViewModel: UIScrollViewDelegate {
             return
         }
         /*
-         offset scrollviewin y uç noktası
+         offset scrollview'in y uç noktası
          if statument: gives us that the edge of the scrollview and updates the page
          -120 is the size of footer's y
           we dicard to fetch n times with using isLoadingMoreChar in fetchAdCh, after using isLo it works only one times

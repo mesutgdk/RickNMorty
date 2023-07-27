@@ -14,15 +14,6 @@ final class AppCharacterCollectionViewCellViewModel:Hashable {
     private let characterStatus: AppCharacterStatus
     private let characterImageUrl: URL?
     
-    static func == (lhs: AppCharacterCollectionViewCellViewModel, rhs: AppCharacterCollectionViewCellViewModel) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(characterName)
-        hasher.combine(characterStatus)
-        hasher.combine(characterImageUrl)
-    }
     // MARK: - init
 
     init(
@@ -57,4 +48,16 @@ final class AppCharacterCollectionViewCellViewModel:Hashable {
         }
         task.resume()
     }
+    // MARK: - Hashable
+    
+    static func == (lhs: AppCharacterCollectionViewCellViewModel, rhs: AppCharacterCollectionViewCellViewModel) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(characterName)
+        hasher.combine(characterStatus)
+        hasher.combine(characterImageUrl)
+    }
+    
 }
