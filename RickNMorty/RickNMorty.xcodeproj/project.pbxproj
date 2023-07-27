@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630DE4F92A725168005ACA2F /* AppImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630DE4F82A725168005ACA2F /* AppImageLoader.swift */; };
 		630E6B902A54AE0600C17EFB /* AppCharacterListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B8F2A54AE0600C17EFB /* AppCharacterListViewViewModel.swift */; };
 		630E6B922A54AEAC00C17EFB /* AppCharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B912A54AEAC00C17EFB /* AppCharacterListView.swift */; };
 		630E6B942A55707300C17EFB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B932A55707300C17EFB /* Extensions.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		630DE4F82A725168005ACA2F /* AppImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImageLoader.swift; sourceTree = "<group>"; };
 		630E6B8F2A54AE0600C17EFB /* AppCharacterListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterListViewViewModel.swift; sourceTree = "<group>"; };
 		630E6B912A54AEAC00C17EFB /* AppCharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterListView.swift; sourceTree = "<group>"; };
 		630E6B932A55707300C17EFB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 		633D43FE2A4A1A0E009FFECB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				630DE4F82A725168005ACA2F /* AppImageLoader.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				633D44082A4A1B6E009FFECB /* CharacterViewController.swift in Sources */,
 				633D43E62A49C30F009FFECB /* AppDelegate.swift in Sources */,
 				630E6B9F2A58234600C17EFB /* AppCharacterDetailedViewViewModel.swift in Sources */,
+				630DE4F92A725168005ACA2F /* AppImageLoader.swift in Sources */,
 				633D44032A4A1AB6009FFECB /* AppCharacters.swift in Sources */,
 				633D43E82A49C30F009FFECB /* SceneDelegate.swift in Sources */,
 				633D44102A4A2EA3009FFECB /* AppService.swift in Sources */,

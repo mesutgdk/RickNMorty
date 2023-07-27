@@ -70,7 +70,7 @@ final class AppCharacterListViewViewModel:NSObject {
         guard !isLoadingMoreCharacters else{
             return
         }
-        print("fetching more characters")
+//        print("fetching more characters")
 
         isLoadingMoreCharacters = true
         
@@ -100,12 +100,12 @@ final class AppCharacterListViewViewModel:NSObject {
                 let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap {
                     return IndexPath(row: $0, section: 0)
                 }
-                print("char = \(originalCount)", "newchars= \(newCount)", "totalchar= \(totalCount)")
+//                print("char = \(originalCount)", "newchars= \(newCount)", "totalchar= \(totalCount)")
 //                print(indexPathsToAdd.count)
                 
                 strongSelf.characters.append(contentsOf: moreResults)
                 
-                print("ViewModels: \(strongSelf.cellViewModels.count)")
+//                print("ViewModels: \(strongSelf.cellViewModels.count)")
                 
                 DispatchQueue.main.async {
 
