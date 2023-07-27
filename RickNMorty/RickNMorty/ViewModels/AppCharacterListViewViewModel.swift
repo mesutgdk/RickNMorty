@@ -112,7 +112,6 @@ final class AppCharacterListViewViewModel:NSObject {
                     strongSelf.delegate?.didLoadMoreCharacters(with: indexPathsToAdd)
                     strongSelf.isLoadingMoreCharacters = false
 
-
                 }
 
                 
