@@ -35,7 +35,7 @@ final class AppImageLoader {
                 return
             }
             let value = data as NSData
-            self?.imageDataCache.setObject(value, forKey: key)
+            self?.imageDataCache.setObject(value, forKey: key) //  to keep as much cached as possible.
             completion(.success(data))
         }
         task.resume()
