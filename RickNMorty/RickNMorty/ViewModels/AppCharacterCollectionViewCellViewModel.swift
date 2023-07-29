@@ -37,7 +37,7 @@ final class AppCharacterCollectionViewCellViewModel:Hashable {
             completion(.failure(URLError(.badURL)))
             return
         }
-        let request = URLRequest(url: url)
+//        let request = URLRequest(url: url)
         AppImageLoader.shared.downloadImage(url, completion: completion) // assign the downloadtask to a manager/loader
     }
     // MARK: - Hashable

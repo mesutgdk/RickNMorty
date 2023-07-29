@@ -39,7 +39,7 @@ extension CharacterViewController {
 // MARK: - AppCharacterListViewDelegate
 
 extension CharacterViewController: AppCharacterViewDelegate {
-    func appDetailedCharacterListView(_ characterListView: AppCharacterListView, didSelectCharacter character: AppCharacters) {
+    func appDetailedCharacterListView(_ characterListView: AppCharacterListView, didSelectCharacter character: AppCharacter) {
         // open a detailed controller for that character
         let viewModel = AppCharacterDetailedViewViewModel(character: character)
         let detailedVC = AppCharacterDetailedViewController(viewModel: viewModel)

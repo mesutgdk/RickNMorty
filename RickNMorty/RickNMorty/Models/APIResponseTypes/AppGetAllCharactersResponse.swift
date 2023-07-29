@@ -17,5 +17,5 @@ struct AppGetAllCharactersResponse: Codable {
     }
     
     let info: Info
-    let results: [AppCharacters]
+    let results: [AppCharacter]
 }

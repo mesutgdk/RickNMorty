@@ -79,6 +79,8 @@ final class AppRequest {
         self.queryParameters = queryParameters
     }
     
+    /// Attempt to create request
+    /// - Parameter url: URL to parse
     convenience init?(url:URL) {
         let string = url.absoluteString
         if !string.contains(Constants.baseUrl){
@@ -88,9 +90,14 @@ final class AppRequest {
         if trimmed.contains("/") {
             let components = trimmed.components(separatedBy: "/")
             if !components.isEmpty {
-                let endpointString = components[0]
+                let endpointString = components[0] // Endpoint
+                var pathComponents: [String] = []
+                if components.count > 1 {
+                    pathComponents = components
+                    pathComponents.removeFirst()
+                }
                 if let appEndpoint = AppEndpoint(rawValue: endpointString) {
-                    self.init(endPoint: appEndpoint)
+                    self.init(endPoint: appEndpoint, pathComponent: pathComponents)
                     return
                 }
                 

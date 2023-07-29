@@ -9,7 +9,7 @@ import UIKit
 
 protocol AppCharacterListViewModelDelegate: AnyObject {
     func didLoadInitialCharacter()
-    func didSelectCharacter(_ character: AppCharacters)  //for going into detailed view
+    func didSelectCharacter(_ character: AppCharacter)  //for going into detailed view
     func didLoadMoreCharacters(with newIndexPath:[IndexPath])
 }
 ///  View Model to handle character list view logic
@@ -19,7 +19,7 @@ final class AppCharacterListViewViewModel:NSObject {
     
     private var isLoadingMoreCharacters = false
     
-    private var characters: [AppCharacters] = [] {
+    private var characters: [AppCharacter] = [] {
         didSet {
 //            print("Creating viewModels!")
             for character in characters {
