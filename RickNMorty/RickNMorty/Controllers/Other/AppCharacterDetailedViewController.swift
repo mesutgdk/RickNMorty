@@ -33,10 +33,11 @@ final class AppCharacterDetailedViewController: UIViewController {
     }
     
     private func setup(){
-//        view.backgroundColor = .systemBackground
+        //        view.backgroundColor = .systemBackground
         view.backgroundColor = .systemBackground
         title = viewModel.title
         view.addSubview(detailedView)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
     }
     
     private func layout(){
@@ -47,6 +48,9 @@ final class AppCharacterDetailedViewController: UIViewController {
             detailedView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
         ])
     }
-
+    
+    @objc func didTapShare(){
+//        to share character info
+    }
     
 }
