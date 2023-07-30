@@ -58,7 +58,17 @@ final class AppCharacterDetailedViewController: UIViewController {
     @objc func didTapShare(){
 //        to share character info
     }
-    
-    
-    
+}
+
+// MARK: - CollectionView
+
+extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 20
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        cell.backgroundColor = .systemGreen
+        return cell
+    }
 }
