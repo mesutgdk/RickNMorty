@@ -10,7 +10,7 @@ import UIKit
 /// View for single character
 final class AppCharacterDetailedView: UIView {
     
-    private var collectionView: UICollectionView?
+    public var collectionView: UICollectionView?
     
     private let spinner : UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)

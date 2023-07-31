@@ -8,6 +8,7 @@
 import UIKit
 
 final class AppCharacterDetailedViewController: UIViewController {
+    
 
     private let viewModel: AppCharacterDetailedViewViewModel
     
@@ -42,8 +43,9 @@ final class AppCharacterDetailedViewController: UIViewController {
             target: self,
             action: #selector(didTapShare)
         )
-        
 //        viewModel.fetchCharacterData()
+        detailedView.collectionView?.delegate = self
+        detailedView.collectionView?.dataSource = self
     }
     
     private func layout(){
