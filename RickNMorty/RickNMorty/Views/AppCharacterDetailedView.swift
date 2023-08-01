@@ -23,6 +23,7 @@ final class AppCharacterDetailedView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setUp()
         layout()
     }
     
@@ -32,7 +33,7 @@ final class AppCharacterDetailedView: UIView {
     
     private func setUp(){
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .systemBlue
+        backgroundColor = .systemRed
         let collectionView = createCollectionView()
         self.collectionView = collectionView
         addSubviews(collectionView,spinner)
@@ -74,6 +75,8 @@ final class AppCharacterDetailedView: UIView {
                 heightDimension: .fractionalHeight(1.0)
             )
         )
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
+
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
