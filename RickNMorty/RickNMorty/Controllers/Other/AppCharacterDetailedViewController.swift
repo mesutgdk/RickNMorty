@@ -66,12 +66,23 @@ final class AppCharacterDetailedViewController: UIViewController {
 // MARK: - CollectionView
 
 extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewModel.section.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return 10
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .systemYellow
+        
+        if indexPath.section == 0 {
+            cell.backgroundColor = .systemYellow
+        } else if indexPath.section == 1 {
+            cell.backgroundColor = .systemRed
+        } else {
+            cell.backgroundColor = .systemBlue
+        }
         return cell
     }
 }
