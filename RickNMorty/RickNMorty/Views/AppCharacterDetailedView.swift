@@ -33,7 +33,7 @@ final class AppCharacterDetailedView: UIView {
     
     private func setUp(){
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .systemRed
+        backgroundColor = .systemBackground
         let collectionView = createCollectionView()
         self.collectionView = collectionView
         addSubviews(collectionView,spinner)
@@ -65,6 +65,7 @@ final class AppCharacterDetailedView: UIView {
         }
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }
     

@@ -34,7 +34,6 @@ final class AppCharacterDetailedViewController: UIViewController {
     }
     
     private func setup(){
-        //        view.backgroundColor = .systemBackground
         view.backgroundColor = .systemBackground
         title = viewModel.title
         view.addSubview(detailedView)
@@ -59,6 +58,7 @@ final class AppCharacterDetailedViewController: UIViewController {
     
     @objc func didTapShare(){
 //        to share character info
+        print("share button pressed")
     }
 }
 
@@ -70,7 +70,7 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .systemGreen
+        cell.backgroundColor = .systemYellow
         return cell
     }
 }
