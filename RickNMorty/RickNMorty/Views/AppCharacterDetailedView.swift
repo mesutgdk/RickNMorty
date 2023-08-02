@@ -12,6 +12,8 @@ final class AppCharacterDetailedView: UIView {
     
     public var collectionView: UICollectionView?
     
+    private let viewModel: AppCharacterListViewViewModel
+    
     private let spinner : UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.hidesWhenStopped = true
@@ -20,11 +22,14 @@ final class AppCharacterDetailedView: UIView {
     } ()
     
     // MARK: - Init
-    override init(frame: CGRect) {
+    init(frame: CGRect, viewModel: AppCharacterListViewViewModel) {
+        self.viewModel = viewModel
+        
         super.init(frame: frame)
         
         setUp()
         layout()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -34,8 +39,10 @@ final class AppCharacterDetailedView: UIView {
     private func setUp(){
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .systemBackground
+        
         let collectionView = createCollectionView()
         self.collectionView = collectionView
+        
         addSubviews(collectionView,spinner)
     }
     private func layout(){
@@ -76,17 +83,19 @@ final class AppCharacterDetailedView: UIView {
                 heightDimension: .fractionalHeight(1.0)
             )
         )
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
-
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0) // layout of cell
+        
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(150)
+                heightDimension: .absolute(150)  // height of cell
             ),
             subitems: [item]
         )
         let section = NSCollectionLayoutSection(group: group)
         return section
     }
-    
+    //    public func configure(with viewModel: AppCharacterListViewViewModel) {
+    //        self.viewModel = viewModel
+    //    }
 }

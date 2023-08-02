@@ -11,6 +11,17 @@ final class AppCharacterDetailedViewViewModel{
     
     private let character: AppCharacter
     
+    enum SectionType: CaseIterable {
+        case photo
+        case information
+        case episodes
+    }
+    
+    public let section = SectionType.allCases
+    
+    // MARK: - Init
+
+    
     init(character: AppCharacter) {
         self.character = character
     }

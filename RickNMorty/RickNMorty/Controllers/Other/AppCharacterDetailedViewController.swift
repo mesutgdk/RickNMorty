@@ -12,12 +12,13 @@ final class AppCharacterDetailedViewController: UIViewController {
 
     private let viewModel: AppCharacterDetailedViewViewModel
     
-    private let detailedView = AppCharacterDetailedView()
+    private let detailedView : AppCharacterDetailedView
     
     // MARK: - Init
 //         to pass data with view model, it displays which cell we choose
     init(viewModel: AppCharacterDetailedViewViewModel ) {
         self.viewModel = viewModel
+        self.detailedView = AppCharacterDetailedView(frame: .zero, viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
     }
     
