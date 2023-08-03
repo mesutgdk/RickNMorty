@@ -71,15 +71,15 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0:
+        let sectionType = viewModel.section[section]
+        
+        switch sectionType {
+        case .photo:
             return 1
-        case 1:
-            return 8
-        case 2:
-            return 20
-        default:
-            return 1
+        case .episodes(let viewModels):
+            return viewModels.count
+        case .information(let viewModels):
+            return viewModels.count
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

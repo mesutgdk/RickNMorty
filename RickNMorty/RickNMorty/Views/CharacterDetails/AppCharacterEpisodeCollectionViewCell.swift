@@ -7,6 +7,7 @@
 
 import UIKit
 
-class AppCharacterEpisodeCollectionViewCell: UICollectionViewCell {
-    
+final class AppCharacterEpisodeCollectionViewCell: UICollectionViewCell {
+    static let cellIdentifier = "AppCharacterEpisodeCollectionViewCell"
+
 }

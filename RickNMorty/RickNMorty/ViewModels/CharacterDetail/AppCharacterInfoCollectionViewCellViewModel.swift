@@ -8,5 +8,7 @@
 import Foundation
 
 final class AppCharacterInfoCollectionViewCellViewModel {
-    
+    init() {
+        
+    }
 }

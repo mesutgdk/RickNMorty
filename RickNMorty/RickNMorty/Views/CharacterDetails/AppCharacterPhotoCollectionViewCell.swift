@@ -7,6 +7,6 @@
 
 import UIKit
 
-class AppCharacterPhotoCollectionViewCell: UICollectionViewCell {
-    
+final class AppCharacterPhotoCollectionViewCell: UICollectionViewCell {
+    static let cellIdentifier = "AppCharacterPhotoCollectionViewCell"
 }

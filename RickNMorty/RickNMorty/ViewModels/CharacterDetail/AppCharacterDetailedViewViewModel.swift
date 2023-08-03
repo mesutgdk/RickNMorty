@@ -11,19 +11,40 @@ final class AppCharacterDetailedViewViewModel{
     
     private let character: AppCharacter
     
-    enum SectionType: CaseIterable {
-        case photo
-        case information
-        case episodes
+    enum SectionType {
+        case photo(viewModel: AppCharacterPhotoCollectionViewCellViewModel)
+        
+        case information(viewModel: [AppCharacterInfoCollectionViewCellViewModel])
+        
+        case episodes(viewModel: [AppCharacterEpisodeCollectionViewCellViewModel])
+        
     }
     
-    public let section = SectionType.allCases
+    public var section: [SectionType] = []
     
     // MARK: - Init
 
     
     init(character: AppCharacter) {
         self.character = character
+        setUpSections()
+    }
+    private func setUpSections(){
+        section = [
+            .photo(viewModel: .init()),
+            .information(viewModel: [
+                .init(),
+                .init(),
+                .init(),
+                .init()
+            ]),
+            .episodes(viewModel: [
+                .init(),
+                .init(),
+                .init(),
+                .init()
+            ])
+        ]
     }
     
     public var requestUrl: URL? {
