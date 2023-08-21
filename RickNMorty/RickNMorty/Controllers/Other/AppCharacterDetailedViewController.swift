@@ -84,7 +84,7 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let sectionType = viewModel.section[section]
+        let sectionType = viewModel.section[indexPath.section]
         
         switch sectionType {
         case .photo(let viewModels):
@@ -94,6 +94,7 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
             ) as? AppCharacterPhotoCollectionViewCell else {
                 fatalError()
             }
+            cell.backgroundColor = .systemTeal
             return cell
 
         case .episodes(let viewModels):
@@ -103,6 +104,7 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
             ) as? AppCharacterEpisodeCollectionViewCell else {
                 fatalError()
             }
+            cell.backgroundColor = .systemOrange
             return cell
 
         case .information(let viewModels):
@@ -112,19 +114,8 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
             ) as? AppCharacterInfoCollectionViewCell else {
                 fatalError()
             }
+            cell.backgroundColor = .systemPink
             return cell
-
         }
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        
-        if indexPath.section == 0 {
-            cell.backgroundColor = .systemYellow
-        } else if indexPath.section == 1 {
-            cell.backgroundColor = .systemRed
-        } else {
-            cell.backgroundColor = .systemBlue
-        }
-        return cell
     }
 }
