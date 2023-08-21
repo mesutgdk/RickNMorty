@@ -83,6 +83,39 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let sectionType = viewModel.section[section]
+        
+        switch sectionType {
+        case .photo(let viewModels):
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: AppCharacterPhotoCollectionViewCell.cellIdentifier,
+                for: indexPath
+            ) as? AppCharacterPhotoCollectionViewCell else {
+                fatalError()
+            }
+            return cell
+
+        case .episodes(let viewModels):
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: AppCharacterEpisodeCollectionViewCell.cellIdentifier,
+                for: indexPath
+            ) as? AppCharacterEpisodeCollectionViewCell else {
+                fatalError()
+            }
+            return cell
+
+        case .information(let viewModels):
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: AppCharacterInfoCollectionViewCell.cellIdentifier,
+                for: indexPath
+            ) as? AppCharacterInfoCollectionViewCell else {
+                fatalError()
+            }
+            return cell
+
+        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         
         if indexPath.section == 0 {
