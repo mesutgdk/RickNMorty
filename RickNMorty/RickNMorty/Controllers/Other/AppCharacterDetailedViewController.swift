@@ -87,13 +87,14 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
         let sectionType = viewModel.section[indexPath.section]
         
         switch sectionType {
-        case .photo(let viewModels):
+        case .photo(let viewModel):
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: AppCharacterPhotoCollectionViewCell.cellIdentifier,
                 for: indexPath
             ) as? AppCharacterPhotoCollectionViewCell else {
                 fatalError()
             }
+            cell.configure(viewModel: viewModel)
             cell.backgroundColor = .systemTeal
             return cell
 
@@ -104,6 +105,7 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
             ) as? AppCharacterEpisodeCollectionViewCell else {
                 fatalError()
             }
+            cell.configure(viewModel: viewModels[indexPath.row])
             cell.backgroundColor = .systemOrange
             return cell
 
@@ -114,6 +116,7 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
             ) as? AppCharacterInfoCollectionViewCell else {
                 fatalError()
             }
+            cell.configure(viewModel: viewModels[indexPath.row])
             cell.backgroundColor = .systemPink
             return cell
         }

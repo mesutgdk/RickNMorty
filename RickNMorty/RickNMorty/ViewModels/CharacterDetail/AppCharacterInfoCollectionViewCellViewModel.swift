@@ -8,7 +8,11 @@
 import Foundation
 
 final class AppCharacterInfoCollectionViewCellViewModel {
-    init() {
-        
+    public let value: String
+    public let title: String
+    
+    init(value: String,title: String) {
+        self.title = title
+        self.value = value
     }
 }
