@@ -95,7 +95,7 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
                 fatalError()
             }
             cell.configure(viewModel: viewModel)
-            cell.backgroundColor = .systemTeal
+//            cell.backgroundColor = .systemTeal
             return cell
 
         case .episodes(let viewModels):
