@@ -8,9 +8,9 @@
 import Foundation
 
 final class AppCharacterEpisodeCollectionViewCellViewModel{ // need networking
-    private let episodeUrl: URL?
+    private let episodeDataUrl: URL?
     
-    init(let episodeUrl: URL?) {
-        self.episodeUrl = episodeUrl
+    init(episodeDataUrl: URL?) {
+        self.episodeDataUrl = episodeDataUrl
     }
 }

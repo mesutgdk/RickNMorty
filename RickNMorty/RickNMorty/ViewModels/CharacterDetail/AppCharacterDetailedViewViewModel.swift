@@ -14,9 +14,9 @@ final class AppCharacterDetailedViewViewModel{
     enum SectionType {
         case photo(viewModel: AppCharacterPhotoCollectionViewCellViewModel)
         
-        case information(viewModel: [AppCharacterInfoCollectionViewCellViewModel])
+        case information(viewModels: [AppCharacterInfoCollectionViewCellViewModel])
         
-        case episodes(viewModel: [AppCharacterEpisodeCollectionViewCellViewModel])
+        case episodes(viewModels: [AppCharacterEpisodeCollectionViewCellViewModel])
         
     }
     
@@ -31,19 +31,21 @@ final class AppCharacterDetailedViewViewModel{
     }
     private func setUpSections(){
         section = [
-            .photo(viewModel: .init()),
-            .information(viewModel: [
-                .init(),
-                .init(),
-                .init(),
-                .init()
+            .photo(viewModel: .init(imageUrl: URL(string: character.image))),
+            .information(viewModels: [
+                
+                .init(value: character.status.text, title: "Status"),
+                .init(value: character.gender.rawValue, title: "Gender"),
+                .init(value: character.type, title: "Type"),
+                .init(value: character.species, title: "Species"),
+                .init(value: character.origin.name, title: "Origin"),
+                .init(value: character.location.name, title: "Location"),
+                .init(value: character.created, title: "Created"),
+                .init(value: "\(character.episode.count)", title: "Total Episodes")
             ]),
-            .episodes(viewModel: [
-                .init(),
-                .init(),
-                .init(),
-                .init()
-            ])
+            .episodes(viewModels: character.episode.map ({
+                return AppCharacterEpisodeCollectionViewCellViewModel(episodeDataUrl: URL(string: $0))
+            }))
         ]
     }
     
