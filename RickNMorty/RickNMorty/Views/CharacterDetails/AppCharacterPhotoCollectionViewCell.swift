@@ -42,12 +42,14 @@ final class AppCharacterPhotoCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(viewModel: AppCharacterPhotoCollectionViewCellViewModel){
-        viewModel.fetchImage { result in
+        viewModel.fetchImage { [weak self ] result in
             switch result {
             case .success(let data):
-                self.imageView.image = UIImage(data: data)
-            case .failure(let failure):
-                self.
+                DispatchQueue.main.async {
+                    self?.imageView.image = UIImage(data: data)
+                }
+            case .failure:
+                break
             }
         }
     }
