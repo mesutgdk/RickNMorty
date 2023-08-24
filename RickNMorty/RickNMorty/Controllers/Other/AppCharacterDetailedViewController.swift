@@ -106,7 +106,7 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
                 fatalError()
             }
             cell.configure(viewModel: viewModels[indexPath.row])
-            cell.backgroundColor = .systemOrange
+//            cell.backgroundColor = .systemOrange
             return cell
 
         case .information(let viewModels):
@@ -117,7 +117,7 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
                 fatalError()
             }
             cell.configure(viewModel: viewModels[indexPath.row])
-            cell.backgroundColor = .systemPink
+//            cell.backgroundColor = .systemPink
             return cell
         }
     }
