@@ -14,8 +14,6 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Earth"
-        label.textAlignment = .center
-        label.font = .systemFont(ofSize: 20, weight: .medium)
         return label
     }()
     
@@ -23,12 +21,15 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Location"
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 20, weight: .medium)
         return label
     }()
     
     private  let iconImageView: UIImageView = {
        let icon = UIImageView()
         icon.translatesAutoresizingMaskIntoConstraints = false
+        icon.contentMode = .scaleAspectFit
         icon.image = UIImage(systemName: "globe.americas")
         return icon
     }()
@@ -45,8 +46,9 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .tertiarySystemBackground
+        contentView.layer.masksToBounds = true
         contentView.layer.cornerRadius = 7
-        contentView.addSubviews(titleContainerView, titleLabel, iconImageView)
+        contentView.addSubviews(titleContainerView, valueLabel, iconImageView)
         titleContainerView.addSubview(titleLabel)
         setUpConstraints ()
     }
@@ -56,19 +58,35 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpConstraints() {
+        
         // titleContaineView
         NSLayoutConstraint.activate([
             titleContainerView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             titleContainerView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             titleContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             titleContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.33)
+            
         ])
             // titleLabel
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            titleLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            titleLabel.topAnchor.constraint(equalTo: titleContainerView.topAnchor),
+            titleLabel.leftAnchor.constraint(equalTo: titleContainerView.leftAnchor),
+            titleLabel.rightAnchor.constraint(equalTo: titleContainerView.rightAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: titleContainerView.bottomAnchor)
+        ])
+        // valueLabel
+        NSLayoutConstraint.activate([
+            valueLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10),
+            valueLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 35),
+            valueLabel.bottomAnchor.constraint(equalTo: titleContainerView.topAnchor, constant: -10)
+        ])
+        // iconImageView
+        NSLayoutConstraint.activate([
+            iconImageView.heightAnchor.constraint(equalToConstant: 30),
+            iconImageView.widthAnchor.constraint(equalToConstant: 30),
+            iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 35),
+            iconImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20)
         ])
     }
     
