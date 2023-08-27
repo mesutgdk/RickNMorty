@@ -14,6 +14,7 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Earth"
+        label.font = .systemFont(ofSize: 20, weight: .light)
         return label
     }()
     
@@ -78,8 +79,8 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             valueLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10),
             valueLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
-            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 35),
-            valueLabel.bottomAnchor.constraint(equalTo: titleContainerView.topAnchor, constant: -10)
+            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 38),
+            valueLabel.heightAnchor.constraint(equalToConstant: 30)
         ])
         // iconImageView
         NSLayoutConstraint.activate([
