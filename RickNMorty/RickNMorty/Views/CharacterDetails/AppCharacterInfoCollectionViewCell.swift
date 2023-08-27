@@ -13,7 +13,7 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
     private  let valueLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Earth"
+//        label.text = "Earth"
         label.font = .systemFont(ofSize: 20, weight: .light)
         return label
     }()
@@ -21,7 +21,7 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
     private  let titleLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Location"
+//        label.text = "Location"
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 20, weight: .medium)
         return label
@@ -31,7 +31,7 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
        let icon = UIImageView()
         icon.translatesAutoresizingMaskIntoConstraints = false
         icon.contentMode = .scaleAspectFit
-        icon.image = UIImage(systemName: "globe.americas")
+//        icon.image = UIImage(systemName: "globe.americas")
         return icon
     }()
     
@@ -93,12 +93,13 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        valueLabel.text = nil
-//        titleLabel.text = nil
-//        iconImageView.image = nil
+        valueLabel.text = nil
+        titleLabel.text = nil
+        iconImageView.image = nil
     }
     
     public func configure(viewModel: AppCharacterInfoCollectionViewCellViewModel){
-        
+        titleLabel.text = viewModel.title
+        valueLabel.text = viewModel.value
     }
 }
