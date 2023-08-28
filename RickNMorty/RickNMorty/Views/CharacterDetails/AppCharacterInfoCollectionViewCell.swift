@@ -96,10 +96,15 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
         valueLabel.text = nil
         titleLabel.text = nil
         iconImageView.image = nil
+        iconImageView.tintColor = .label
+        titleLabel.textColor = .label
     }
     
     public func configure(viewModel: AppCharacterInfoCollectionViewCellViewModel){
         titleLabel.text = viewModel.title
-        valueLabel.text = viewModel.value
+        valueLabel.text = viewModel.displayValue
+        iconImageView.image = viewModel.iconImage
+        iconImageView.tintColor = viewModel.tintColor
+        titleLabel.textColor = viewModel.tintColor
     }
 }
