@@ -12,7 +12,7 @@ final class AppCharacterInfoCollectionViewCellViewModel {
     private let type: `Type`
     private let value: String
     
-    static let dateFormatter: DateFormatter = { // use static not to create over and over, for performance
+    static let dateFormatter: ISO8601DateFormatter = { // use static not to create over and over, for performance
         //Format --> 2017-11-04T18:50:21.651Z
         let formatter = ISO8601DateFormatter()
         formatter.timeZone = .current
@@ -29,7 +29,7 @@ final class AppCharacterInfoCollectionViewCellViewModel {
         }
         
         if let date = Self.dateFormatter.date(from: value), type == .created {
-            print(value)
+            print(date)
         }
         return value
     }
