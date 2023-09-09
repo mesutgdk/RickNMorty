@@ -12,12 +12,22 @@ final class AppCharacterInfoCollectionViewCellViewModel {
     private let type: `Type`
     private let value: String
     
-    static let dateFormatter: ISO8601DateFormatter = { // use static not to create over and over, for performance
+    static let dateFormatter: DateFormatter = { // use static not to create over and over, for performance
         //Format --> 2017-11-04T18:50:21.651Z
-        let formatter = ISO8601DateFormatter()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSZ" //dateformetter fractional seconds problem
         formatter.timeZone = .current
         return formatter
     }()
+    
+    static let shortDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter
+    }()
+    
+    
     
     public var title: String {
         self.type.displayTitle
@@ -27,9 +37,11 @@ final class AppCharacterInfoCollectionViewCellViewModel {
         if value.isEmpty {
             return "None"
         }
-        
+       
         if let date = Self.dateFormatter.date(from: value), type == .created {
-            print(date)
+//            let result = Self.shortDateFormatter.string(from: date)
+//            print(result)
+            return Self.shortDateFormatter.string(from: date)
         }
         return value
     }
