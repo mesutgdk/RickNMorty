@@ -100,7 +100,7 @@ final class AppCharacterInfoCollectionViewCellViewModel {
             case .created:
                 return .systemBrown
             case .location:
-                return .systemYellow
+                return .systemPurple
             case .episodeCount:
                 return .systemMint
             }
