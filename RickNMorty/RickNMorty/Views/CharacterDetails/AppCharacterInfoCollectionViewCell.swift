@@ -40,7 +40,7 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
     private  let titleContainerView: UIView = {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .secondarySystemBackground
+        view.backgroundColor = .systemGray5
         return view
     }()
     
@@ -48,7 +48,7 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
     // MARK: -init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .tertiarySystemBackground
+        contentView.backgroundColor = .systemGray6
         contentView.layer.masksToBounds = true
         contentView.layer.cornerRadius = 7
         contentView.addSubviews(titleContainerView, valueLabel, iconImageView)
@@ -66,7 +66,7 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             titleContainerView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             titleContainerView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            titleContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            titleContainerView.topAnchor.constraint(equalTo: contentView.topAnchor),
             titleContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.33)
             
         ])
@@ -81,14 +81,14 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             valueLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10),
             valueLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
-            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            valueLabel.bottomAnchor.constraint(equalTo: titleContainerView.topAnchor)
+            valueLabel.topAnchor.constraint(equalTo: titleContainerView.bottomAnchor),
+            valueLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
         // iconImageView
         NSLayoutConstraint.activate([
             iconImageView.heightAnchor.constraint(equalToConstant: 30),
             iconImageView.widthAnchor.constraint(equalToConstant: 30),
-            iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 35),
+            iconImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -35),
             iconImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20)
         ])
     }

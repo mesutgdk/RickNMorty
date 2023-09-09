@@ -88,21 +88,21 @@ final class AppCharacterInfoCollectionViewCellViewModel {
         var tintColor: UIColor {
             switch self {
             case .status:
-                return .systemRed
+                return .systemTeal
             case .gender:
                 return .systemBlue
             case .type:
-                return .systemGray
+                return .systemRed
             case .specias:
                 return .systemOrange
             case .origin:
-                return .systemTeal
+                return .systemIndigo
             case .created:
-                return .systemPink
+                return .systemBrown
             case .location:
                 return .systemYellow
             case .episodeCount:
-                return .systemBrown
+                return .systemMint
             }
         }
         
