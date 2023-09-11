@@ -28,6 +28,11 @@ final class AppCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(viewModel: AppCharacterEpisodeCollectionViewCellViewModel){
+        viewModel.registerForData { data in
+            print(data.name)
+            print(data.air_date)
+            print(data.episode)
+        }
         viewModel.fetchEpisode()
     }
 }
