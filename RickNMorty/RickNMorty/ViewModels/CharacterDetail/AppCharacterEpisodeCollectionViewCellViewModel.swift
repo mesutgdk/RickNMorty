@@ -16,8 +16,10 @@ final class AppCharacterEpisodeCollectionViewCellViewModel{ // need networking
     
     public func fetchEpisode(){
         print(episodeDataUrl)
-        guard let url = episodeDataUrl, let appRequest = AppRequest(url: url) else {return}
+        guard let url = episodeDataUrl, let appRequest = AppRequest(url: url) else {
+            print("i returned from guard let apprequest")
+            return}
         
-        print("new epiCell is Created")
+        print("created")
     }
 }

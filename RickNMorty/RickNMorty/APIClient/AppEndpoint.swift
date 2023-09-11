@@ -17,5 +17,5 @@ import Foundation
     case location
     
     /// Endpoint to get char episode
-    case episonde
+    case episode
 }

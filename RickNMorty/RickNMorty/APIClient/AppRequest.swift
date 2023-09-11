@@ -24,7 +24,7 @@ final class AppRequest {
     private let endPoint : AppEndpoint
     
     /// Path Components for API, if any
-    private let pathComponent: [String]
+    private let pathComponents: [String]
     
     /// Query arguments for API, if any
     private let queryParameters: [URLQueryItem]
@@ -35,8 +35,8 @@ final class AppRequest {
         string += "/"
         string += endPoint.rawValue
         
-        if !pathComponent.isEmpty {
-            pathComponent.forEach({
+        if !pathComponents.isEmpty {
+            pathComponents.forEach({
                 string += "/\($0)"
             })
         }
@@ -71,11 +71,11 @@ final class AppRequest {
     ///     - quetryParameters: Collection of quert parameters
     public init(
         endPoint: AppEndpoint,
-        pathComponent: [String] = [],
+        pathComponents: [String] = [],
         queryParameters: [URLQueryItem] = []
     ) {
         self.endPoint = endPoint
-        self.pathComponent = pathComponent
+        self.pathComponents = pathComponents
         self.queryParameters = queryParameters
     }
     
@@ -97,7 +97,7 @@ final class AppRequest {
                     pathComponents.removeFirst()
                 }
                 if let appEndpoint = AppEndpoint(rawValue: endpointString) {
-                    self.init(endPoint: appEndpoint, pathComponent: pathComponents)
+                    self.init(endPoint: appEndpoint, pathComponents: pathComponents)
                     return
                 }
                 
@@ -108,7 +108,7 @@ final class AppRequest {
                 let endpointString = components[0]
                 let querryItemsString = components[1]
                 // value=name&value=name
-                let querryItem: [URLQueryItem] = querryItemsString.components(separatedBy: "&").compactMap({
+                let querryItems: [URLQueryItem] = querryItemsString.components(separatedBy: "&").compactMap({
                     guard $0.contains("=") else {
                         return nil
                     }
@@ -121,7 +121,7 @@ final class AppRequest {
                 })
                 
                 if let appEndpoint = AppEndpoint(rawValue: endpointString) {
-                    self.init(endPoint: appEndpoint, queryParameters: querryItem)
+                    self.init(endPoint: appEndpoint, queryParameters: querryItems)
                     return
                 }
                 
