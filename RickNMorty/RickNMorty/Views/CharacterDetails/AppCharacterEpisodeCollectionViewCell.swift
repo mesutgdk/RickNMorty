@@ -12,6 +12,8 @@ final class AppCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.backgroundColor = .systemBlue
+        contentView.layer.cornerRadius = 10
     }
     
     required init?(coder: NSCoder) {

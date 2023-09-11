@@ -27,8 +27,6 @@ final class AppCharacterInfoCollectionViewCellViewModel {
         return formatter
     }()
     
-    
-    
     public var title: String {
         self.type.displayTitle
     }

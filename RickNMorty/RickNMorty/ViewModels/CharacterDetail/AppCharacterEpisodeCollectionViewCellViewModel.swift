@@ -13,4 +13,11 @@ final class AppCharacterEpisodeCollectionViewCellViewModel{ // need networking
     init(episodeDataUrl: URL?) {
         self.episodeDataUrl = episodeDataUrl
     }
+    
+    public func fetchEpisode(){
+        print(episodeDataUrl)
+        guard let url = episodeDataUrl, let appRequest = AppRequest(url: url) else {return}
+        
+        print("new epiCell is Created")
+    }
 }

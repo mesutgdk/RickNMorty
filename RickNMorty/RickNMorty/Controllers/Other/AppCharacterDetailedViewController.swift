@@ -105,7 +105,8 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
             ) as? AppCharacterEpisodeCollectionViewCell else {
                 fatalError()
             }
-            cell.configure(viewModel: viewModels[indexPath.row])
+            let viewModel = viewModels[indexPath.row]
+            cell.configure(viewModel: viewModel)
 //            cell.backgroundColor = .systemOrange
             return cell
 
