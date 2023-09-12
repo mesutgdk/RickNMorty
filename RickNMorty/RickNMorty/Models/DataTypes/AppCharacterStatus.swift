@@ -24,7 +24,7 @@ enum AppCharacterStatus: String, Codable {
     var textColor: UIColor {
         switch self {
         case .alive:
-            return .systemGreen
+            return .systemTeal
         case .dead:
             return .systemRed
         case .unknown:

@@ -16,6 +16,7 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 8
+        imageView.layer.borderWidth = 1
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     } ()
@@ -103,6 +104,7 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
+        imageView.layer.borderColor = nil
         nameLabel.text = nil
         statusLabel.text = nil
     }
@@ -112,6 +114,7 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
         nameLabel.text = viewModel.characterName
         statusLabel.text = viewModel.characterStatusText
         statusLabel.textColor = viewModel.characterStatusTextColor
+        imageView.layer.borderColor = viewModel.characterStatusTextColor.cgColor
         viewModel.fetchImage { [weak self] result in    // to avoid retain cycle
             switch result {
             case .success(let data):

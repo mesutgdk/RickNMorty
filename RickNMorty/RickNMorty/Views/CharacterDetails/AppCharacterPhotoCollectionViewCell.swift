@@ -14,6 +14,9 @@ final class AppCharacterPhotoCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 8
+        imageView.layer.borderWidth = 2
+        imageView.layer.borderColor = UIColor.systemGray5.cgColor
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     } ()
@@ -30,10 +33,10 @@ final class AppCharacterPhotoCollectionViewCell: UICollectionViewCell {
     
     private func setUpConstraints(){
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
+            imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
     }
     override func prepareForReuse() {
