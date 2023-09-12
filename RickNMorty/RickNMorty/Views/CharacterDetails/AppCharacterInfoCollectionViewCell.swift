@@ -93,7 +93,7 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    override func prepareForReuse() {
+    override func prepareForReuse() {  // hücreleri tekrar kullanabilmek için nille
         super.prepareForReuse()
         valueLabel.text = nil
         titleLabel.text = nil
