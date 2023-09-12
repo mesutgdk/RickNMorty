@@ -5,7 +5,7 @@
 //  Created by Mesut Gedik on 27.06.2023.
 //
 
-import Foundation
+import UIKit
 
 enum AppCharacterStatus: String, Codable {
     // 'Alive, 'Dead', or 'unknown'
@@ -18,7 +18,18 @@ enum AppCharacterStatus: String, Codable {
         case .alive, .dead:
             return rawValue
         case .unknown:
-            return "Unknown"
+            return "Status: Unknown"
         }
+    }
+    var textColor: UIColor {
+        switch self {
+        case .alive:
+            return .systemGreen
+        case .dead:
+            return .systemRed
+        case .unknown:
+            return .systemGray
+        }
+   
     }
 }

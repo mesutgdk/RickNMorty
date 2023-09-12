@@ -15,6 +15,7 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 8
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     } ()
@@ -22,6 +23,7 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
+        label.textAlignment = .center
         label.font = .systemFont(ofSize: 18, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -30,6 +32,7 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
     private let statusLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
+        label.textAlignment = .center
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -53,11 +56,11 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubviews(imageView, nameLabel, statusLabel)
         
-        contentView.layer.cornerRadius = 8
+        contentView.layer.cornerRadius = 30
         contentView.layer.shadowColor = UIColor.label.cgColor
         contentView.layer.shadowOpacity = 0.3
         contentView.layer.shadowOffset = CGSize(width: -2, height: 2)
-        contentView.layer.shadowRadius = 4
+        contentView.layer.shadowRadius = 8
         
 //        nameLabel.backgroundColor = .gray
 //        statusLabel.backgroundColor = .systemRed
@@ -108,6 +111,7 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
         
         nameLabel.text = viewModel.characterName
         statusLabel.text = viewModel.characterStatusText
+        statusLabel.textColor = viewModel.characterStatusTextColor
         viewModel.fetchImage { [weak self] result in    // to avoid retain cycle
             switch result {
             case .success(let data):

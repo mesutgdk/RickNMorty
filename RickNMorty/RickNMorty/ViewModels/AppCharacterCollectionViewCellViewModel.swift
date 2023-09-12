@@ -5,7 +5,7 @@
 //  Created by Mesut Gedik on 6.07.2023.
 //
 
-import Foundation
+import UIKit
 
 final class AppCharacterCollectionViewCellViewModel:Hashable {
   
@@ -27,8 +27,12 @@ final class AppCharacterCollectionViewCellViewModel:Hashable {
     }
     
     public var characterStatusText: String {
-        return "Status: \(characterStatus.text)"
+        return characterStatus.text
     }
+    public var characterStatusTextColor: UIColor {
+        return characterStatus.textColor
+    }
+    
     
     public func fetchImage(completion: @escaping (Result<Data,Error>) -> Void) {
         
