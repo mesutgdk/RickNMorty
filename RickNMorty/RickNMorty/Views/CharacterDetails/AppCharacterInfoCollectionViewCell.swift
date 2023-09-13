@@ -25,7 +25,7 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
 //        label.text = "Location"
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.font = .systemFont(ofSize: 22, weight: .semibold)
         return label
     }()
     
@@ -44,6 +44,13 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    private let dividerView : UIView = {
+        var view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .secondarySystemFill
+        return view
+    }()
+    
     
     // MARK: -init
     override init(frame: CGRect) {
@@ -51,7 +58,7 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .systemGray6
         contentView.layer.masksToBounds = true
         contentView.layer.cornerRadius = 7
-        contentView.addSubviews(titleContainerView, valueLabel, iconImageView)
+        contentView.addSubviews(titleContainerView,dividerView, valueLabel, iconImageView)
         titleContainerView.addSubview(titleLabel)
         setUpConstraints ()
     }
@@ -77,6 +84,14 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
             titleLabel.rightAnchor.constraint(equalTo: titleContainerView.rightAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: titleContainerView.bottomAnchor)
         ])
+        // dividerView
+        NSLayoutConstraint.activate([
+            dividerView.leftAnchor.constraint(equalTo: titleContainerView.leftAnchor),
+            dividerView.rightAnchor.constraint(equalTo: titleContainerView.rightAnchor),
+            dividerView.topAnchor.constraint(equalTo: titleContainerView.bottomAnchor),
+            dividerView.heightAnchor.constraint(equalToConstant: 1.5)
+        ])
+        
         // valueLabel
         NSLayoutConstraint.activate([
             valueLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10),
@@ -98,6 +113,8 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
         valueLabel.text = nil
         titleLabel.text = nil
         iconImageView.image = nil
+        
+        dividerView.backgroundColor = nil
         iconImageView.tintColor = .label
         titleLabel.textColor = .label
     }
@@ -106,7 +123,9 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
         titleLabel.text = viewModel.title
         valueLabel.text = viewModel.displayValue
         iconImageView.image = viewModel.iconImage
-        iconImageView.tintColor = viewModel.tintColor
-        titleLabel.textColor = viewModel.tintColor
+        
+        iconImageView.tintColor = viewModel.charColor
+        titleLabel.textColor = viewModel.charColor
+        dividerView.backgroundColor = viewModel.charColor
     }
 }

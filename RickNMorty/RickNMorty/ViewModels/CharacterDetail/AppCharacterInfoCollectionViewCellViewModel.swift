@@ -48,8 +48,8 @@ final class AppCharacterInfoCollectionViewCellViewModel {
         return type.iconImage
     }
     
-    public var tintColor: UIColor {
-        return type.tintColor
+    public var charColor: UIColor {
+        return type.charColor
     }
     
     enum `Type`:String {
@@ -83,7 +83,7 @@ final class AppCharacterInfoCollectionViewCellViewModel {
             }
         }
         
-        var tintColor: UIColor {
+        var charColor: UIColor {
             switch self {
             case .status:
                 return .systemTeal
@@ -100,7 +100,7 @@ final class AppCharacterInfoCollectionViewCellViewModel {
             case .location:
                 return .systemPurple
             case .episodeCount:
-                return .systemMint
+                return .systemYellow
             }
         }
         

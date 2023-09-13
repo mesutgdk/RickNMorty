@@ -122,4 +122,17 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
             return cell
         }
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let sectionType = viewModel.section[indexPath.section]
+        
+        switch sectionType {
+        case .photo, .information:
+            break
+            
+        case .episodes(let viewModels):
+            let viewModel = viewModels[indexPath.row]
+           
+        }
+    }
 }

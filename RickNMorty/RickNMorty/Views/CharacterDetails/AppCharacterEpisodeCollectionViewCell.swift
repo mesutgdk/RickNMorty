@@ -56,7 +56,7 @@ final class AppCharacterEpisodeCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .systemGray5
         contentView.layer.cornerRadius = 10
         contentView.layer.borderWidth = 2  // çerçeve kalınlık
-        contentView.layer.borderColor = UIColor.systemRed.cgColor   // çerçeve renk
+        contentView.layer.borderColor = UIColor.systemTeal.cgColor   // çerçeve renk
     }
     
     private func layout(){
