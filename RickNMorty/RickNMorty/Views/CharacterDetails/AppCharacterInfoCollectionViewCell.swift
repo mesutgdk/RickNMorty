@@ -101,10 +101,10 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
         ])
         // iconImageView
         NSLayoutConstraint.activate([
-            iconImageView.heightAnchor.constraint(equalToConstant: 30),
-            iconImageView.widthAnchor.constraint(equalToConstant: 30),
-            iconImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -35),
-            iconImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20)
+            iconImageView.heightAnchor.constraint(equalToConstant: 35),
+            iconImageView.widthAnchor.constraint(equalToConstant: 35),
+            iconImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
+            iconImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15)
         ])
     }
     
