@@ -122,6 +122,9 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
             return cell
         }
     }
+    
+    // MARK: - selecting episodes of a character's detailedVC
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let sectionType = viewModel.section[indexPath.section]
@@ -130,9 +133,12 @@ extension AppCharacterDetailedViewController: UICollectionViewDelegate, UICollec
         case .photo, .information:
             break
             
-        case .episodes(let viewModels):
-            let viewModel = viewModels[indexPath.row]
-           
+        case .episodes:
+            let episodes = self.viewModel.episodes
+            let selectedEpisode = episodes[indexPath.row]
+//            let viewModel = viewModels[indexPath.row]
+            let vc = AppEpisodeDetailViewController(url: URL(string: selectedEpisode))
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
