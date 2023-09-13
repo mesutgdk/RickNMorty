@@ -24,7 +24,8 @@ final class AppCharacterEpisodeCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
 //        label.text = "Location"
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 22, weight: .regular)
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 18, weight: .regular)
         return label
     }()
     
@@ -33,7 +34,8 @@ final class AppCharacterEpisodeCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
 //        label.text = "Location"
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 18, weight: .light)
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 15, weight: .light)
         return label
     }()
     
@@ -51,15 +53,34 @@ final class AppCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     
     private func setUp(){
         contentView.addSubviews(nameLabel,seasonLabel,airDateLabel)
-        contentView.backgroundColor = .systemBackground
+        contentView.backgroundColor = .systemGray5
         contentView.layer.cornerRadius = 10
         contentView.layer.borderWidth = 2  // çerçeve kalınlık
         contentView.layer.borderColor = UIColor.systemRed.cgColor   // çerçeve renk
     }
     
     private func layout(){
+        // seasonLabel
         NSLayoutConstraint.activate([
-            
+            seasonLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
+            seasonLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            seasonLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
+            seasonLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3)
+        ])
+        // nameLabel
+        NSLayoutConstraint.activate([
+            nameLabel.topAnchor.constraint(equalTo: seasonLabel.bottomAnchor, constant: 2),
+            nameLabel.leadingAnchor.constraint(equalTo: seasonLabel.leadingAnchor),
+            nameLabel.trailingAnchor.constraint(equalTo: seasonLabel.trailingAnchor),
+            nameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3)
+
+        ])
+        // airDateLabel
+        NSLayoutConstraint.activate([
+            airDateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 2),
+            airDateLabel.leadingAnchor.constraint(equalTo: seasonLabel.leadingAnchor),
+            airDateLabel.trailingAnchor.constraint(equalTo: seasonLabel.trailingAnchor),
+            airDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3)
         ])
     }
     override func prepareForReuse() {  // hücreleri tekrar kullanabilmek için nille

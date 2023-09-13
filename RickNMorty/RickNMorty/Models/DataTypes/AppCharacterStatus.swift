@@ -18,7 +18,7 @@ enum AppCharacterStatus: String, Codable {
         case .alive, .dead:
             return rawValue
         case .unknown:
-            return "Status: Unknown"
+            return "Unknown"
         }
     }
     var textColor: UIColor {
