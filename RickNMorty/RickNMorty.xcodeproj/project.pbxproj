@@ -43,6 +43,8 @@
 		633D441C2A4A3D74009FFECB /* AppCharacterGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D441B2A4A3D74009FFECB /* AppCharacterGender.swift */; };
 		6340E98E2AB1E8B100A55885 /* AppEpisodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6340E98D2AB1E8B100A55885 /* AppEpisodeDetailViewController.swift */; };
 		6340E9902AB23A7000A55885 /* AppAPICacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6340E98F2AB23A7000A55885 /* AppAPICacheManager.swift */; };
+		6340E9922AB2444200A55885 /* AppEpisodeDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6340E9912AB2444200A55885 /* AppEpisodeDetailViewViewModel.swift */; };
+		6340E9942AB249D800A55885 /* AppEpisodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6340E9932AB249D800A55885 /* AppEpisodeDetailView.swift */; };
 		63896C862A5353B000E732A2 /* AppGetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63896C852A5353B000E732A2 /* AppGetAllCharactersResponse.swift */; };
 		639DC9F82A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DC9F72A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +88,8 @@
 		633D441B2A4A3D74009FFECB /* AppCharacterGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterGender.swift; sourceTree = "<group>"; };
 		6340E98D2AB1E8B100A55885 /* AppEpisodeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEpisodeDetailViewController.swift; sourceTree = "<group>"; };
 		6340E98F2AB23A7000A55885 /* AppAPICacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAPICacheManager.swift; sourceTree = "<group>"; };
+		6340E9912AB2444200A55885 /* AppEpisodeDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEpisodeDetailViewViewModel.swift; sourceTree = "<group>"; };
+		6340E9932AB249D800A55885 /* AppEpisodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEpisodeDetailView.swift; sourceTree = "<group>"; };
 		63896C852A5353B000E732A2 /* AppGetAllCharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGetAllCharactersResponse.swift; sourceTree = "<group>"; };
 		639DC9F72A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,6 +191,7 @@
 				630DE4FB2A7B947F005ACA2F /* CharacterDetails */,
 				630DE4FC2A7B94B5005ACA2F /* Character */,
 				639DC9F72A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift */,
+				6340E9932AB249D800A55885 /* AppEpisodeDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 				630DE5052A7B9563005ACA2F /* CharacterDetail */,
 				630E6B8F2A54AE0600C17EFB /* AppCharacterListViewViewModel.swift */,
 				630E6B972A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift */,
+				6340E9912AB2444200A55885 /* AppEpisodeDetailViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -350,9 +356,11 @@
 				630DE5022A7B9537005ACA2F /* AppCharacterInfoCollectionViewCell.swift in Sources */,
 				639DC9F82A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift in Sources */,
 				630DE5002A7B952A005ACA2F /* AppCharacterPhotoCollectionViewCell.swift in Sources */,
+				6340E9922AB2444200A55885 /* AppEpisodeDetailViewViewModel.swift in Sources */,
 				630DE5042A7B9547005ACA2F /* AppCharacterEpisodeCollectionViewCell.swift in Sources */,
 				6340E98E2AB1E8B100A55885 /* AppEpisodeDetailViewController.swift in Sources */,
 				630DE5092A7B95D8005ACA2F /* AppCharacterInfoCollectionViewCellViewModel.swift in Sources */,
+				6340E9942AB249D800A55885 /* AppEpisodeDetailView.swift in Sources */,
 				630E6B922A54AEAC00C17EFB /* AppCharacterListView.swift in Sources */,
 				633D440C2A4A1B8F009FFECB /* EpisodeViewController.swift in Sources */,
 				630E6B9B2A58226400C17EFB /* AppCharacterDetailedViewController.swift in Sources */,
