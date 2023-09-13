@@ -11,6 +11,8 @@ import Foundation
 final class AppService {
     /// Shared singleton instance
     static let shared = AppService()
+    
+    private let cacheManager = AppAPICacheManager()
 
     /// Privatized constructor
     private init () {}
@@ -27,7 +29,21 @@ final class AppService {
     ///     - completion: Callback with data or error
     ///
     ///
-    public func execute<T: Codable>(_ request: AppRequest, expecting type: T.Type, complition: @escaping (Result<T, Error>) -> Void) {
+    public func execute<T: Codable>(
+        _ request: AppRequest, expecting type: T.Type, complition: @escaping (Result<T, Error>) -> Void
+    ) {
+        if let cachedData = cacheManager.cachedResponse(for: request.endPoint,
+                                                        url: request.url) {
+            print("using cached API Response")
+            do {
+                let result = try JSONDecoder().decode(type.self, from: cachedData)
+                complition(.success(result))
+            }catch {
+                complition(.failure(error))
+            }
+            return
+        }
+        
         
         guard let urlRequest = self.request(from: request) else {
             complition(.failure(AppServiceError.failureCreatingRequest))
@@ -35,14 +51,18 @@ final class AppService {
         }
         
 //        print("API Call: \(request.url?.absoluteString ?? "")") 
-        let task  = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
-            guard let data = data, error == nil else {
+        let task  = URLSession.shared.dataTask(with: urlRequest) { [weak self] data, _, error in
+            guard let data = data,error == nil else {
                 complition(.failure(error ?? AppServiceError.failedToGetData))
                 return
             }
             // Decode response
             do {
                 let result = try JSONDecoder().decode(type.self, from: data)
+                self?.cacheManager.setCache(for: request.endPoint,
+                                            url: request.url,
+                                            data: data
+                )
                 complition(.success(result))
                
             }

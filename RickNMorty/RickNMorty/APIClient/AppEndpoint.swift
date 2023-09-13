@@ -8,7 +8,7 @@
 import Foundation
 
 /// Represent unique API endpoints
-@frozen enum AppEndpoint: String {
+@frozen enum AppEndpoint: String, CaseIterable, Hashable {
     
     /// Endpoint to get char info
     case character // returns "character" if u appoint string to class definition
