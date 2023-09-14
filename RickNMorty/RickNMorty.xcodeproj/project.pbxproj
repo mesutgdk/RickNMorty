@@ -49,6 +49,7 @@
 		639DC9F82A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DC9F72A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift */; };
 		63A4787C2AB2FC5C007A6B12 /* AppEpisodeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A4787B2AB2FC5C007A6B12 /* AppEpisodeListView.swift */; };
 		63A4787E2AB300A1007A6B12 /* AppEpisodeListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A4787D2AB300A1007A6B12 /* AppEpisodeListViewViewModel.swift */; };
+		63A478802AB37FF9007A6B12 /* AppGetAllEpisodeResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A4787F2AB37FF9007A6B12 /* AppGetAllEpisodeResponses.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		639DC9F72A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
 		63A4787B2AB2FC5C007A6B12 /* AppEpisodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEpisodeListView.swift; sourceTree = "<group>"; };
 		63A4787D2AB300A1007A6B12 /* AppEpisodeListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEpisodeListViewViewModel.swift; sourceTree = "<group>"; };
+		63A4787F2AB37FF9007A6B12 /* AppGetAllEpisodeResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGetAllEpisodeResponses.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				63896C852A5353B000E732A2 /* AppGetAllCharactersResponse.swift */,
+				63A4787F2AB37FF9007A6B12 /* AppGetAllEpisodeResponses.swift */,
 			);
 			path = APIResponseTypes;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				633D44162A4A3C5A009FFECB /* AppCharacterStatus.swift in Sources */,
 				630E6B902A54AE0600C17EFB /* AppCharacterListViewViewModel.swift in Sources */,
 				633D44182A4A3C84009FFECB /* AppOrigin.swift in Sources */,
+				63A478802AB37FF9007A6B12 /* AppGetAllEpisodeResponses.swift in Sources */,
 				6340E9902AB23A7000A55885 /* AppAPICacheManager.swift in Sources */,
 				630E6B982A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift in Sources */,
 				630E6B9D2A58231100C17EFB /* AppCharacterDetailedView.swift in Sources */,

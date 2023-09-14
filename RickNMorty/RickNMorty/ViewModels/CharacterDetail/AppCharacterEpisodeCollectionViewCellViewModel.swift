@@ -13,7 +13,9 @@ protocol AppEpisodeDataRender {
     var episode: String { get }
 }
 
-final class AppCharacterEpisodeCollectionViewCellViewModel{ // need networking
+final class AppCharacterEpisodeCollectionViewCellViewModel: Hashable, Equatable{
+  
+    // need networking
     private let episodeDataUrl: URL?
     
     private var isFetching = false
@@ -63,5 +65,11 @@ final class AppCharacterEpisodeCollectionViewCellViewModel{ // need networking
             }
         }
 //        print("created")
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.episodeDataUrl?.absoluteString ?? "")
+    }
+    static func == (lhs: AppCharacterEpisodeCollectionViewCellViewModel, rhs: AppCharacterEpisodeCollectionViewCellViewModel) -> Bool {
+        return lhs.hashValue == rhs.hashValue
     }
 }

@@ -133,4 +133,5 @@ final class AppRequest {
 
 extension AppRequest {
     static let listCharacterRequests = AppRequest(endPoint: .character)
+    static let listEpisodesRequests = AppRequest(endPoint: .episode)
 }

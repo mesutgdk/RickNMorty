@@ -17,17 +17,15 @@ final class AppEpisodeListViewViewModel:NSObject {
     
     public weak var delegate: AppEpisodeListViewModelDelegate?
     
-    private var isLoadingMoreCharacters = false
+    private var isLoadingMoreEpisodes = false
     
     private var episodes: [AppEpisode] = [] {
         didSet {
 //            print("Creating viewModels!")
             for episode in episodes {
-//                let viewModel = AppCharacterCollectionViewCellViewModel(
-//                    characterName: character.name,
-//                    characterStatus: character.status,
-//                    characterImageUrl: URL(string: character.image)
-//                )
+                let viewModel = AppCharacterEpisodeCollectionViewCellViewModel(
+                    episodeDataUrl: URL(string: episode.url)
+                )
 //               tekrar eklenmesinin önüne geçmek için
                 if !cellViewModels.contains(viewModel) {
                     
@@ -40,11 +38,11 @@ final class AppEpisodeListViewViewModel:NSObject {
     
     private var cellViewModels: [AppCharacterEpisodeCollectionViewCellViewModel] = []
     
-    private var apiInfo: AppGetAllCharactersResponse.Info? = nil
+    private var apiInfo: AppGetAllEpisodesResponse.Info? = nil
     
-    /// Fetch initial set of characters (20 items)
-    public func fetchCharacters(){
-        AppService.shared.execute(.listCharacterRequests, expecting: AppGetAllCharactersResponse.self) { [weak self] result in
+    /// Fetch initial set of episode (20 items)
+    public func fetchEpisodes(){
+        AppService.shared.execute(.listEpisodesRequests, expecting: AppGetAllEpisodesResponse.self) { [weak self] result in
             switch result {
             case .success(let responceModel):
                 let results = responceModel.results
@@ -52,12 +50,9 @@ final class AppEpisodeListViewViewModel:NSObject {
                 self?.episodes = results
                 self?.apiInfo = info
                 DispatchQueue.main.async {
-                    self?.delegate?.didLoadInitialCharacter()   // it will trigger update view so main thread
+                    self?.delegate?.didLoadInitialEpisode()   // it will trigger update view so main thread
                 }
                
-                
-//                print("Example image url : "+String(model.results.first?.image ?? " No image "))
-//                print("Page result count: "+String(model.results.count))
             case .failure(let error):
                 print(String(describing: error))
             }
@@ -65,22 +60,21 @@ final class AppEpisodeListViewViewModel:NSObject {
     }
     
     /// Paginate if additional characters are needed
-    public func fetchAdditionalCharacters(url:URL){
+    public func fetchAdditionalEpisodes(url:URL){
         // ensure it is false, fetch new characters
-        guard !isLoadingMoreCharacters else{
+        guard !isLoadingMoreEpisodes else{
             return
         }
-//        print("fetching more characters")
 
-        isLoadingMoreCharacters = true
+        isLoadingMoreEpisodes = true
         
         guard let request = AppRequest(url: url) else {
-            isLoadingMoreCharacters = false
+            isLoadingMoreEpisodes = false
             print("Failed to create a request")
             return
         }
         
-        AppService.shared.execute(request, expecting: AppGetAllCharactersResponse.self) { [weak self] result in
+        AppService.shared.execute(request, expecting: AppGetAllEpisodesResponse.self) { [weak self] result in
             guard let strongSelf = self else {
                 return
             }
@@ -92,7 +86,7 @@ final class AppEpisodeListViewViewModel:NSObject {
                 let info = responseModel.info
                 strongSelf.apiInfo = info
              
-                let originalCount = strongSelf.characters.count
+                let originalCount = strongSelf.episodes.count
                 let newCount  = moreResults.count
                 let totalCount = originalCount + newCount
                 let startingIndex = totalCount - newCount
@@ -103,22 +97,20 @@ final class AppEpisodeListViewViewModel:NSObject {
 //                print("char = \(originalCount)", "newchars= \(newCount)", "totalchar= \(totalCount)")
 //                print(indexPathsToAdd.count)
                 
-                strongSelf.characters.append(contentsOf: moreResults)
+                strongSelf.episodes.append(contentsOf: moreResults)
                 
 //                print("ViewModels: \(strongSelf.cellViewModels.count)")
                 
                 DispatchQueue.main.async {
 
-                    strongSelf.delegate?.didLoadMoreCharacters(with: indexPathsToAdd)
-                    strongSelf.isLoadingMoreCharacters = false
+                    strongSelf.delegate?.didLoadMoreEpisodes(with: indexPathsToAdd)
+                    strongSelf.isLoadingMoreEpisodes = false
 
                 }
 
-                
-                
             case .failure(let failure):
                 print(String(describing: failure))
-                strongSelf.isLoadingMoreCharacters = false
+                strongSelf.isLoadingMoreEpisodes = false
             }
         }
 
@@ -132,46 +124,46 @@ final class AppEpisodeListViewViewModel:NSObject {
 }
 // MARK: - CollectionView datasource
 
-extension AppCharacterListViewViewModel: UICollectionViewDataSource {
+extension AppEpisodeListViewViewModel: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cellViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionViewCell.cellidentifier, for: indexPath) as? AppCharacterCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterEpisodeCollectionViewCell.cellIdentifier, for: indexPath) as? AppCharacterEpisodeCollectionViewCell else {
             fatalError("Unsupported Cell")
         }
         let viewModel = cellViewModels[indexPath.row]
         
-        cell.configure(with: viewModel)
+        cell.configure(viewModel: viewModel)
         return cell
     }
  
 }
 // MARK: - Collectionview delegate
 
-extension AppCharacterListViewViewModel:UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension AppEpisodeListViewViewModel:UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let bounds = UIScreen.main.bounds
         let width = (bounds.width-30)/2
         return CGSize(
             width: width,
-            height: width * 1.5)
+            height: width * 0.8)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        let character = characters[indexPath.row]
-        delegate?.didSelectCharacter(character)
+        let episode = episodes[indexPath.row]
+        delegate?.didSelectEpisode(episode)
     }
 }
 
 // MARK: - ScrollView
-extension AppCharacterListViewViewModel: UIScrollViewDelegate {
+extension AppEpisodeListViewViewModel: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         guard shouldLoadMoreIndicator,
-              !isLoadingMoreCharacters,
+              !isLoadingMoreEpisodes,
               !cellViewModels.isEmpty,
               let nextUrlString = apiInfo?.next,
               let url = URL(string: nextUrlString) else {
@@ -190,7 +182,7 @@ extension AppCharacterListViewViewModel: UIScrollViewDelegate {
             let totalScrollViewFixedHeight = scrollView.frame.size.height
 
             if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
-                self?.fetchAdditionalCharacters(url:url)
+                self?.fetchAdditionalEpisodes(url:url)
             }
             tmr.invalidate()
         }
@@ -201,7 +193,7 @@ extension AppCharacterListViewViewModel: UIScrollViewDelegate {
 
 // MARK: - CollectionView Footer
 /// to install new chars, adjusting a footer
-extension AppCharacterListViewViewModel {
+extension AppEpisodeListViewViewModel {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == UICollectionView.elementKindSectionFooter,
                 let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind,

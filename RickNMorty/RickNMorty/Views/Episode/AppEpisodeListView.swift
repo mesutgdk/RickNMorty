@@ -14,9 +14,10 @@ protocol AppEpisodeViewDelegate: AnyObject {
 /// View that handles showing list of episodes, loader, etc.
 final class AppEpisodeListView: UIView {
     
+    
     public weak var delegate: AppEpisodeViewDelegate?
 
-    private let viewModel = AppCharacterListViewViewModel()
+    private let viewModel = AppEpisodeListViewViewModel()
     
     private let spinner : UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
@@ -33,7 +34,7 @@ final class AppEpisodeListView: UIView {
         collectionView.isHidden = true
         collectionView.alpha = 0
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(AppCharacterCollectionViewCell.self, forCellWithReuseIdentifier: AppCharacterCollectionViewCell.cellidentifier)
+        collectionView.register(AppCharacterEpisodeCollectionViewCell.self, forCellWithReuseIdentifier: AppCharacterEpisodeCollectionViewCell.cellIdentifier)
         
         collectionView.register(AppFooterLoadingCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: AppFooterLoadingCollectionReusableView.identifier)
         return collectionView
@@ -58,7 +59,7 @@ final class AppEpisodeListView: UIView {
         spinner.startAnimating()
         
         viewModel.delegate = self
-        viewModel.fetchCharacters()
+        viewModel.fetchEpisodes()
         
         setupCollectionView()
     }
@@ -88,24 +89,16 @@ final class AppEpisodeListView: UIView {
         collectionView.dataSource = viewModel
         collectionView.delegate = viewModel
         
-//        DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
-//            self.spinner.stopAnimating()
-//
-//            self.collectionView.isHidden = false
-//
-//            UIView.animate(withDuration: 0.4) {
-//                self.collectionView.alpha = 1
-//            }
-//        })
     }
 }
 
 extension AppEpisodeListView: AppEpisodeListViewModelDelegate {
-    func didSelectCharacter(_ character: AppCharacter) {
-        delegate?.appDetailedCharacterListView(self, didSelectCharacter: character)
+    
+    func didSelectEpisode(_ episode: AppEpisode) {
+        delegate?.appEpisodeListView(self, didSelectEpisode: episode )
     }
     
-    func didLoadInitialCharacter() {
+    func didLoadInitialEpisode() {
         spinner.stopAnimating()
         collectionView.isHidden = false
         collectionView.reloadData()  // initial fetcch characters
@@ -114,7 +107,7 @@ extension AppEpisodeListView: AppEpisodeListViewModelDelegate {
         }
     }
     
-    func didLoadMoreCharacters(with newIndexPath:[IndexPath]) {
+    func didLoadMoreEpisodes(with newIndexPath:[IndexPath]) {
         collectionView.performBatchUpdates {
             self.collectionView.insertItems(at: newIndexPath)
         }
