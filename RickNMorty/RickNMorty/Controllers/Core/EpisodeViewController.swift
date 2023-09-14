@@ -9,11 +9,50 @@ import UIKit
 
 final class EpisodeViewController: UIViewController {
 
+    private let episodeListView = AppEpisodeListView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
-        title = "Episode"
+        setup()
+        layout()
     }
+    
+    private func setup() {
+        view.addSubview(episodeListView)
 
+        view.backgroundColor = .systemBackground
+        title = "Episode"
+        
+        episodeListView.delegate = self
+
+    }
+    
+    private func layout() {
+        // characterListView
+        NSLayoutConstraint.activate([
+            episodeListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            episodeListView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            episodeListView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            episodeListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
 }
+// MARK: - AppEpisodeListViewDelegate
+
+extension EpisodeViewController: AppEpisodeViewDelegate {
+    
+    func appEpisodeListView(_ episodeListView: AppEpisodeListView, didSelectEpisode episode: AppEpisode) {
+        // open a controller for that episode
+//        let viewModel = AppEpisodeDetailViewViewModel(endpointUrl: URL(string: episode.url))
+        let detailedVC = AppEpisodeDetailViewController(url: URL(string: episode.url))
+
+        detailedVC.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(detailedVC, animated: true)
+        // detailed is a rootVC with navC, so navC will push
+    }
+    
+    
+}
+

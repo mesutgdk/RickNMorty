@@ -10,15 +10,17 @@ import UIKit
 final class CharacterViewController: UIViewController {
 
     private let characterListView = AppCharacterListView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setup()
         layout()
     }
-}
-extension CharacterViewController {
+
     private func setup() {
+        view.addSubview(characterListView)
+
         view.backgroundColor = .systemBackground
         title = "Character"
         
@@ -26,7 +28,6 @@ extension CharacterViewController {
     }
     
     private func layout() {
-        view.addSubview(characterListView)
         // characterListView
         NSLayoutConstraint.activate([
             characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

@@ -16,7 +16,7 @@ final class AppEpisodeDetailViewViewModel {
         fetchEpisodeData()
     }
     private func fetchEpisodeData(){
-        guard let url = endpointUrl,let request = AppRequest(url: url) else {
+        guard let url = endpointUrl, let request = AppRequest(url: url) else {
             return
         }
         
@@ -29,14 +29,6 @@ final class AppEpisodeDetailViewViewModel {
             }
         }
 //        guard let url = endpointUrl, let request = AppRequest(url: url) else {return}
-        
-        AppService.shared.execute(request, expecting: AppEpisode.self) { result in
-            switch result {
-            case .success(let success):
-                print(String(describing: success))
-            case .failure(let failure):
-                break
-            }
-        }
+
     }
 }
