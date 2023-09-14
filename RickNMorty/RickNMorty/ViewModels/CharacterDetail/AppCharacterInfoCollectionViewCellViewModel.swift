@@ -65,21 +65,29 @@ final class AppCharacterInfoCollectionViewCellViewModel {
         var iconImage: UIImage? {
             switch self {
             case .status:
-                return UIImage(systemName: "heart.fill")
+                return UIImage(named: "kalp")
+//                (systemName: "heart.fill")
             case .gender:
-                return UIImage(systemName: "figure.dress.line.vertical.figure")
+                return UIImage(named: "gender")
+//                (systemName: "figure.dress.line.vertical.figure")
             case .type:
-                return UIImage(systemName: "rectangle.and.text.magnifyingglass")
+                return UIImage(named: "type")
+//                (systemName: "rectangle.and.text.magnifyingglass")
             case .specias:
-                return UIImage(systemName: "person.fill.questionmark")
+                return UIImage(named: "species")
+//                (systemName: "person.fill.questionmark")
             case .origin:
-                return UIImage(systemName: "globe.asia.australia")
+                return UIImage(named: "origin")
+//                (systemName: "globe.asia.australia")
             case .created:
-                return UIImage(systemName: "birthday.cake.fill")
+                return UIImage(named: "creativity")
+//                (systemName: "birthday.cake.fill")
             case .location:
-                return UIImage(systemName: "globe")
+                return UIImage(named: "location")
+//                (systemName: "globe")
             case .episodeCount:
-                return UIImage(systemName: "camera.metering.spot")
+                return UIImage(named: "count")
+//                (systemName: "camera.metering.spot")
             }
         }
         

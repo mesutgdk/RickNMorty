@@ -77,9 +77,9 @@ final class AppCharacterListView: UIView {
         
         // collectionView
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
-            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+            collectionView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            collectionView.leftAnchor.constraint(equalTo: leftAnchor,constant: 10),
+            collectionView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }

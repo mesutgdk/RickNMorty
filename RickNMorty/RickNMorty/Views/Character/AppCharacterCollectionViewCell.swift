@@ -15,7 +15,7 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 8
+        imageView.layer.cornerRadius = 25
         imageView.layer.borderWidth = 1
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -57,7 +57,7 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubviews(imageView, nameLabel, statusLabel)
         
-        contentView.layer.cornerRadius = 30
+        contentView.layer.cornerRadius = 8
         contentView.layer.shadowColor = UIColor.label.cgColor
         contentView.layer.shadowOpacity = 0.3
         contentView.layer.shadowOffset = CGSize(width: -2, height: 2)
