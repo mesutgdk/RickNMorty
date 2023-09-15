@@ -17,7 +17,7 @@
 		630E6B902A54AE0600C17EFB /* AppCharacterListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B8F2A54AE0600C17EFB /* AppCharacterListViewViewModel.swift */; };
 		630E6B922A54AEAC00C17EFB /* AppCharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B912A54AEAC00C17EFB /* AppCharacterListView.swift */; };
 		630E6B942A55707300C17EFB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B932A55707300C17EFB /* Extensions.swift */; };
-		630E6B962A56B5A400C17EFB /* AppCharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B952A56B5A400C17EFB /* AppCharacterCollectionViewCell.swift */; };
+		630E6B962A56B5A400C17EFB /* AppCharacterCollectionGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B952A56B5A400C17EFB /* AppCharacterCollectionGridViewCell.swift */; };
 		630E6B982A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B972A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift */; };
 		630E6B9B2A58226400C17EFB /* AppCharacterDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B9A2A58226400C17EFB /* AppCharacterDetailedViewController.swift */; };
 		630E6B9D2A58231100C17EFB /* AppCharacterDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E6B9C2A58231100C17EFB /* AppCharacterDetailedView.swift */; };
@@ -50,6 +50,9 @@
 		63A4787C2AB2FC5C007A6B12 /* AppEpisodeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A4787B2AB2FC5C007A6B12 /* AppEpisodeListView.swift */; };
 		63A4787E2AB300A1007A6B12 /* AppEpisodeListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A4787D2AB300A1007A6B12 /* AppEpisodeListViewViewModel.swift */; };
 		63A478802AB37FF9007A6B12 /* AppGetAllEpisodeResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A4787F2AB37FF9007A6B12 /* AppGetAllEpisodeResponses.swift */; };
+		63A478842AB448C8007A6B12 /* AppSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A478832AB448C8007A6B12 /* AppSearchViewController.swift */; };
+		63A478862AB44C62007A6B12 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A478852AB44C62007A6B12 /* Constant.swift */; };
+		63A478882AB488AE007A6B12 /* AppCharacterCollectionListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A478872AB488AE007A6B12 /* AppCharacterCollectionListViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +66,7 @@
 		630E6B8F2A54AE0600C17EFB /* AppCharacterListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterListViewViewModel.swift; sourceTree = "<group>"; };
 		630E6B912A54AEAC00C17EFB /* AppCharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterListView.swift; sourceTree = "<group>"; };
 		630E6B932A55707300C17EFB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		630E6B952A56B5A400C17EFB /* AppCharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterCollectionViewCell.swift; sourceTree = "<group>"; };
+		630E6B952A56B5A400C17EFB /* AppCharacterCollectionGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterCollectionGridViewCell.swift; sourceTree = "<group>"; };
 		630E6B972A56C27900C17EFB /* AppCharacterCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		630E6B9A2A58226400C17EFB /* AppCharacterDetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterDetailedViewController.swift; sourceTree = "<group>"; };
 		630E6B9C2A58231100C17EFB /* AppCharacterDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterDetailedView.swift; sourceTree = "<group>"; };
@@ -98,6 +101,9 @@
 		63A4787B2AB2FC5C007A6B12 /* AppEpisodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEpisodeListView.swift; sourceTree = "<group>"; };
 		63A4787D2AB300A1007A6B12 /* AppEpisodeListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEpisodeListViewViewModel.swift; sourceTree = "<group>"; };
 		63A4787F2AB37FF9007A6B12 /* AppGetAllEpisodeResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGetAllEpisodeResponses.swift; sourceTree = "<group>"; };
+		63A478832AB448C8007A6B12 /* AppSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchViewController.swift; sourceTree = "<group>"; };
+		63A478852AB44C62007A6B12 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		63A478872AB488AE007A6B12 /* AppCharacterCollectionListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCharacterCollectionListViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				630E6B912A54AEAC00C17EFB /* AppCharacterListView.swift */,
-				630E6B952A56B5A400C17EFB /* AppCharacterCollectionViewCell.swift */,
+				630E6B952A56B5A400C17EFB /* AppCharacterCollectionGridViewCell.swift */,
+				63A478872AB488AE007A6B12 /* AppCharacterCollectionListViewCell.swift */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -147,6 +154,7 @@
 			children = (
 				630E6B9A2A58226400C17EFB /* AppCharacterDetailedViewController.swift */,
 				6340E98D2AB1E8B100A55885 /* AppEpisodeDetailViewController.swift */,
+				63A478832AB448C8007A6B12 /* AppSearchViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -251,6 +259,7 @@
 				633D43F02A49C310009FFECB /* LaunchScreen.storyboard */,
 				633D43EE2A49C310009FFECB /* Assets.xcassets */,
 				630E6B932A55707300C17EFB /* Extensions.swift */,
+				63A478852AB44C62007A6B12 /* Constant.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -378,11 +387,12 @@
 				6340E98E2AB1E8B100A55885 /* AppEpisodeDetailViewController.swift in Sources */,
 				630DE5092A7B95D8005ACA2F /* AppCharacterInfoCollectionViewCellViewModel.swift in Sources */,
 				6340E9942AB249D800A55885 /* AppEpisodeDetailView.swift in Sources */,
+				63A478882AB488AE007A6B12 /* AppCharacterCollectionListViewCell.swift in Sources */,
 				630E6B922A54AEAC00C17EFB /* AppCharacterListView.swift in Sources */,
 				63A4787E2AB300A1007A6B12 /* AppEpisodeListViewViewModel.swift in Sources */,
 				633D440C2A4A1B8F009FFECB /* EpisodeViewController.swift in Sources */,
 				630E6B9B2A58226400C17EFB /* AppCharacterDetailedViewController.swift in Sources */,
-				630E6B962A56B5A400C17EFB /* AppCharacterCollectionViewCell.swift in Sources */,
+				630E6B962A56B5A400C17EFB /* AppCharacterCollectionGridViewCell.swift in Sources */,
 				633D44052A4A1ACB009FFECB /* AppEpisode.swift in Sources */,
 				633D441A2A4A3CEA009FFECB /* AppCharLocation.swift in Sources */,
 				633D44142A4A2FE0009FFECB /* AppEndpoint.swift in Sources */,
@@ -402,6 +412,8 @@
 				630DE5072A7B95C9005ACA2F /* AppCharacterPhotoCollectionViewCellViewModel.swift in Sources */,
 				633D440A2A4A1B83009FFECB /* LocationViewController.swift in Sources */,
 				633D441C2A4A3D74009FFECB /* AppCharacterGender.swift in Sources */,
+				63A478862AB44C62007A6B12 /* Constant.swift in Sources */,
+				63A478842AB448C8007A6B12 /* AppSearchViewController.swift in Sources */,
 				633D44162A4A3C5A009FFECB /* AppCharacterStatus.swift in Sources */,
 				630E6B902A54AE0600C17EFB /* AppCharacterListViewViewModel.swift in Sources */,
 				633D44182A4A3C84009FFECB /* AppOrigin.swift in Sources */,

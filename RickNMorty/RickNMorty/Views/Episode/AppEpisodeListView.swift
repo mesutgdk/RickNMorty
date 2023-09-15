@@ -14,7 +14,6 @@ protocol AppEpisodeViewDelegate: AnyObject {
 /// View that handles showing list of episodes, loader, etc.
 final class AppEpisodeListView: UIView {
     
-    
     public weak var delegate: AppEpisodeViewDelegate?
 
     private let viewModel = AppEpisodeListViewViewModel()

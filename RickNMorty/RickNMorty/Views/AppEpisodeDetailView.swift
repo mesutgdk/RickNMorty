@@ -19,6 +19,7 @@ final class AppEpisodeDetailView: UIView {
     }
     
     private func setUp(){
-        
+        translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .yellow
     }
 }

@@ -16,7 +16,7 @@ final class AppCharacterListView: UIView {
     
     public weak var delegate: AppCharacterViewDelegate?
 
-    private let viewModel = AppCharacterListViewViewModel()
+    let viewModel = AppCharacterListViewViewModel()
     
     private let spinner : UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
@@ -25,7 +25,7 @@ final class AppCharacterListView: UIView {
         return spinner
     } ()
     
-    private let collectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
@@ -33,8 +33,8 @@ final class AppCharacterListView: UIView {
         collectionView.isHidden = true
         collectionView.alpha = 0
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(AppCharacterCollectionViewCell.self, forCellWithReuseIdentifier: AppCharacterCollectionViewCell.cellidentifier)
-        
+        collectionView.register(AppCharacterCollectionGridViewCell.self, forCellWithReuseIdentifier: AppCharacterCollectionGridViewCell.cellidentifier)
+        collectionView.register(AppCharacterCollectionListViewCell.self, forCellWithReuseIdentifier: AppCharacterCollectionListViewCell.cellidentifier)
         collectionView.register(AppFooterLoadingCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: AppFooterLoadingCollectionReusableView.identifier)
         return collectionView
     } ()

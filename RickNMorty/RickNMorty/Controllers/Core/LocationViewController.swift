@@ -14,5 +14,20 @@ final class LocationViewController: UIViewController {
 
         view.backgroundColor = .systemBackground
         title = "Locations"
+        
+        addSearchButton()
+    }
+}
+// MARK: - Search Button
+extension LocationViewController {
+    private func addSearchButton(){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
+    }
+    
+    @objc private func searchButtonTapped(){
+        let vc = AppSearchViewController(config: AppSearchViewController.Config(type: .location))
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
 }

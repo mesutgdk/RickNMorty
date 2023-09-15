@@ -15,6 +15,8 @@ protocol AppCharacterListViewModelDelegate: AnyObject {
 ///  View Model to handle character list view logic
 final class AppCharacterListViewViewModel:NSObject {
     
+    var isList: Bool = true
+    
     public weak var delegate: AppCharacterListViewModelDelegate?
     
     private var isLoadingMoreCharacters = false
@@ -113,9 +115,7 @@ final class AppCharacterListViewViewModel:NSObject {
                     strongSelf.isLoadingMoreCharacters = false
 
                 }
-
-                
-                
+     
             case .failure(let failure):
                 print(String(describing: failure))
                 strongSelf.isLoadingMoreCharacters = false
@@ -138,13 +138,26 @@ extension AppCharacterListViewViewModel: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionViewCell.cellidentifier, for: indexPath) as? AppCharacterCollectionViewCell else {
-            fatalError("Unsupported Cell")
-        }
-        let viewModel = cellViewModels[indexPath.row]
         
-        cell.configure(with: viewModel)
-        return cell
+        if !isList {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionGridViewCell.cellidentifier, for: indexPath) as? AppCharacterCollectionGridViewCell else {
+                fatalError("Unsupported Cell")
+                
+            }
+            let viewModel = cellViewModels[indexPath.row]
+            
+            cell.configure(with: viewModel)
+            return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionListViewCell.cellidentifier, for: indexPath) as? AppCharacterCollectionListViewCell else {
+                fatalError("Unsupported Cell")
+            }
+            let viewModel = cellViewModels[indexPath.row]
+            
+            cell.configure(with: viewModel)
+            return cell
+        }
+       
     }
  
 }
@@ -153,10 +166,18 @@ extension AppCharacterListViewViewModel: UICollectionViewDataSource {
 extension AppCharacterListViewViewModel:UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let bounds = UIScreen.main.bounds
-        let width = (bounds.width-50)/2
-        return CGSize(
-            width: width,
-            height: width * 1.2)
+        if !isList{
+            let width = (bounds.width-50)/2
+            return CGSize(
+                width: width,
+                height: width * 1.2)
+        } else {
+            let width = bounds.width-30
+            return CGSize(
+                width: width,
+                height: 100)
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

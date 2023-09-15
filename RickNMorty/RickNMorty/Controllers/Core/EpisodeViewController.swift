@@ -17,6 +17,8 @@ final class EpisodeViewController: UIViewController {
         
         setup()
         layout()
+        
+        addSearchButton()
     }
     
     private func setup() {
@@ -45,14 +47,24 @@ extension EpisodeViewController: AppEpisodeViewDelegate {
     
     func appEpisodeListView(_ episodeListView: AppEpisodeListView, didSelectEpisode episode: AppEpisode) {
         // open a controller for that episode
-//        let viewModel = AppEpisodeDetailViewViewModel(endpointUrl: URL(string: episode.url))
         let detailedVC = AppEpisodeDetailViewController(url: URL(string: episode.url))
 
         detailedVC.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(detailedVC, animated: true)
         // detailed is a rootVC with navC, so navC will push
     }
+  
+}
+// MARK: - Search Button
+extension EpisodeViewController {
+    private func addSearchButton(){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
+    }
     
-    
+    @objc private func searchButtonTapped(){
+        let vc = AppSearchViewController(config: AppSearchViewController.Config(type: .episode))
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 

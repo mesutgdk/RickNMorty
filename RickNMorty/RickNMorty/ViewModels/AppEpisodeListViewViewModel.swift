@@ -20,9 +20,16 @@ final class AppEpisodeListViewViewModel:NSObject {
     private var isLoadingMoreEpisodes = false
     
     private let borderColors: [UIColor] = [
-        .systemMint,
+        .systemYellow,
+        .systemGreen,
         .systemCyan,
-        .systemTeal,
+        .systemBlue,
+        .yellow,
+        .orange,
+        .systemOrange,
+        UIColor(red: 0.09, green: 0.42, blue: 0.53, alpha: 1.00),
+        UIColor(red: 0.15, green: 0.62, blue: 1.00, alpha: 1.00),
+        UIColor(red: 0.84, green: 1.00, blue: 0.89, alpha: 1.00)
         
     ]
     
@@ -154,7 +161,7 @@ extension AppEpisodeListViewViewModel:UICollectionViewDelegate, UICollectionView
         let width = bounds.width - 30
         return CGSize(
             width: width,
-            height: 100)
+            height: 120)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
