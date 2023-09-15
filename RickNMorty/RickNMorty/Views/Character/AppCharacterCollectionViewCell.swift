@@ -57,7 +57,7 @@ final class AppCharacterCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubviews(imageView, nameLabel, statusLabel)
         
-        contentView.layer.cornerRadius = 8
+        contentView.layer.cornerRadius = 20
         contentView.layer.shadowColor = UIColor.label.cgColor
         contentView.layer.shadowOpacity = 0.3
         contentView.layer.shadowOffset = CGSize(width: -2, height: 2)

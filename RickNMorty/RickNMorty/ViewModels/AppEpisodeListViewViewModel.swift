@@ -19,12 +19,21 @@ final class AppEpisodeListViewViewModel:NSObject {
     
     private var isLoadingMoreEpisodes = false
     
+    private let borderColors: [UIColor] = [
+        .systemMint,
+        .systemCyan,
+        .systemTeal,
+        
+    ]
+    
     private var episodes: [AppEpisode] = [] {
         didSet {
 //            print("Creating viewModels!")
             for episode in episodes {
                 let viewModel = AppCharacterEpisodeCollectionViewCellViewModel(
-                    episodeDataUrl: URL(string: episode.url)
+                    episodeDataUrl: URL(string: episode.url),
+                    borderColor: borderColors.randomElement() ?? .systemTeal
+                    
                 )
 //               tekrar eklenmesinin önüne geçmek için
                 if !cellViewModels.contains(viewModel) {
@@ -94,12 +103,9 @@ final class AppEpisodeListViewViewModel:NSObject {
                 let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap {
                     return IndexPath(row: $0, section: 0)
                 }
-//                print("char = \(originalCount)", "newchars= \(newCount)", "totalchar= \(totalCount)")
-//                print(indexPathsToAdd.count)
-                
+
                 strongSelf.episodes.append(contentsOf: moreResults)
                 
-//                print("ViewModels: \(strongSelf.cellViewModels.count)")
                 
                 DispatchQueue.main.async {
 
@@ -144,11 +150,11 @@ extension AppEpisodeListViewViewModel: UICollectionViewDataSource {
 
 extension AppEpisodeListViewViewModel:UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let bounds = UIScreen.main.bounds
-        let width = (bounds.width-30)/2
+        let bounds = collectionView.bounds
+        let width = bounds.width - 30
         return CGSize(
             width: width,
-            height: width * 0.8)
+            height: 100)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

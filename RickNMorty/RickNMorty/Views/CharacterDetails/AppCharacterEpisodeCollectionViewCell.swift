@@ -56,7 +56,6 @@ final class AppCharacterEpisodeCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .systemGray5
         contentView.layer.cornerRadius = 10
         contentView.layer.borderWidth = 2  // çerçeve kalınlık
-        contentView.layer.borderColor = UIColor.systemTeal.cgColor   // çerçeve renk
     }
     
     private func layout(){
@@ -98,5 +97,7 @@ final class AppCharacterEpisodeCollectionViewCell: UICollectionViewCell {
             self?.airDateLabel.text = "Aired On "+data.air_date
         }
         viewModel.fetchEpisode()
+        contentView.layer.borderColor = viewModel.borderColor.cgColor   // çerçeve renk
+
     }
 }

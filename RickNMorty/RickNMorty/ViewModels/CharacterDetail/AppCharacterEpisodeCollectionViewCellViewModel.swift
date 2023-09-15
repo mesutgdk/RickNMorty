@@ -5,7 +5,7 @@
 //  Created by Mesut Gedik on 3.08.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol AppEpisodeDataRender {
     var name: String { get }
@@ -29,10 +29,13 @@ final class AppCharacterEpisodeCollectionViewCellViewModel: Hashable, Equatable{
         }
     }
     
+    public let borderColor : UIColor
+    
     // MARK: - Init
 
-    init(episodeDataUrl: URL?) {
+    init(episodeDataUrl: URL?, borderColor:UIColor = .systemTeal) {
         self.episodeDataUrl = episodeDataUrl
+        self.borderColor = borderColor
     }
     
     // MARK: - Public

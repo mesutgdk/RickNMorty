@@ -12,10 +12,10 @@ final class AppCharacterPhotoCollectionViewCell: UICollectionViewCell {
     
     private let imageView:UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 8
-        imageView.layer.borderWidth = 0.5
+        imageView.layer.borderWidth = 2
         imageView.layer.borderColor = UIColor.systemGray5.cgColor
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
