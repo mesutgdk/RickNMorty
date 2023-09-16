@@ -9,6 +9,8 @@ import UIKit
 
 final class AppEpisodeDetailView: UIView {
     
+    private var viewModel: AppEpisodeListViewViewModel?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
@@ -21,5 +23,13 @@ final class AppEpisodeDetailView: UIView {
     private func setUp(){
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .yellow
+    }
+    
+    private func layout(){
+        
+    }
+    
+    func configure(with viewModel:AppEpisodeDetailViewViewModel){
+        
     }
 }

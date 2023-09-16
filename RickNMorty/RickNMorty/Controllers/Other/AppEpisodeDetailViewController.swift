@@ -8,7 +8,7 @@
 import UIKit
 
 /// VC to show details about single episode
-final class AppEpisodeDetailViewController: UIViewController {
+final class AppEpisodeDetailViewController: UIViewController{
     
     private let viewModel : AppEpisodeDetailViewViewModel
     
@@ -16,7 +16,7 @@ final class AppEpisodeDetailViewController: UIViewController {
     // MARK: - init
     
     init(url:URL?) {
-        self.viewModel = .init(endpointUrl: url)
+        self.viewModel = AppEpisodeDetailViewViewModel(endpointUrl: url)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -37,7 +37,7 @@ final class AppEpisodeDetailViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubviews(detailView)
         
-        
+        viewModel.delegate = self
     }
     
     private func layout(){
@@ -56,5 +56,13 @@ final class AppEpisodeDetailViewController: UIViewController {
     @objc private func shareButtonTapped(){
         
     }
+    
+}
+
+extension AppEpisodeDetailViewController: AppEpisodeDetailViewViewModelDelegate {
+    func didFetchEpisodeDetail() {
+        detailView.configure(with: viewModel)
+    }
+    
     
 }

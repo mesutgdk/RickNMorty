@@ -7,18 +7,30 @@
 
 import Foundation
 
+protocol AppEpisodeDetailViewViewModelDelegate: AnyObject {
+    func didFetchEpisodeDetail()
+}
+
 final class AppEpisodeDetailViewViewModel {
     
     private let endpointUrl : URL?
+    
+    public weak var delegate: AppEpisodeDetailViewViewModelDelegate?
+    
+    private var dataTuple: (AppEpisode,[AppCharacter])? {
+        didSet {
+            delegate?.didFetchEpisodeDetail()
+        }
+    }
     
     // MARK: - init
     
     init(endpointUrl : URL?){
         self.endpointUrl = endpointUrl
-        fetchEpisodeData()
+
     }
     /// Fetch episode model
-    private func fetchEpisodeData(){
+    public func fetchEpisodeData(){
         guard let url = endpointUrl, let request = AppRequest(url: url) else {
             return
         }
@@ -60,6 +72,12 @@ final class AppEpisodeDetailViewViewModel {
                 case .failure:
                         break
                 }
+            }
+        }
+        group.notify(queue: .main) {
+            self.dataTuple = {
+                episode,
+                characters
             }
         }
     }
