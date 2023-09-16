@@ -75,10 +75,10 @@ final class AppEpisodeDetailViewViewModel {
             }
         }
         group.notify(queue: .main) {
-            self.dataTuple = {
-                episode,
-                characters
-            }
+            self.dataTuple = (
+                episode: episode,
+                characters: characters
+            )
         }
     }
 }
