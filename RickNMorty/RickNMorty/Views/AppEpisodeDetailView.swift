@@ -62,6 +62,12 @@ final class AppEpisodeDetailView: UIView {
 }
 extension AppEpisodeDetailView{
     func layout(for section: Int) -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
         
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(100)), subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        
+        return section
     }
 }
