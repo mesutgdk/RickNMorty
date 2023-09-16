@@ -80,7 +80,7 @@ extension CharacterViewController {
     }
     private func fetchLayoutType() {
        
-        var isListLayout = characterListView.viewModel.isList
+        let isListLayout = characterListView.viewModel.isList
         
         if isListLayout {
             // List görünümüne geçiş kodunu buraya ekleyin

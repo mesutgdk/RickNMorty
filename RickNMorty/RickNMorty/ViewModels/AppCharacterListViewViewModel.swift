@@ -172,7 +172,7 @@ extension AppCharacterListViewViewModel:UICollectionViewDelegate, UICollectionVi
                 width: width,
                 height: width * 1.2)
         } else {
-            let width = bounds.width-30
+            let width = bounds.width-16
             return CGSize(
                 width: width,
                 height: 100)
