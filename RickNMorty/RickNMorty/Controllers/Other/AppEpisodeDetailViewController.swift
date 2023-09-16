@@ -38,6 +38,7 @@ final class AppEpisodeDetailViewController: UIViewController{
         view.addSubviews(detailView)
         
         viewModel.delegate = self
+        viewModel.fetchEpisodeData()
     }
     
     private func layout(){
@@ -63,6 +64,4 @@ extension AppEpisodeDetailViewController: AppEpisodeDetailViewViewModelDelegate 
     func didFetchEpisodeDetail() {
         detailView.configure(with: viewModel)
     }
-    
-    
 }

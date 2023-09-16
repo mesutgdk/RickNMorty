@@ -15,19 +15,26 @@ final class AppEpisodeDetailViewViewModel {
     
     private let endpointUrl : URL?
     
-    public weak var delegate: AppEpisodeDetailViewViewModelDelegate?
-    
     private var dataTuple: (AppEpisode,[AppCharacter])? {
         didSet {
             delegate?.didFetchEpisodeDetail()
         }
     }
     
+    public weak var delegate: AppEpisodeDetailViewViewModelDelegate?
+    
+    enum SectionType{
+        case information(viewModes: [AppEpisodeInfoCollectionViewCellViewModel])
+        case caracters(viewModel: [AppCharacterCollectionViewCellViewModel])
+    }
+    
+    public private(set) var sections: [SectionType] = [] // only for reading, no writing
+    
+    
     // MARK: - init
     
     init(endpointUrl : URL?){
         self.endpointUrl = endpointUrl
-
     }
     /// Fetch episode model
     public func fetchEpisodeData(){
