@@ -25,7 +25,9 @@ final class AppCharacterCollectionGridViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .label
         label.textAlignment = .center
+        label.numberOfLines = 0
         label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -34,7 +36,9 @@ final class AppCharacterCollectionGridViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .secondaryLabel
         label.textAlignment = .center
+        label.numberOfLines = 0
         label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

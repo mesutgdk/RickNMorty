@@ -15,8 +15,6 @@ enum Constants {
     static let notFavoriteImage = UIImage(systemName: "star")
     static let listRowHeight: CGFloat = 112
     static let gridRowHeight: CGFloat = 170
-    static let listCellID = "listCell"
-    static let gridCellID = "gridCell"
     static let listLayoutImage = UIImage(systemName: "rectangle.split.1x2.fill")
     static let gridLayoutImage = UIImage(systemName: "rectangle.grid.2x2")
 }
