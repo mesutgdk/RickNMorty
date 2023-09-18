@@ -12,7 +12,8 @@ final class AppEpisodeInfoCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .green
+        contentView.backgroundColor = .secondarySystemBackground
+        layout()
     }
     
     required init?(coder: NSCoder) {
@@ -21,6 +22,13 @@ final class AppEpisodeInfoCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+    }
+    
+    private func layout(){
+        layer.masksToBounds = true
+        layer.cornerRadius = 8
+        layer.borderWidth = 1.5
+        layer.borderColor = UIColor.secondaryLabel.cgColor
     }
     
     func configure(with viewModel:AppEpisodeInfoCollectionViewCellViewModel){
