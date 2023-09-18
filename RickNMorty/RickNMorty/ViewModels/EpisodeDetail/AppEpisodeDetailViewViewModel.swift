@@ -15,20 +15,21 @@ final class AppEpisodeDetailViewViewModel {
     
     private let endpointUrl : URL?
     
-    private var dataTuple: (AppEpisode,[AppCharacter])? {
+    private var dataTuple: (episode: AppEpisode,characters: [AppCharacter])? {
         didSet {
+            createCellViewModels()
             delegate?.didFetchEpisodeDetail()
         }
     }
-    
+
     public weak var delegate: AppEpisodeDetailViewViewModelDelegate?
     
     enum SectionType{
         case information(viewModes: [AppEpisodeInfoCollectionViewCellViewModel])
-        case caracters(viewModel: [AppCharacterCollectionViewCellViewModel])
+        case cracters(viewModel: [AppCharacterCollectionViewCellViewModel])
     }
     
-    public private(set) var sections: [SectionType] = [] // only for reading, no writing
+    public private(set) var cellViewModels: [SectionType] = [] // only for reading, no writing
     
     
     // MARK: - init
@@ -36,6 +37,9 @@ final class AppEpisodeDetailViewViewModel {
     init(endpointUrl : URL?){
         self.endpointUrl = endpointUrl
     }
+    
+    // MARK: - Public
+
     /// Fetch episode model
     public func fetchEpisodeData(){
         guard let url = endpointUrl, let request = AppRequest(url: url) else {
@@ -54,6 +58,29 @@ final class AppEpisodeDetailViewViewModel {
         
     }
     
+    // MARK: - Private
+    private func createCellViewModels() {
+        guard let dataTuple = dataTuple else {
+            return
+        }
+        let episode = dataTuple.episode //
+        let characters = dataTuple.characters
+        cellViewModels = [
+            .information(viewModes: [
+                .init(title: "Episode Name", value: episode.name),
+                .init(title: "Air Date", value: episode.air_date),
+                .init(title: "Episode", value: episode.episode),
+                .init(title: "Created", value: episode.created)
+            ]),
+            .cracters(viewModel: characters.compactMap({character in
+                return AppCharacterCollectionViewCellViewModel(
+                    characterName: character.name,
+                    characterStatus: character.status,
+                    characterImageUrl: URL(string: character.image))
+            }))
+        ]
+    }
+
     private func fetchRelatedCharacters(episode: AppEpisode){
         let characterURLS: [URL] = episode.characters.compactMap({
             return URL(string: $0)
@@ -88,4 +115,6 @@ final class AppEpisodeDetailViewViewModel {
             )
         }
     }
+    
+
 }

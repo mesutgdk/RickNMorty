@@ -12,6 +12,7 @@ final class AppEpisodeDetailView: UIView {
     private var viewModel: AppEpisodeDetailViewViewModel? {
         didSet {
             spinner.stopAnimating()
+            self.collectionView?.reloadData()
             self.collectionView?.isHidden = false
             UIView.animate(withDuration: 0.5) {
                 self.collectionView?.alpha = 1
@@ -97,10 +98,19 @@ final class AppEpisodeDetailView: UIView {
 // MARK: - CollectionView Delegate and DataSource
 extension AppEpisodeDetailView: UICollectionViewDelegate,UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return viewModel?.cellViewModels.count ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        guard let sections = viewModel?.cellViewModels else {
+            return 0
+        }
+        let sectionType = sections[section]
+        switch sectionType {
+        case .cracters(let viewModels):
+            return viewModels.count
+        case.information(let viewModels):
+            return viewModels.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
