@@ -140,7 +140,7 @@ extension AppCharacterListViewViewModel: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if !isList {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionGridViewCell.cellidentifier, for: indexPath) as? AppCharacterCollectionGridViewCell else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionGridViewCell.cellIdentifier, for: indexPath) as? AppCharacterCollectionGridViewCell else {
                 fatalError("Unsupported Cell")
                 
             }
@@ -149,7 +149,7 @@ extension AppCharacterListViewViewModel: UICollectionViewDataSource {
             cell.configure(with: viewModel)
             return cell
         } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionListViewCell.cellidentifier, for: indexPath) as? AppCharacterCollectionListViewCell else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionListViewCell.cellIdentifier, for: indexPath) as? AppCharacterCollectionListViewCell else {
                 fatalError("Unsupported Cell")
             }
             let viewModel = cellViewModels[indexPath.row]

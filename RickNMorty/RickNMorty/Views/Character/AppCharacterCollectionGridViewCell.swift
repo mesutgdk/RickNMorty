@@ -9,7 +9,7 @@ import UIKit
 
 /// Single  Cell for a character
 final class AppCharacterCollectionGridViewCell: UICollectionViewCell {
-    static let cellidentifier = "GridCollectionCell"
+    static let cellIdentifier = "GridCollectionCell"
     
     private let imageView:UIImageView = {
         let imageView = UIImageView()

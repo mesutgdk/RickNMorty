@@ -26,7 +26,7 @@ final class AppEpisodeDetailViewViewModel {
     
     enum SectionType{
         case information(viewModes: [AppEpisodeInfoCollectionViewCellViewModel])
-        case cracters(viewModel: [AppCharacterCollectionViewCellViewModel])
+        case character(viewModel: [AppCharacterCollectionViewCellViewModel])
     }
     
     public private(set) var cellViewModels: [SectionType] = [] // only for reading, no writing
@@ -72,7 +72,7 @@ final class AppEpisodeDetailViewViewModel {
                 .init(title: "Episode", value: episode.episode),
                 .init(title: "Created", value: episode.created)
             ]),
-            .cracters(viewModel: characters.compactMap({character in
+            .character(viewModel: characters.compactMap({character in
                 return AppCharacterCollectionViewCellViewModel(
                     characterName: character.name,
                     characterStatus: character.status,

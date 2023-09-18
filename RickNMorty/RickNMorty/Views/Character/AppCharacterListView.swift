@@ -33,8 +33,8 @@ final class AppCharacterListView: UIView {
         collectionView.isHidden = true
         collectionView.alpha = 0
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(AppCharacterCollectionGridViewCell.self, forCellWithReuseIdentifier: AppCharacterCollectionGridViewCell.cellidentifier)
-        collectionView.register(AppCharacterCollectionListViewCell.self, forCellWithReuseIdentifier: AppCharacterCollectionListViewCell.cellidentifier)
+        collectionView.register(AppCharacterCollectionGridViewCell.self, forCellWithReuseIdentifier: AppCharacterCollectionGridViewCell.cellIdentifier)
+        collectionView.register(AppCharacterCollectionListViewCell.self, forCellWithReuseIdentifier: AppCharacterCollectionListViewCell.cellIdentifier)
         collectionView.register(AppFooterLoadingCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: AppFooterLoadingCollectionReusableView.identifier)
         return collectionView
     } ()

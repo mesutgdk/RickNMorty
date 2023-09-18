@@ -8,7 +8,7 @@
 import UIKit
 
 final class AppCharacterCollectionListViewCell: UICollectionViewCell {
-    static let cellidentifier = "ListCollectionCell"
+    static let cellIdentifier = "ListCollectionCell"
     
     private let imageView:UIImageView = {
         let imageView = UIImageView()
