@@ -5,7 +5,7 @@
 //  Created by Mesut Gedik on 26.06.2023.
 //
 
-import Foundation
+import UIKit
 
 struct AppEpisode: Codable, AppEpisodeDataRender {
     

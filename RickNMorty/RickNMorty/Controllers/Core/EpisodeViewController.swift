@@ -48,6 +48,7 @@ extension EpisodeViewController: AppEpisodeViewDelegate {
     func appEpisodeListView(_ episodeListView: AppEpisodeListView, didSelectEpisode episode: AppEpisode) {
         // open a controller for that episode
         let detailedVC = AppEpisodeDetailViewController(url: URL(string: episode.url))
+        
 
         detailedVC.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(detailedVC, animated: true)

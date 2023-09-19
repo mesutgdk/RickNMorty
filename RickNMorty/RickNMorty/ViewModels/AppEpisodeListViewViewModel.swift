@@ -33,7 +33,7 @@ final class AppEpisodeListViewViewModel:NSObject {
         
     ]
     
-    private var episodes: [AppEpisode] = [] {
+    var episodes: [AppEpisode] = [] {
         didSet {
 //            print("Creating viewModels!")
             for episode in episodes {
@@ -168,6 +168,7 @@ extension AppEpisodeListViewViewModel:UICollectionViewDelegate, UICollectionView
         collectionView.deselectItem(at: indexPath, animated: true)
         let episode = episodes[indexPath.row]
         delegate?.didSelectEpisode(episode)
+        
     }
 }
 

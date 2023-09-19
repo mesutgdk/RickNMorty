@@ -13,6 +13,7 @@ final class AppEpisodeInfoCollectionViewCell: UICollectionViewCell {
     private let titleLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         return label
     }()
@@ -48,22 +49,24 @@ final class AppEpisodeInfoCollectionViewCell: UICollectionViewCell {
         layer.cornerRadius = 8
         layer.borderWidth = 1.5
         layer.borderColor = UIColor.secondaryLabel.cgColor
+//        titleLabel.backgroundColor = .red
+//        valueLabel.backgroundColor = .blue
     }
     
     private func layout(){
         //titleLabel
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
+            titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            titleLabel.rightAnchor.constraint(equalTo: contentView.centerXAnchor)
+            titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.4)
         ])
         //valueLabel
         NSLayoutConstraint.activate([
             valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             valueLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             valueLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            valueLabel.leftAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 8)
+            valueLabel.leftAnchor.constraint(equalTo: titleLabel.rightAnchor, constant: 8)
         ])
     }
     

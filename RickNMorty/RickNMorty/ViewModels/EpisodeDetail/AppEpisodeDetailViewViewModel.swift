@@ -5,7 +5,7 @@
 //  Created by Mesut Gedik on 13.09.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol AppEpisodeDetailViewViewModelDelegate: AnyObject {
     func didFetchEpisodeDetail()
@@ -31,6 +31,8 @@ final class AppEpisodeDetailViewViewModel {
     
     public private(set) var cellViewModels: [SectionType] = [] // only for reading, no writing
     
+    public let cellBorderColor : UIColor = .secondaryLabel
+    
     
     // MARK: - init
     
@@ -38,7 +40,7 @@ final class AppEpisodeDetailViewViewModel {
         self.endpointUrl = endpointUrl
     }
     
-    // MARK: - Public
+    // MARK: - Public Func
 
     /// Fetch episode model
     public func fetchEpisodeData(){
@@ -65,12 +67,18 @@ final class AppEpisodeDetailViewViewModel {
         }
         let episode = dataTuple.episode //
         let characters = dataTuple.characters
+        
+        var createdString = episode.created
+        if let date = AppCharacterInfoCollectionViewCellViewModel.dateFormatter.date(from: episode.created) {
+            createdString = AppCharacterInfoCollectionViewCellViewModel.shortDateFormatter.string(from: date)
+        }
+        
         cellViewModels = [
             .information(viewModes: [
                 .init(title: "Episode Name", value: episode.name),
                 .init(title: "Air Date", value: episode.air_date),
                 .init(title: "Episode", value: episode.episode),
-                .init(title: "Created", value: episode.created)
+                .init(title: "Created", value: createdString)
             ]),
             .character(viewModel: characters.compactMap({character in
                 return AppCharacterCollectionViewCellViewModel(
