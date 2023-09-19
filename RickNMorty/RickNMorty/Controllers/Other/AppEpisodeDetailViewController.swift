@@ -37,6 +37,8 @@ final class AppEpisodeDetailViewController: UIViewController{
         view.backgroundColor = .systemBackground
         view.addSubviews(detailView)
         
+        detailView.delegate = self
+        
         viewModel.delegate = self
         viewModel.fetchEpisodeData()
     }
@@ -59,9 +61,23 @@ final class AppEpisodeDetailViewController: UIViewController{
     }
     
 }
+// MARK: - AppEpisodeDetailViewViewModelDelegate
 
 extension AppEpisodeDetailViewController: AppEpisodeDetailViewViewModelDelegate {
     func didFetchEpisodeDetail() {
         detailView.configure(with: viewModel)
     }
+}
+
+// MARK: - AppEpisodeDetailViewDelegate  "now can access character from episodedetail page"
+
+extension AppEpisodeDetailViewController: AppEpisodeDetailViewDelegate {
+    func appEpisodeDetailView(_ detailedView: AppEpisodeDetailView, didSelect character: AppCharacter) {
+        let vc = AppCharacterDetailedViewController(viewModel: .init(character: character))
+        vc.title = character.name
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
 }

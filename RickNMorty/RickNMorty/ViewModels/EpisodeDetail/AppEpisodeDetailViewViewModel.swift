@@ -41,6 +41,14 @@ final class AppEpisodeDetailViewViewModel {
     }
     
     // MARK: - Public Func
+    
+    // to take the character
+    public func character(at index: Int) -> AppCharacter? {
+        guard let dataTuple = dataTuple else {
+            return nil
+        } 
+        return dataTuple.characters[index]
+    }
 
     /// Fetch episode model
     public func fetchEpisodeData(){
@@ -67,6 +75,8 @@ final class AppEpisodeDetailViewViewModel {
         }
         let episode = dataTuple.episode //
         let characters = dataTuple.characters
+        
+        
         
         var createdString = episode.created
         if let date = AppCharacterInfoCollectionViewCellViewModel.dateFormatter.date(from: episode.created) {

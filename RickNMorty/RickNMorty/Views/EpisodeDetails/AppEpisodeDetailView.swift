@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol AppEpisodeDetailViewDelegate: AnyObject {
+    func appEpisodeDetailView(_ detailedView: AppEpisodeDetailView, didSelect character: AppCharacter)
+}
+
 final class AppEpisodeDetailView: UIView {
+    
+    public weak var delegate: AppEpisodeDetailViewDelegate?
     
     private var viewModel: AppEpisodeDetailViewViewModel? {
         didSet {
@@ -147,6 +153,25 @@ extension AppEpisodeDetailView: UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        
+        guard let viewModel = viewModel else {
+            return
+        }
+        let sections = viewModel.cellViewModels
+        let sectionType = sections[indexPath.section]
+        
+        switch sectionType {
+        case .information:
+            break
+            
+        case .character:
+            guard let character = viewModel.character(at: indexPath.row) else {
+                return
+            }
+            delegate?.appEpisodeDetailView(self, didSelect: character)
+            
+        
+        }
     }
     
 }

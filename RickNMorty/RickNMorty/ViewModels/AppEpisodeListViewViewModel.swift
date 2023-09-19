@@ -33,7 +33,7 @@ final class AppEpisodeListViewViewModel:NSObject {
         
     ]
     
-    var episodes: [AppEpisode] = [] {
+    public var episodes: [AppEpisode] = [] {
         didSet {
 //            print("Creating viewModels!")
             for episode in episodes {
