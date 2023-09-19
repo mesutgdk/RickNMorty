@@ -10,9 +10,25 @@ import UIKit
 final class AppEpisodeInfoCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = "AppEpisodeInfoCollectionViewCell"
     
+    private let titleLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        return label
+    }()
+    
+    private let valueLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.numberOfLines = 0
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .secondarySystemBackground
+        setup()
         layout()
     }
     
@@ -22,16 +38,37 @@ final class AppEpisodeInfoCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        titleLabel.text = nil
+        valueLabel.text = nil
     }
     
-    private func layout(){
+    private func setup(){
+        contentView.addSubviews(titleLabel,valueLabel)
         layer.masksToBounds = true
         layer.cornerRadius = 8
         layer.borderWidth = 1.5
         layer.borderColor = UIColor.secondaryLabel.cgColor
     }
     
+    private func layout(){
+        //titleLabel
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            titleLabel.rightAnchor.constraint(equalTo: contentView.centerXAnchor)
+        ])
+        //valueLabel
+        NSLayoutConstraint.activate([
+            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            valueLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            valueLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            valueLabel.leftAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 8)
+        ])
+    }
+    
     func configure(with viewModel:AppEpisodeInfoCollectionViewCellViewModel){
-        
+        titleLabel.text = viewModel.title
+        valueLabel.text = viewModel.value
     }
 }
