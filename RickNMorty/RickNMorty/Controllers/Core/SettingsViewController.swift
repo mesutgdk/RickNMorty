@@ -41,5 +41,4 @@ extension SettingsViewController: AppSettingsViewDelegate {
         let vc = SFSafariViewController(url: url)
         present(vc, animated: true)
     }
-    
 }

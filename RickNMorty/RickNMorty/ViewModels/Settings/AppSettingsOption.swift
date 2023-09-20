@@ -22,9 +22,9 @@ enum AppSettingsOption: CaseIterable {
         case .contactUs:
             return URL(string: "https://www.linkedin.com/in/mesutgdk-ios-developer/")
         case .terms:
-            return nil
+            return URL(string: "https://www.linkedin.com/legal/user-agreement")
         case .privacy:
-            return nil
+            return URL(string: "https://www.linkedin.com/legal/privacy-policy")
         case .apiReference:
             return URL(string: "https://rickandmortyapi.com/")
         case .viewCode:

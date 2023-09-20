@@ -71,7 +71,7 @@ extension AppSettingsCollectionViewViewModel{
         }
         if let url = option.targetURL{
             //open website
-            print(url)
+//            print(url)
             delegate?.didSelectUrl(url)
             
             
