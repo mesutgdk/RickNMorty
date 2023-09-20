@@ -4,10 +4,10 @@
 //
 //  Created by Mesut Gedik on 26.06.2023.
 //
-
+import SafariServices
 import UIKit
 
-class SettingsViewController: UIViewController {
+final class SettingsViewController: UIViewController {
     
     private let settingsView = AppSettingsView()
     
@@ -16,13 +16,14 @@ class SettingsViewController: UIViewController {
         
         setup()
         layout()
-        
     }
     
     private func setup(){
         view.addSubview(settingsView)
         title = "Settings"
         view.backgroundColor = .systemBackground
+        
+        settingsView.delegate = self
         
     }
     
@@ -34,4 +35,11 @@ class SettingsViewController: UIViewController {
             settingsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+}
+extension SettingsViewController: AppSettingsViewDelegate {
+    func appSettingsUrlView(_ appSettingsView: AppSettingsView, didSelectUrl url: URL) {
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true)
+    }
+    
 }

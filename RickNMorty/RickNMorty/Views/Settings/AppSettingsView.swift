@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol AppSettingsViewDelegate: AnyObject {
+    func appSettingsUrlView(_ appSettingsView: AppSettingsView, didSelectUrl url: URL)
+}
+
 final class AppSettingsView: UIView {
+    
+    
+    public weak var delegate: AppSettingsViewDelegate?
     
     // Bu sayede loop yaparak model içerisine mapleterek celleri arrayleriz
     
@@ -28,6 +35,8 @@ final class AppSettingsView: UIView {
         
         setUp()
         layout()
+        
+        collectionViewModel.delegate = self // viewmodelde taplanan buraya gelmeli
         
     }
     
@@ -56,3 +65,10 @@ final class AppSettingsView: UIView {
     }
 }
 
+extension AppSettingsView: AppSettingsCollectionViewViewModelDelegate{
+    func didSelectUrl(_ url: URL) {
+        delegate?.appSettingsUrlView(self, didSelectUrl: url)
+    }
+    
+    
+}

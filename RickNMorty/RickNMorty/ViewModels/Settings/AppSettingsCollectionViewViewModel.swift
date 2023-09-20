@@ -5,9 +5,16 @@
 //  Created by Mesut Gedik on 20.09.2023.
 //
 
+
 import UIKit
 
+protocol AppSettingsCollectionViewViewModelDelegate: AnyObject {
+    func didSelectUrl(_ url: URL)
+}
+
 final class AppSettingsCollectionViewViewModel: NSObject{
+    
+    public weak var delegate: AppSettingsCollectionViewViewModelDelegate?
     
     private var viewModel = AppSettingsViewViewModel(
         cellViewModel: AppSettingsOption.allCases.compactMap({
@@ -42,8 +49,6 @@ extension AppSettingsCollectionViewViewModel: UICollectionViewDataSource{
        
         return cell
     }
-    
-    
 }
 extension AppSettingsCollectionViewViewModel: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -60,19 +65,19 @@ extension AppSettingsCollectionViewViewModel: UICollectionViewDelegate, UICollec
 }
 extension AppSettingsCollectionViewViewModel{
     private func handleTap(option: AppSettingsOption){
-        switch option {
-        case .rateApp:
-            print("oh be rateApp")
-        case .contactUs:
-            print("oh be contactUs")
-        case .terms:
-            print("oh be terms")
-        case .privacy:
-            print("oh be privacy")
-        case .apiReference:
-            print("oh be apiReference")
-        case .viewCode:
-            print("oh be viewCode")
+        
+        guard Thread.current.isMainThread else {
+            return
+        }
+        if let url = option.targetURL{
+            //open website
+            print(url)
+            delegate?.didSelectUrl(url)
+            
+            
+        } else if option == .rateApp {
+            //show rating prompt
+            print("showing rating prompt")
         }
     }
 }
