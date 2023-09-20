@@ -17,8 +17,8 @@ struct AppSettingsCellViewModel {
     }
     
     // MARK: - Public
-    public var  image : UIImage? {
-        return type.icon
+    public var  image : UIImage {
+        return type.icon ?? UIImage(systemName: "star")!
     }
     public var title: String {
         return type.displayTitle

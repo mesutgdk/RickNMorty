@@ -13,7 +13,6 @@ enum AppSettingsOption: CaseIterable {
     case terms
     case privacy
     case apiReference
-
     case viewCode
     
     var displayTitle: String {

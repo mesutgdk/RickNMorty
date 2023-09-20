@@ -26,6 +26,8 @@
 		633016332ABAE832005287F7 /* AppSettingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633016322ABAE832005287F7 /* AppSettingsCellViewModel.swift */; };
 		633016352ABB078A005287F7 /* AppSettingsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633016342ABB078A005287F7 /* AppSettingsOption.swift */; };
 		633016382ABB26B5005287F7 /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633016372ABB26B5005287F7 /* AppSettingsView.swift */; };
+		6330163A2ABB603A005287F7 /* AppSettingsViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633016392ABB603A005287F7 /* AppSettingsViewCollectionViewCell.swift */; };
+		6330163C2ABB64B6005287F7 /* AppSettingsCollectionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330163B2ABB64B6005287F7 /* AppSettingsCollectionViewViewModel.swift */; };
 		633D43E62A49C30F009FFECB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D43E52A49C30F009FFECB /* AppDelegate.swift */; };
 		633D43E82A49C30F009FFECB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D43E72A49C30F009FFECB /* SceneDelegate.swift */; };
 		633D43EA2A49C30F009FFECB /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D43E92A49C30F009FFECB /* TabBarViewController.swift */; };
@@ -81,6 +83,8 @@
 		633016322ABAE832005287F7 /* AppSettingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsCellViewModel.swift; sourceTree = "<group>"; };
 		633016342ABB078A005287F7 /* AppSettingsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsOption.swift; sourceTree = "<group>"; };
 		633016372ABB26B5005287F7 /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
+		633016392ABB603A005287F7 /* AppSettingsViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsViewCollectionViewCell.swift; sourceTree = "<group>"; };
+		6330163B2ABB64B6005287F7 /* AppSettingsCollectionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsCollectionViewViewModel.swift; sourceTree = "<group>"; };
 		633D43E22A49C30F009FFECB /* RickNMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickNMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		633D43E52A49C30F009FFECB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		633D43E72A49C30F009FFECB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				633016302ABAE7B4005287F7 /* AppSettingsViewViewModel.swift */,
 				633016322ABAE832005287F7 /* AppSettingsCellViewModel.swift */,
 				633016342ABB078A005287F7 /* AppSettingsOption.swift */,
+				6330163B2ABB64B6005287F7 /* AppSettingsCollectionViewViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				633016372ABB26B5005287F7 /* AppSettingsView.swift */,
+				633016392ABB603A005287F7 /* AppSettingsViewCollectionViewCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -454,6 +460,7 @@
 				633D44082A4A1B6E009FFECB /* CharacterViewController.swift in Sources */,
 				63A4788B2AB63462007A6B12 /* AppEpisodeInfoCollectionViewCell.swift in Sources */,
 				633D43E62A49C30F009FFECB /* AppDelegate.swift in Sources */,
+				6330163A2ABB603A005287F7 /* AppSettingsViewCollectionViewCell.swift in Sources */,
 				63A4787C2AB2FC5C007A6B12 /* AppEpisodeListView.swift in Sources */,
 				630E6B9F2A58234600C17EFB /* AppCharacterDetailedViewViewModel.swift in Sources */,
 				630DE4F92A725168005ACA2F /* AppImageLoader.swift in Sources */,
@@ -470,6 +477,7 @@
 				63A478862AB44C62007A6B12 /* Constant.swift in Sources */,
 				63A478842AB448C8007A6B12 /* AppSearchViewController.swift in Sources */,
 				633D44162A4A3C5A009FFECB /* AppCharacterStatus.swift in Sources */,
+				6330163C2ABB64B6005287F7 /* AppSettingsCollectionViewViewModel.swift in Sources */,
 				63A4788E2AB63A04007A6B12 /* AppEpisodeInfoCollectionViewCellViewModel.swift in Sources */,
 				630E6B902A54AE0600C17EFB /* AppCharacterListViewViewModel.swift in Sources */,
 				633D44182A4A3C84009FFECB /* AppOrigin.swift in Sources */,
