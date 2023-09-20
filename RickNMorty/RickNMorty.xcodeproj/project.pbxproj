@@ -25,6 +25,7 @@
 		633016312ABAE7B4005287F7 /* AppSettingsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633016302ABAE7B4005287F7 /* AppSettingsViewViewModel.swift */; };
 		633016332ABAE832005287F7 /* AppSettingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633016322ABAE832005287F7 /* AppSettingsCellViewModel.swift */; };
 		633016352ABB078A005287F7 /* AppSettingsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633016342ABB078A005287F7 /* AppSettingsOption.swift */; };
+		633016382ABB26B5005287F7 /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633016372ABB26B5005287F7 /* AppSettingsView.swift */; };
 		633D43E62A49C30F009FFECB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D43E52A49C30F009FFECB /* AppDelegate.swift */; };
 		633D43E82A49C30F009FFECB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D43E72A49C30F009FFECB /* SceneDelegate.swift */; };
 		633D43EA2A49C30F009FFECB /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D43E92A49C30F009FFECB /* TabBarViewController.swift */; };
@@ -79,6 +80,7 @@
 		633016302ABAE7B4005287F7 /* AppSettingsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsViewViewModel.swift; sourceTree = "<group>"; };
 		633016322ABAE832005287F7 /* AppSettingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsCellViewModel.swift; sourceTree = "<group>"; };
 		633016342ABB078A005287F7 /* AppSettingsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsOption.swift; sourceTree = "<group>"; };
+		633016372ABB26B5005287F7 /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
 		633D43E22A49C30F009FFECB /* RickNMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickNMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		633D43E52A49C30F009FFECB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		633D43E72A49C30F009FFECB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +181,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		633016362ABB2675005287F7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				633016372ABB26B5005287F7 /* AppSettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		633D43D92A49C30F009FFECB = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +232,7 @@
 		633D43FA2A4A19B4009FFECB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				633016362ABB2675005287F7 /* Settings */,
 				63A478892AB6341E007A6B12 /* EpisodeDetails */,
 				63A4787A2AB2FC21007A6B12 /* Episode */,
 				630DE4FB2A7B947F005ACA2F /* CharacterDetails */,
@@ -429,6 +440,7 @@
 				6340E9942AB249D800A55885 /* AppEpisodeDetailView.swift in Sources */,
 				63A478882AB488AE007A6B12 /* AppCharacterCollectionListViewCell.swift in Sources */,
 				633016312ABAE7B4005287F7 /* AppSettingsViewViewModel.swift in Sources */,
+				633016382ABB26B5005287F7 /* AppSettingsView.swift in Sources */,
 				630E6B922A54AEAC00C17EFB /* AppCharacterListView.swift in Sources */,
 				63A4787E2AB300A1007A6B12 /* AppEpisodeListViewViewModel.swift in Sources */,
 				633D440C2A4A1B8F009FFECB /* EpisodeViewController.swift in Sources */,

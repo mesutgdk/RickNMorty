@@ -10,7 +10,6 @@ import UIKit
 struct AppSettingsCellViewModel {
     // image & title
     
-    
     private let type : AppSettingsOption
     
     init( type: AppSettingsOption) {
