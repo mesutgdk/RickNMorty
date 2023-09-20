@@ -65,7 +65,7 @@ final class AppEpisodeInfoCollectionViewCell: UICollectionViewCell {
         //valueLabel
         NSLayoutConstraint.activate([
             valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            valueLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 4),
+            valueLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -4),
             valueLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             valueLabel.leftAnchor.constraint(equalTo: titleLabel.rightAnchor, constant: 8)
         ])

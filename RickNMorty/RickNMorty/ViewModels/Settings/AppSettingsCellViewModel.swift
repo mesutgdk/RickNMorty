@@ -10,10 +10,13 @@ import UIKit
 struct AppSettingsCellViewModel {
     // image & title
     
-    private let type : AppSettingsOption
+    public let type : AppSettingsOption
     
-    init( type: AppSettingsOption) {
+    public let onTapHandler: (AppSettingsOption) -> Void
+    
+    init(type: AppSettingsOption, onTapHandler: @escaping (AppSettingsOption) -> Void) {
         self.type = type
+        self.onTapHandler = onTapHandler
     }
     
     // MARK: - Public
