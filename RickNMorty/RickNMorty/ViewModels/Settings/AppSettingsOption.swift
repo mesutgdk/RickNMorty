@@ -36,17 +36,34 @@ enum AppSettingsOption: CaseIterable {
     var icon : UIImage? {
         switch self {
         case .rateApp:
-            return UIImage(systemName: "")
+            return UIImage(systemName: "star.square.fill")
         case .contactUs:
-            return UIImage(systemName: "")
+            return UIImage(systemName: "paperplane.fill")
         case .terms:
-            return UIImage(systemName: "")
+            return UIImage(systemName: "doc.append")
         case .privacy:
-            return UIImage(systemName: "")
+            return UIImage(systemName: "lock.trianglebadge.exclamationmark")
         case .apiReference:
-            return UIImage(systemName: "")
+            return UIImage(systemName: "list.bullet.clipboard")
         case .viewCode:
-            return UIImage(systemName: "")
+            return UIImage(systemName: "folder.badge.gearshape")
+        }
+    }
+    
+    var iconColor: UIColor {
+        switch self {
+        case .rateApp:
+            return .systemBlue
+        case .contactUs:
+            return .systemTeal
+        case .terms:
+            return .systemPink
+        case .privacy:
+            return .systemBrown
+        case .apiReference:
+            return .systemOrange
+        case .viewCode:
+            return .systemMint
         }
     }
 }

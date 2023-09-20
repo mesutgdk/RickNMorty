@@ -9,6 +9,23 @@ import UIKit
 
 struct AppSettingsCellViewModel {
     // image & title
-    let image : UIImage?
-    let title: String
+    
+    
+    private let type : AppSettingsOption
+    
+    init( type: AppSettingsOption) {
+        self.type = type
+    }
+    
+    // MARK: - Public
+    public var  image : UIImage? {
+        return type.icon
+    }
+    public var title: String {
+        return type.displayTitle
+    }
+    public var imageColor: UIColor {
+        return type.iconColor
+    }
+
 }
