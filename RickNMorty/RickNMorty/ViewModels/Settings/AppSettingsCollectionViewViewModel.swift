@@ -8,8 +8,10 @@
 
 import UIKit
 
+
 protocol AppSettingsCollectionViewViewModelDelegate: AnyObject {
     func didSelectUrl(_ url: URL)
+    func callRateApp(_ callIt: Bool)
 }
 
 final class AppSettingsCollectionViewViewModel: NSObject{
@@ -77,7 +79,8 @@ extension AppSettingsCollectionViewViewModel{
             
         } else if option == .rateApp {
             //show rating prompt
-            print("showing rating prompt")
+            delegate?.callRateApp(true)
+            
         }
     }
 }

@@ -6,6 +6,7 @@
 //
 import SafariServices
 import UIKit
+import StoreKit
 
 final class SettingsViewController: UIViewController {
     
@@ -37,8 +38,16 @@ final class SettingsViewController: UIViewController {
     }
 }
 extension SettingsViewController: AppSettingsViewDelegate {
+    // calling App Rating with delegate
+    func appSettingsCallRateApp(_ appSettingsView: AppSettingsView, callRateApp bool: Bool) {
+        if let windowScene = view.window?.windowScene {
+            SKStoreReviewController.requestReview(in: windowScene)
+        }
+    }
+    // calling desired url via delegate
     func appSettingsUrlView(_ appSettingsView: AppSettingsView, didSelectUrl url: URL) {
-        let vc = SFSafariViewController(url: url)
-        present(vc, animated: true)
+        
+            let vc = SFSafariViewController(url: url)
+            present(vc, animated: true)
     }
 }

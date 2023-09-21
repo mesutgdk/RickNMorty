@@ -9,6 +9,7 @@ import UIKit
 
 protocol AppSettingsViewDelegate: AnyObject {
     func appSettingsUrlView(_ appSettingsView: AppSettingsView, didSelectUrl url: URL)
+    func appSettingsCallRateApp(_ appSettingsView: AppSettingsView, callRateApp bool: Bool)
 }
 
 final class AppSettingsView: UIView {
@@ -66,9 +67,13 @@ final class AppSettingsView: UIView {
 }
 
 extension AppSettingsView: AppSettingsCollectionViewViewModelDelegate{
+
+    
     func didSelectUrl(_ url: URL) {
         delegate?.appSettingsUrlView(self, didSelectUrl: url)
     }
-    
+    func callRateApp(_ callIt: Bool) {
+        delegate?.appSettingsCallRateApp(self, callRateApp: callIt)
+    }
     
 }

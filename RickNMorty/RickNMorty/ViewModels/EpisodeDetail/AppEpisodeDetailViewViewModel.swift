@@ -67,7 +67,6 @@ final class AppEpisodeDetailViewViewModel {
         }
         
     }
-    
     // MARK: - Private
     private func createCellViewModels() {
         guard let dataTuple = dataTuple else {
