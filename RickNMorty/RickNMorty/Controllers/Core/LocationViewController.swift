@@ -8,14 +8,32 @@
 import UIKit
 
 final class LocationViewController: UIViewController {
-
+    
+    private let locationPrimaryView = AppLocationView()
+    
+    private let viewModel = AppLocationViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .systemBackground
-        title = "Locations"
+        
+        setup()
+        layout()
         
         addSearchButton()
+    }
+    private func setup(){
+        title = "Locations"
+        view.backgroundColor = .systemBackground
+        view.addSubview(locationPrimaryView)
+    }
+    private func layout(){
+        //locationView
+        NSLayoutConstraint.activate([
+            locationPrimaryView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            locationPrimaryView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            locationPrimaryView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            locationPrimaryView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 }
 // MARK: - Search Button

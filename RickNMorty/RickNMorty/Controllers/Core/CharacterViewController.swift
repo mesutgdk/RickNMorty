@@ -64,6 +64,7 @@ extension CharacterViewController {
     @objc private func searchButtonTapped(){
         let vc = AppSearchViewController(config: AppSearchViewController.Config(type: .character))
         vc.navigationItem.largeTitleDisplayMode = .never
+//        present(vc, animated: true)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

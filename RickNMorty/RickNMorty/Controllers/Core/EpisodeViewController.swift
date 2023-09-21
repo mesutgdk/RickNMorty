@@ -17,7 +17,6 @@ final class EpisodeViewController: UIViewController {
         
         setup()
         layout()
-        
         addSearchButton()
     }
     
