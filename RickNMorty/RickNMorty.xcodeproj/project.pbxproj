@@ -54,6 +54,8 @@
 		636EB2D72ABCC4F000E5A91B /* AppLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EB2D62ABCC4F000E5A91B /* AppLocationView.swift */; };
 		636EB2DA2ABCC9A400E5A91B /* AppLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EB2D92ABCC9A400E5A91B /* AppLocationViewModel.swift */; };
 		636EB2DC2ABD64F500E5A91B /* AppGetAllLocationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EB2DB2ABD64F500E5A91B /* AppGetAllLocationsResponse.swift */; };
+		636EB2DE2ABE18F200E5A91B /* AppLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EB2DD2ABE18F200E5A91B /* AppLocationTableViewCell.swift */; };
+		636EB2E02ABE19B300E5A91B /* AppLocationTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EB2DF2ABE19B300E5A91B /* AppLocationTableViewCellViewModel.swift */; };
 		63896C862A5353B000E732A2 /* AppGetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63896C852A5353B000E732A2 /* AppGetAllCharactersResponse.swift */; };
 		639DC9F82A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DC9F72A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift */; };
 		63A4787C2AB2FC5C007A6B12 /* AppEpisodeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A4787B2AB2FC5C007A6B12 /* AppEpisodeListView.swift */; };
@@ -116,6 +118,8 @@
 		636EB2D62ABCC4F000E5A91B /* AppLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationView.swift; sourceTree = "<group>"; };
 		636EB2D92ABCC9A400E5A91B /* AppLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationViewModel.swift; sourceTree = "<group>"; };
 		636EB2DB2ABD64F500E5A91B /* AppGetAllLocationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGetAllLocationsResponse.swift; sourceTree = "<group>"; };
+		636EB2DD2ABE18F200E5A91B /* AppLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationTableViewCell.swift; sourceTree = "<group>"; };
+		636EB2DF2ABE19B300E5A91B /* AppLocationTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		63896C852A5353B000E732A2 /* AppGetAllCharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGetAllCharactersResponse.swift; sourceTree = "<group>"; };
 		639DC9F72A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
 		63A4787B2AB2FC5C007A6B12 /* AppEpisodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEpisodeListView.swift; sourceTree = "<group>"; };
@@ -326,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				636EB2D62ABCC4F000E5A91B /* AppLocationView.swift */,
+				636EB2DD2ABE18F200E5A91B /* AppLocationTableViewCell.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				636EB2D92ABCC9A400E5A91B /* AppLocationViewModel.swift */,
+				636EB2DF2ABE19B300E5A91B /* AppLocationTableViewCellViewModel.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -496,8 +502,10 @@
 				633D44012A4A1A98009FFECB /* AppLocation.swift in Sources */,
 				630DE50B2A7B95E5005ACA2F /* AppCharacterEpisodeCollectionViewCellViewModel.swift in Sources */,
 				63896C862A5353B000E732A2 /* AppGetAllCharactersResponse.swift in Sources */,
+				636EB2DE2ABE18F200E5A91B /* AppLocationTableViewCell.swift in Sources */,
 				630DE5072A7B95C9005ACA2F /* AppCharacterPhotoCollectionViewCellViewModel.swift in Sources */,
 				633D440A2A4A1B83009FFECB /* LocationViewController.swift in Sources */,
+				636EB2E02ABE19B300E5A91B /* AppLocationTableViewCellViewModel.swift in Sources */,
 				633D441C2A4A3D74009FFECB /* AppCharacterGender.swift in Sources */,
 				63A478862AB44C62007A6B12 /* Constant.swift in Sources */,
 				63A478842AB448C8007A6B12 /* AppSearchViewController.swift in Sources */,

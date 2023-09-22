@@ -25,7 +25,7 @@ final class AppLocationView: UIView {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.isHidden = true
         table.alpha = 0
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(AppLocationTableViewCell.self, forCellReuseIdentifier: AppLocationTableViewCell.cellIdentifier)
         return table
     } ()
     
@@ -83,16 +83,21 @@ final class AppLocationView: UIView {
 }
 
 extension AppLocationView: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return viewModel?.cellViewModels.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "TableView"
+        guard let cellViewModels = viewModel?.cellViewModels else {
+            fatalError("CellViewModel has no ViewModel")
+        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AppLocationTableViewCell.cellIdentifier, for: indexPath) as? AppLocationTableViewCell
+        else {
+            fatalError()
+        }
+        let cellViewModel = cellViewModels[indexPath.row]
+        cell.textLabel?.text = cellViewModel.name
         return cell
     }
 }

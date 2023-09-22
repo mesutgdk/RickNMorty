@@ -14,14 +14,23 @@ final class AppLocationViewModel{
     
     weak var delegate: AppLocationViewModelDelegate?
     
-    private var locations : [AppLocation] = []
+    private var locations : [AppLocation] = [] {
+        didSet {
+            for location in locations {
+                let cellViewModel = AppLocationTableViewCellViewModel(location: location)
+                if !cellViewModels.contains(cellViewModel){
+                    cellViewModels.append(cellViewModel)
+                }
+            }
+        }
+    }
     
     //Lococation response Info
     //Will contain next url if present
     
     private var apiInfo: AppGetAllLocationsResponse.Info?
     
-    private var cellViewModel : [String] = []
+    public private(set) var cellViewModels : [AppLocationTableViewCellViewModel] = []
     
     private var hasMoreResult: Bool {
         return false
