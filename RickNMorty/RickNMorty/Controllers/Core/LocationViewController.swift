@@ -25,6 +25,10 @@ final class LocationViewController: UIViewController {
         title = "Locations"
         view.backgroundColor = .systemBackground
         view.addSubview(locationPrimaryView)
+        
+        viewModel.fetchLocations()
+        
+        viewModel.delegate = self
     }
     private func layout(){
         //locationView
@@ -48,4 +52,13 @@ extension LocationViewController {
         navigationController?.pushViewController(vc, animated: true)
         
     }
+}
+// MARK: - AppLocationViewModelDelegate
+
+extension LocationViewController: AppLocationViewModelDelegate {
+    func didFetchInitialLocation() {
+        <#code#>
+    }
+    
+    
 }

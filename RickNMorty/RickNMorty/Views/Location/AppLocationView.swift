@@ -41,6 +41,7 @@ final class AppLocationView: UIView {
         super.init(frame: frame)
         setup()
         layout()
+        configureTableView()
         
     }
     
@@ -71,8 +72,32 @@ final class AppLocationView: UIView {
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    
+    private func configureTableView(){
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
     public func configure(with viewModel:AppLocationViewModel){
         self.viewModel = viewModel
+    }
+
+}
+
+extension AppLocationView: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = "TableView"
+        return cell
+    }
+}
+extension AppLocationView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

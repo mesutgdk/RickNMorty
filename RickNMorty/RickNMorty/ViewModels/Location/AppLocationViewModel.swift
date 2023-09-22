@@ -6,8 +6,13 @@
 //
 
 import Foundation
+protocol AppLocationViewModelDelegate:AnyObject {
+    func didFetchInitialLocation()
+}
 
 final class AppLocationViewModel{
+    
+    weak var delegate: AppLocationViewModelDelegate?
     
     private var locations : [AppLocation] = []
     
@@ -22,11 +27,11 @@ final class AppLocationViewModel{
     }
     
     public func fetchLocations(){
-        AppService.shared.execute(.listLocationRequests, expecting: String.self) { result in
+        AppService.shared.execute(.listLocationRequests, expecting: String.self) { [weak self] result in
             switch result {
             case .success(let model):
-                break
-            case .failure(let failure):
+                self?.delegate?.didFetchInitialLocation()
+            case .failure(let error):
                 break
             }
         }
