@@ -8,8 +8,8 @@
 import UIKit
 
 enum Constants {
-    static let portal = "portal"
-    static let logo = "RMLogo"
+    static let firstLaunchScreen = "openScreen"
+    static let secondLaunchScreen = "breakingBad"
     static let menuHeaderNibName = "MenuHeaderView"
     static let favoriteImage = UIImage(systemName: "star.fill")
     static let notFavoriteImage = UIImage(systemName: "star")

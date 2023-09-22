@@ -10,6 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    private var animated: Bool = false
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -17,11 +19,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-        let vc = TabBarViewController ()
-        
+//        let vc = TabBarViewController ()
+        let vc = AppLaunchAnimationViewController()
+        let mainVC = TabBarViewController()
         window.rootViewController = vc
         window.makeKeyAndVisible()
         self.window = window
+//        if animated{
+//            window.rootViewController = mainVC
+//            window.makeKeyAndVisible()
+//            self.window = window
+//        } else {
+//          
+////            print(animated)
+//        }
+//        switch animated{
+//        case true:
+//            return window.rootViewController = mainVC
+//        case false:
+//            return window.rootViewController = vc
+//        }
+       
+       
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -52,5 +71,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 }
+
 
 

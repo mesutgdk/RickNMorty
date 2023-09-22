@@ -13,6 +13,7 @@ final class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTabs()
+        view.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setUpTabs() {
