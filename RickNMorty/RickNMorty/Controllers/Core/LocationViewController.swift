@@ -57,7 +57,7 @@ extension LocationViewController {
 
 extension LocationViewController: AppLocationViewModelDelegate {
     func didFetchInitialLocation() {
-        <#code#>
+        locationPrimaryView.configure(with: viewModel)
     }
     
     
