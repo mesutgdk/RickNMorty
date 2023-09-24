@@ -25,7 +25,7 @@ final class AppLaunchAnimationViewController: UIViewController {
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        print("im really dead,a i killed myself")
+        print("LaunchVC: im really dead, i killed myself")
     }
     
     private func setup(){
