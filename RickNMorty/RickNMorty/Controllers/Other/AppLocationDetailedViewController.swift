@@ -9,11 +9,11 @@ import UIKit
 
 final class AppLocationDetailedViewController: UIViewController {
 
-    private let location : AppLocation
+    private let location : AppCharacter
     
     // MARK: - Init
 
-    init(location: AppLocation) {
+    init(location: AppCharacter) {
         self.location = location
         super.init(nibName: nil, bundle: nil)
     }

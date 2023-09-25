@@ -64,7 +64,7 @@ extension LocationViewController: AppLocationViewModelDelegate {
 // MARK: - AppLocationViewDelegate
 
 extension LocationViewController: AppLocationViewDelegate {
-    func selectTheRow(_ locaitonView: AppLocationView, didSelect location: AppLocation) {
+    func selectTheRow(_ locaitonView: AppLocationView, didSelect location: AppCharacter) {
         let vc = AppLocationDetailedViewController(location: location)
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)

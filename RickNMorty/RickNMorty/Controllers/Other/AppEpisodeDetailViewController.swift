@@ -72,7 +72,7 @@ extension AppEpisodeDetailViewController: AppEpisodeDetailViewViewModelDelegate 
 // MARK: - AppEpisodeDetailViewDelegate  "now can access character from episodedetail page"
 
 extension AppEpisodeDetailViewController: AppEpisodeDetailViewDelegate {
-    func appEpisodeDetailView(_ detailedView: AppEpisodeDetailView, didSelect character: AppCharacter) {
+    func appEpisodeDetailView(_ detailedView: AppEpisodeDetailView, didSelect character: AppLocation) {
         let vc = AppCharacterDetailedViewController(viewModel: .init(character: character))
         vc.title = character.name
         vc.navigationItem.largeTitleDisplayMode = .never

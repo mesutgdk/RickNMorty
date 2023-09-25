@@ -1,19 +1,19 @@
 //
-//  AppEpisodeDetailView.swift
+//  AppLocationDetailsView.swift
 //  RickNMorty
 //
-//  Created by Mesut Gedik on 13.09.2023.
+//  Created by Mesut Gedik on 25.09.2023.
 //
 
 import UIKit
 
-protocol AppEpisodeDetailViewDelegate: AnyObject {
-    func appEpisodeDetailView(_ detailedView: AppEpisodeDetailView, didSelect character: AppLocation)
+protocol AppLocationDetailsViewDelegate: AnyObject {
+    func appLocationDetailView(_ detailedView: AppLocationDetailView, didSelect location: AppLocation)
 }
 
-final class AppEpisodeDetailView: UIView {
-    
-    public weak var delegate: AppEpisodeDetailViewDelegate?
+class AppLocationDetailView: UIView {
+     
+    public weak var delegate: AppLocationDetailsViewDelegate?
     
     private var viewModel: AppEpisodeDetailViewViewModel? {
         didSet {
@@ -36,7 +36,7 @@ final class AppEpisodeDetailView: UIView {
     }()
     
     // MARK: - init
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -48,11 +48,11 @@ final class AppEpisodeDetailView: UIView {
         fatalError("Unsupported")
     }
     // MARK: - Private func
-
+    
     private func setUp(){
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .systemBackground
-
+        
         let collectionView = createCollectionView()
         addSubviews(collectionView,spinner)
         
@@ -97,13 +97,13 @@ final class AppEpisodeDetailView: UIView {
         return collectionView
     }
     // MARK: - Public func
-
+    
     public func configure(with viewModel:AppEpisodeDetailViewViewModel){
         self.viewModel = viewModel
     }
 }
 // MARK: - CollectionView Delegate and DataSource
-extension AppEpisodeDetailView: UICollectionViewDelegate,UICollectionViewDataSource{
+extension AppLocationDetailView: UICollectionViewDelegate,UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return viewModel?.cellViewModels.count ?? 0
     }
@@ -146,7 +146,7 @@ extension AppEpisodeDetailView: UICollectionViewDelegate,UICollectionViewDataSou
             }
             cell.configure(with: cellViewModel)
             return cell
-        
+            
         }
         
     }
@@ -168,9 +168,9 @@ extension AppEpisodeDetailView: UICollectionViewDelegate,UICollectionViewDataSou
             guard let character = viewModel.character(at: indexPath.row) else {
                 return
             }
-            delegate?.appEpisodeDetailView(self, didSelect: character)
+            delegate?.appLocationDetailView(self, didSelect: character)
             
-        
+            
         }
     }
     
@@ -178,7 +178,7 @@ extension AppEpisodeDetailView: UICollectionViewDelegate,UICollectionViewDataSou
 
 // MARK: - CollectionviewItemsLayout
 
-extension AppEpisodeDetailView{
+extension AppLocationDetailView{
     func itemLayout(for section: Int) -> NSCollectionLayoutSection {
         guard let sections = viewModel?.cellViewModels else {
             return createInfoLayout()
@@ -226,3 +226,4 @@ extension AppEpisodeDetailView{
         return section
     }
 }
+

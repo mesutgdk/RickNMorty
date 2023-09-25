@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AppLocationViewDelegate: AnyObject{
-    func selectTheRow(_ locaitonView: AppLocationView, didSelect location: AppLocation)
+    func selectTheRow(_ locaitonView: AppLocationView, didSelect location: AppCharacter)
 }
 
 final class AppLocationView: UIView {

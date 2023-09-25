@@ -25,7 +25,7 @@ final class AppLocationViewModel{
         }
     }
     
-    //Lococation response Info
+    //Location response Info
     //Will contain next url if present
     
     private var apiInfo: AppGetAllLocationsResponse.Info?
