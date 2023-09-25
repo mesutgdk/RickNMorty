@@ -69,7 +69,7 @@ extension AppLaunchAnimationView{
     private func animate() {
         //logoImageView
         
-        UIView.animate(withDuration: 1.8, delay: 0.7, usingSpringWithDamping: 1.2, initialSpringVelocity: 0.5, options: .curveLinear, animations: { [weak self] in
+        UIView.animate(withDuration: 1.8, delay: 0.3, usingSpringWithDamping: 1.2, initialSpringVelocity: 0.5, options: .curveLinear, animations: { [weak self] in
             self?.firstLaunchImageView.transform = CGAffineTransform(scaleX: 3, y: 3)
             self?.firstLaunchImageView.alpha = 0.0
             

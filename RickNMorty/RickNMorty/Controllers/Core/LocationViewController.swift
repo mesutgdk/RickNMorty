@@ -29,6 +29,7 @@ final class LocationViewController: UIViewController {
         viewModel.fetchLocations()
         
         viewModel.delegate = self
+        locationPrimaryView.delegate = self
     }
     private func layout(){
         //locationView
@@ -59,6 +60,9 @@ extension LocationViewController: AppLocationViewModelDelegate {
     func didFetchInitialLocation() {
         locationPrimaryView.configure(with: viewModel)
     }
-    
-    
+}
+extension LocationViewController: AppLocationViewDelegate {
+    func didSelectRow(_ locaitonView: AppLocationView, didSelect location: AppLocation) {
+        print("LocationVC: Open the gate, detailedLocationVC is coming \(location.name)")
+    }
 }

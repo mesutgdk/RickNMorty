@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol AppLocationViewDelegate: AnyObject{
+    func didSelectRow(_ locaitonView: AppLocationView, didSelect location: AppLocation)
+}
+
 final class AppLocationView: UIView {
+    
+    weak var delegate: AppLocationViewDelegate?
     
     private var viewModel : AppLocationViewModel? {
         didSet {
@@ -21,7 +27,7 @@ final class AppLocationView: UIView {
     }
     
     private let tableView: UITableView = {
-        let table = UITableView()
+        let table = UITableView(frame: .zero, style: .grouped)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.isHidden = true
         table.alpha = 0
@@ -104,5 +110,10 @@ extension AppLocationView: UITableViewDataSource {
 extension AppLocationView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let locationViewModel = viewModel?.location(at: indexPath.row) else {
+            return
+        }
+        delegate?.didSelectRow(self, didSelect: locationViewModel)
     }
 }

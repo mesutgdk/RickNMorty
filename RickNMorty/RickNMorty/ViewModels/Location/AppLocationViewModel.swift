@@ -40,6 +40,13 @@ final class AppLocationViewModel{
     init(){
     }
     
+    public func location(at index: Int) -> AppLocation? {
+        guard index >= locations.count else {
+            return nil
+        }
+        return self.location(at: index)
+    }
+    
     public func fetchLocations(){
         AppService.shared.execute(
             .listLocationRequests,

@@ -21,14 +21,16 @@ final class AppLocationTableViewCell: UITableViewCell {
     private let typeLabel : UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 20, weight: .regular)
+        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.textColor = .secondaryLabel
         return label
     }()
     
     private let dimensionLabel : UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 20, weight: .light)
+        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.textColor = .secondaryLabel
         return label
     }()
     
@@ -55,6 +57,7 @@ final class AppLocationTableViewCell: UITableViewCell {
     private func setup(){
 //        contentView.backgroundColor = .systemBackground
         contentView.addSubviews(nameLabel,typeLabel,dimensionLabel)
+        accessoryType = .disclosureIndicator
         
     }
     private func layout(){
