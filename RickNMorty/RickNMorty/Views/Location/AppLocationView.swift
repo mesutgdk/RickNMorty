@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AppLocationViewDelegate: AnyObject{
-    func didSelectRow(_ locaitonView: AppLocationView, didSelect location: AppLocation)
+    func selectTheRow(_ locaitonView: AppLocationView, didSelect location: AppLocation)
 }
 
 final class AppLocationView: UIView {
@@ -114,6 +114,6 @@ extension AppLocationView: UITableViewDelegate {
         guard let locationViewModel = viewModel?.location(at: indexPath.row) else {
             return
         }
-        delegate?.didSelectRow(self, didSelect: locationViewModel)
+        delegate?.selectTheRow(self, didSelect: locationViewModel)
     }
 }

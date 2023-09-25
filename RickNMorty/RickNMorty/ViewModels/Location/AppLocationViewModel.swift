@@ -41,10 +41,10 @@ final class AppLocationViewModel{
     }
     
     public func location(at index: Int) -> AppLocation? {
-        guard index >= locations.count else {
+        guard index < locations.count, index >= 0 else {
             return nil
         }
-        return self.location(at: index)
+        return self.locations[index]
     }
     
     public func fetchLocations(){

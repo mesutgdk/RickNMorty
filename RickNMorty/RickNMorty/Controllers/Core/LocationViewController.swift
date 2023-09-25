@@ -61,8 +61,14 @@ extension LocationViewController: AppLocationViewModelDelegate {
         locationPrimaryView.configure(with: viewModel)
     }
 }
+// MARK: - AppLocationViewDelegate
+
 extension LocationViewController: AppLocationViewDelegate {
-    func didSelectRow(_ locaitonView: AppLocationView, didSelect location: AppLocation) {
+    func selectTheRow(_ locaitonView: AppLocationView, didSelect location: AppLocation) {
+        let vc = AppLocationDetailedViewController(location: location)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+        
         print("LocationVC: Open the gate, detailedLocationVC is coming \(location.name)")
     }
 }
