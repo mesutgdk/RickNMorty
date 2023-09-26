@@ -34,7 +34,7 @@ final class AppService {
     ) {
         if let cachedData = cacheManager.cachedResponse(for: request.endPoint,
                                                         url: request.url) {
-            print("using cached API Response")
+//            print("using cached API Response")
             do {
                 let result = try JSONDecoder().decode(type.self, from: cachedData)
                 complition(.success(result))

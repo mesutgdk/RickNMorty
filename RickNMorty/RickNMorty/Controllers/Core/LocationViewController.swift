@@ -69,6 +69,6 @@ extension LocationViewController: AppLocationViewDelegate {
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
         
-        print("LocationVC: Open the gate, detailedLocationVC is coming \(location.name)")
+//        print("LocationVC: Open the gate, detailedLocationVC is coming \(location.name)")
     }
 }
