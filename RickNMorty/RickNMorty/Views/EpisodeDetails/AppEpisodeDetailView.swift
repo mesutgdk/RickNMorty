@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AppEpisodeDetailViewDelegate: AnyObject {
-    func appEpisodeDetailView(_ detailedView: AppEpisodeDetailView, didSelect character: AppLocation)
+    func appEpisodeDetailView(_ detailedView: AppEpisodeDetailView, didSelect character: AppCharacter)
 }
 
 final class AppEpisodeDetailView: UIView {

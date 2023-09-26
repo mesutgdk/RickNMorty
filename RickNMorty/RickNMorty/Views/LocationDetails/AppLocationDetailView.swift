@@ -8,14 +8,14 @@
 import UIKit
 
 protocol AppLocationDetailsViewDelegate: AnyObject {
-    func appLocationDetailView(_ detailedView: AppLocationDetailView, didSelect location: AppLocation)
+    func appLocationDetailView(_ detailedView: AppLocationDetailView, didSelect character: AppCharacter)
 }
 
 class AppLocationDetailView: UIView {
      
     public weak var delegate: AppLocationDetailsViewDelegate?
     
-    private var viewModel: AppEpisodeDetailViewViewModel? {
+    private var viewModel: AppLocationDetailViewViewModel? {
         didSet {
             spinner.stopAnimating()
             self.collectionView?.reloadData()
@@ -98,7 +98,7 @@ class AppLocationDetailView: UIView {
     }
     // MARK: - Public func
     
-    public func configure(with viewModel:AppEpisodeDetailViewViewModel){
+    public func configure(with viewModel:AppLocationDetailViewViewModel){
         self.viewModel = viewModel
     }
 }

@@ -6,13 +6,13 @@
 //
 
 import Foundation
-protocol AppLocationViewModelDelegate:AnyObject {
+protocol AppLocationViewViewModelDelegate:AnyObject {
     func didFetchInitialLocation()
 }
 
-final class AppLocationViewModel{
+final class AppLocationViewViewModel{
     
-    weak var delegate: AppLocationViewModelDelegate?
+    weak var delegate: AppLocationViewViewModelDelegate?
     
     private var locations : [AppLocation] = [] {
         didSet {

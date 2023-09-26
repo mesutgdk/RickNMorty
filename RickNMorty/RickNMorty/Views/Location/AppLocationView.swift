@@ -8,14 +8,14 @@
 import UIKit
 
 protocol AppLocationViewDelegate: AnyObject{
-    func selectTheRow(_ locaitonView: AppLocationView, didSelect location: AppCharacter)
+    func selectTheRow(_ locaitonView: AppLocationView, didSelect location: AppLocation)
 }
 
 final class AppLocationView: UIView {
     
     weak var delegate: AppLocationViewDelegate?
     
-    private var viewModel : AppLocationViewModel? {
+    private var viewModel : AppLocationViewViewModel? {
         didSet {
             spinner.stopAnimating()
             tableView.isHidden = false
@@ -82,7 +82,7 @@ final class AppLocationView: UIView {
         tableView.dataSource = self
         tableView.delegate = self
     }
-    public func configure(with viewModel:AppLocationViewModel){
+    public func configure(with viewModel:AppLocationViewViewModel){
         self.viewModel = viewModel
     }
 

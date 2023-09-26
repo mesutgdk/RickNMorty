@@ -11,7 +11,7 @@ final class LocationViewController: UIViewController {
     
     private let locationPrimaryView = AppLocationView()
     
-    private let viewModel = AppLocationViewModel()
+    private let viewModel = AppLocationViewViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +56,7 @@ extension LocationViewController {
 }
 // MARK: - AppLocationViewModelDelegate
 
-extension LocationViewController: AppLocationViewModelDelegate {
+extension LocationViewController: AppLocationViewViewModelDelegate {
     func didFetchInitialLocation() {
         locationPrimaryView.configure(with: viewModel)
     }
@@ -64,7 +64,7 @@ extension LocationViewController: AppLocationViewModelDelegate {
 // MARK: - AppLocationViewDelegate
 
 extension LocationViewController: AppLocationViewDelegate {
-    func selectTheRow(_ locaitonView: AppLocationView, didSelect location: AppCharacter) {
+    func selectTheRow(_ locaitonView: AppLocationView, didSelect location: AppLocation) {
         let vc = AppLocationDetailedViewController(location: location)
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
