@@ -62,6 +62,7 @@
 		636EB2EC2AC1733100E5A91B /* AppLocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EB2EB2AC1733100E5A91B /* AppLocationDetailView.swift */; };
 		636EB2F12AC17C6700E5A91B /* AppLocationDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EB2F02AC17C6700E5A91B /* AppLocationDetailViewViewModel.swift */; };
 		6375B53C2AC30C360084C442 /* AppSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6375B53B2AC30C360084C442 /* AppSearchView.swift */; };
+		6375B53F2AC3F7F00084C442 /* AppSearchViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6375B53E2AC3F7F00084C442 /* AppSearchViewViewModel.swift */; };
 		63896C862A5353B000E732A2 /* AppGetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63896C852A5353B000E732A2 /* AppGetAllCharactersResponse.swift */; };
 		639DC9F82A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DC9F72A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift */; };
 		63A4787C2AB2FC5C007A6B12 /* AppEpisodeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A4787B2AB2FC5C007A6B12 /* AppEpisodeListView.swift */; };
@@ -132,6 +133,7 @@
 		636EB2EB2AC1733100E5A91B /* AppLocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationDetailView.swift; sourceTree = "<group>"; };
 		636EB2F02AC17C6700E5A91B /* AppLocationDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationDetailViewViewModel.swift; sourceTree = "<group>"; };
 		6375B53B2AC30C360084C442 /* AppSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchView.swift; sourceTree = "<group>"; };
+		6375B53E2AC3F7F00084C442 /* AppSearchViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchViewViewModel.swift; sourceTree = "<group>"; };
 		63896C852A5353B000E732A2 /* AppGetAllCharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGetAllCharactersResponse.swift; sourceTree = "<group>"; };
 		639DC9F72A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
 		63A4787B2AB2FC5C007A6B12 /* AppEpisodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEpisodeListView.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 		633D43FC2A4A19DF009FFECB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				6375B53D2AC3F7DC0084C442 /* Search */,
 				636EB2ED2AC178D600E5A91B /* Character */,
 				636EB2EE2AC178E300E5A91B /* Episode */,
 				636EB2D82ABCC99000E5A91B /* Location */,
@@ -406,6 +409,14 @@
 			isa = PBXGroup;
 			children = (
 				6375B53B2AC30C360084C442 /* AppSearchView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		6375B53D2AC3F7DC0084C442 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				6375B53E2AC3F7F00084C442 /* AppSearchViewViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -551,6 +562,7 @@
 				6375B53C2AC30C360084C442 /* AppSearchView.swift in Sources */,
 				633016352ABB078A005287F7 /* AppSettingsOption.swift in Sources */,
 				630E6B9B2A58226400C17EFB /* AppCharacterDetailedViewController.swift in Sources */,
+				6375B53F2AC3F7F00084C442 /* AppSearchViewViewModel.swift in Sources */,
 				630E6B962A56B5A400C17EFB /* AppCharacterCollectionGridViewCell.swift in Sources */,
 				633D44052A4A1ACB009FFECB /* AppEpisode.swift in Sources */,
 				636EB2E52ABE258A00E5A91B /* AppLaunchAnimationView.swift in Sources */,

@@ -21,25 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
 //        let vc = TabBarViewController ()
         let vc = AppLaunchAnimationViewController()
-        let mainVC = TabBarViewController()
         window.rootViewController = vc
         window.makeKeyAndVisible()
         self.window = window
-//        if animated{
-//            window.rootViewController = mainVC
-//            window.makeKeyAndVisible()
-//            self.window = window
-//        } else {
-//          
-////            print(animated)
-//        }
-//        switch animated{
-//        case true:
-//            return window.rootViewController = mainVC
-//        case false:
-//            return window.rootViewController = vc
-//        }
-       
+
        
     }
 

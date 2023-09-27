@@ -38,6 +38,7 @@ final class AppSearchViewController: UIViewController {
     
     private let config: Config
     
+    // MARK: - Init
     init(config: Config) {
         self.config = config
         super.init(nibName: nil, bundle: nil)
@@ -47,14 +48,13 @@ final class AppSearchViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setup()
     }
     
-    // MARK: - LifeCycle
-
     private func setup(){
         title = config.type.title
         view.backgroundColor = .systemBackground
