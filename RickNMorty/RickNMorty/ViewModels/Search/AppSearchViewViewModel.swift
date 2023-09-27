@@ -7,6 +7,12 @@
 
 import Foundation
 
+/* 
+ Responsibilties
+ - show search resurchs
+ - show no result view
+ - kick off API request 
+ */
 final class AppSearchViewViewModel{
     
     let config : AppSearchViewController.Config
