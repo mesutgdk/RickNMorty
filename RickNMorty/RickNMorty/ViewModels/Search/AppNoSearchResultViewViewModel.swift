@@ -5,8 +5,11 @@
 //  Created by Mesut Gedik on 27.09.2023.
 //
 
-import Foundation
+import UIKit
 
 struct AppNoSearchResultViewViewModel{
     
+    let title = "No Result"
+    
+    let image = UIImage(systemName: "magnifyingglass.circle")
 }
