@@ -61,6 +61,7 @@
 		636EB2E92AC15BC400E5A91B /* AppLocationDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EB2E82AC15BC400E5A91B /* AppLocationDetailedViewController.swift */; };
 		636EB2EC2AC1733100E5A91B /* AppLocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EB2EB2AC1733100E5A91B /* AppLocationDetailView.swift */; };
 		636EB2F12AC17C6700E5A91B /* AppLocationDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EB2F02AC17C6700E5A91B /* AppLocationDetailViewViewModel.swift */; };
+		6375B53C2AC30C360084C442 /* AppSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6375B53B2AC30C360084C442 /* AppSearchView.swift */; };
 		63896C862A5353B000E732A2 /* AppGetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63896C852A5353B000E732A2 /* AppGetAllCharactersResponse.swift */; };
 		639DC9F82A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DC9F72A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift */; };
 		63A4787C2AB2FC5C007A6B12 /* AppEpisodeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A4787B2AB2FC5C007A6B12 /* AppEpisodeListView.swift */; };
@@ -130,6 +131,7 @@
 		636EB2E82AC15BC400E5A91B /* AppLocationDetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationDetailedViewController.swift; sourceTree = "<group>"; };
 		636EB2EB2AC1733100E5A91B /* AppLocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationDetailView.swift; sourceTree = "<group>"; };
 		636EB2F02AC17C6700E5A91B /* AppLocationDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationDetailViewViewModel.swift; sourceTree = "<group>"; };
+		6375B53B2AC30C360084C442 /* AppSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchView.swift; sourceTree = "<group>"; };
 		63896C852A5353B000E732A2 /* AppGetAllCharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGetAllCharactersResponse.swift; sourceTree = "<group>"; };
 		639DC9F72A5D396E001A3689 /* AppFooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
 		63A4787B2AB2FC5C007A6B12 /* AppEpisodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEpisodeListView.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 		633D43FA2A4A19B4009FFECB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6375B53A2AC30C120084C442 /* Search */,
 				630DE4FC2A7B94B5005ACA2F /* Character */,
 				630DE4FB2A7B947F005ACA2F /* CharacterDetails */,
 				63A4787A2AB2FC21007A6B12 /* Episode */,
@@ -397,6 +400,14 @@
 				636EB2F02AC17C6700E5A91B /* AppLocationDetailViewViewModel.swift */,
 			);
 			path = LocationDetail;
+			sourceTree = "<group>";
+		};
+		6375B53A2AC30C120084C442 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				6375B53B2AC30C360084C442 /* AppSearchView.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		63896C832A53535700E732A2 /* DataTypes */ = {
@@ -537,6 +548,7 @@
 				630E6B922A54AEAC00C17EFB /* AppCharacterListView.swift in Sources */,
 				63A4787E2AB300A1007A6B12 /* AppEpisodeListViewViewModel.swift in Sources */,
 				633D440C2A4A1B8F009FFECB /* EpisodeViewController.swift in Sources */,
+				6375B53C2AC30C360084C442 /* AppSearchView.swift in Sources */,
 				633016352ABB078A005287F7 /* AppSettingsOption.swift in Sources */,
 				630E6B9B2A58226400C17EFB /* AppCharacterDetailedViewController.swift in Sources */,
 				630E6B962A56B5A400C17EFB /* AppCharacterCollectionGridViewCell.swift in Sources */,
@@ -648,7 +660,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -702,7 +714,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

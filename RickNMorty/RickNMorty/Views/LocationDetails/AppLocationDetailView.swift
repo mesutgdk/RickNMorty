@@ -169,8 +169,6 @@ extension AppLocationDetailView: UICollectionViewDelegate,UICollectionViewDataSo
                 return
             }
             delegate?.appLocationDetailView(self, didSelect: character)
-            
-            
         }
     }
     

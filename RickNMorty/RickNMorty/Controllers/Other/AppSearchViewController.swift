@@ -7,13 +7,30 @@
 
 import UIKit
 
+// dinamic search option view
+// Render results
+// Render no result zero state
+// Searching / API Calls
+
 final class AppSearchViewController: UIViewController {
 
+    /// Configuration for search
     struct Config {
         enum `Type` {
-            case character
-            case episode
-            case location
+            case character // name | status | gender
+            case episode // name
+            case location // name | type
+            
+            var title: String {
+                switch self {
+                case .character:
+                    return "Search Character"
+                case .episode:
+                    return "Search Episode"
+                case .location:
+                    return "Sarch Location"
+                }
+            }
         }
         
         let type : `Type`
@@ -35,8 +52,11 @@ final class AppSearchViewController: UIViewController {
 
         setup()
     }
+    
+    // MARK: - LifeCycle
+
     private func setup(){
-        title = "Search"
+        title = config.type.title
         view.backgroundColor = .systemBackground
     }
 
