@@ -53,6 +53,8 @@ final class AppCharacterCollectionListViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - setup and layout
+
     private func setup(){
         contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubviews(imageView, nameLabel, statusLabel)
@@ -68,10 +70,19 @@ final class AppCharacterCollectionListViewCell: UICollectionViewCell {
     
     private func layout(){
         /*
-         | imageView    |
-         | nameLAbel    |
-         | statusLabel  |
+                        | nameLAbel    |
+         | imageView |
+                        | statusLabel  |
+        
          */
+        
+        //imageView
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 4),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
+        ])
         
         //nameLAbel
         NSLayoutConstraint.activate([
@@ -90,15 +101,11 @@ final class AppCharacterCollectionListViewCell: UICollectionViewCell {
             statusLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
         
-        //imageView
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 4),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
-        ])
+      
     }
     
+    // MARK: - Prepare to reuse
+
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
@@ -107,6 +114,8 @@ final class AppCharacterCollectionListViewCell: UICollectionViewCell {
         statusLabel.text = nil
     }
     
+    // MARK: - Configure
+
     public func configure(with viewModel: AppCharacterCollectionViewCellViewModel){
         
         nameLabel.text = viewModel.characterName

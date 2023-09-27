@@ -57,6 +57,8 @@ final class AppCharacterCollectionGridViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - setup and layout
+
     private func setup(){
         contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubviews(imageView, nameLabel, statusLabel)
@@ -80,6 +82,14 @@ final class AppCharacterCollectionGridViewCell: UICollectionViewCell {
          | statusLabel  |
          */
          
+        //imageView
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -5)
+        ])
+        
         //  statuLAbel
         NSLayoutConstraint.activate([
             statusLabel.heightAnchor.constraint(equalToConstant: 30),
@@ -96,14 +106,10 @@ final class AppCharacterCollectionGridViewCell: UICollectionViewCell {
             nameLabel.bottomAnchor.constraint(equalTo: statusLabel.topAnchor)
         ])
         
-        //imageView
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -5)
-        ])
     }
+    
+    // MARK: - prepare to reuse
+
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -113,6 +119,8 @@ final class AppCharacterCollectionGridViewCell: UICollectionViewCell {
         statusLabel.text = nil
     }
     
+    // MARK: - Configure
+
     public func configure(with viewModel: AppCharacterCollectionViewCellViewModel){
         
         nameLabel.text = viewModel.characterName
