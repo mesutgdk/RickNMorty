@@ -29,7 +29,7 @@ final class AppSearchViewController: UIViewController {
                 case .episode:
                     return "Search Episode"
                 case .location:
-                    return "Sarch Location"
+                    return "Search Location"
                 }
             }
         }

@@ -14,6 +14,7 @@ final class AppSearchView: UIView {
     // MARK: - Subviews
     
     // MARK: - SearchInPutView(bar, selection buttons)
+    private let searchInputView = AppSearchInputView()
     
     // MARK: - No result View
     private let noResultView = AppNoSearchResultView()
@@ -36,13 +37,23 @@ final class AppSearchView: UIView {
     }
     
     private func setup(){
-        addSubviews(noResultView)
+        addSubviews(noResultView, searchInputView)
         backgroundColor = .systemBackground
         translatesAutoresizingMaskIntoConstraints = false
         noResultView.translatesAutoresizingMaskIntoConstraints = false
+        searchInputView.translatesAutoresizingMaskIntoConstraints = false
+        
+        searchInputView.configure(with: AppSearchInputViewViewModel(type: viewModel.config.type))
     }
     
     private func layout (){
+        // inputView
+        NSLayoutConstraint.activate([
+            searchInputView.topAnchor.constraint(equalTo: topAnchor),
+            searchInputView.leftAnchor.constraint(equalTo: leftAnchor),
+            searchInputView.rightAnchor.constraint(equalTo: rightAnchor),
+            searchInputView.heightAnchor.constraint(equalToConstant: 100)
+        ])
         // noResultView
         NSLayoutConstraint.activate([
             noResultView.centerXAnchor.constraint(equalTo:centerXAnchor),
@@ -50,6 +61,7 @@ final class AppSearchView: UIView {
             noResultView.widthAnchor.constraint(equalToConstant: 170),
             noResultView.heightAnchor.constraint(equalToConstant: 170)
         ])
+       
  
     }
     
