@@ -68,6 +68,7 @@ final class AppSearchViewController: UIViewController {
         title = config.type.title
         view.backgroundColor = .systemBackground
         view.addSubview(searchView)
+        addSearchButton()
     }
     
     private func layout(){
@@ -78,5 +79,21 @@ final class AppSearchViewController: UIViewController {
             searchView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-
 }
+extension AppSearchViewController {
+    private func addSearchButton(){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search",
+                                                            style: .done ,
+                                                            target: self,
+                                                            action: #selector(didTapSearchButton))
+       
+    }
+    
+    @objc private func didTapSearchButton(){
+//        viewModel.executeSearch()
+//        let vc = AppSearchViewController(config: AppSearchViewController.Config(type: .character))
+//        vc.navigationItem.largeTitleDisplayMode = .never
+//        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+

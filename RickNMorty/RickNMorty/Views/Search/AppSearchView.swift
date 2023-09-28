@@ -37,7 +37,7 @@ final class AppSearchView: UIView {
     
     private func setup(){
         addSubviews(noResultView)
-        backgroundColor = .red
+        backgroundColor = .systemBackground
         translatesAutoresizingMaskIntoConstraints = false
         noResultView.translatesAutoresizingMaskIntoConstraints = false
     }

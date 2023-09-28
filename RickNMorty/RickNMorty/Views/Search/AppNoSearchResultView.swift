@@ -40,6 +40,7 @@ final class AppNoSearchResultView: UIView{
     }
     
     private func setup(){
+        isHidden = true
         translatesAutoresizingMaskIntoConstraints = false
         addSubviews(iconView,label)
     }
@@ -67,3 +68,4 @@ final class AppNoSearchResultView: UIView{
         iconView.image = viewModel.image
     }
 }
+
