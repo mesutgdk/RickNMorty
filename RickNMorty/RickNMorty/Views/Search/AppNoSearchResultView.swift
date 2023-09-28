@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AppNoSearchResultView:UIView{
+final class AppNoSearchResultView: UIView{
     
     private let viewModel = AppNoSearchResultViewViewModel ()
     
@@ -18,6 +18,7 @@ final class AppNoSearchResultView:UIView{
         iconView.tintColor = .systemBlue
         return iconView
     } ()
+    
     private let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +32,7 @@ final class AppNoSearchResultView:UIView{
         super.init(frame: frame)
         setup()
         layout()
+        configure()
     }
     
     required init?(coder: NSCoder) {
@@ -39,14 +41,14 @@ final class AppNoSearchResultView:UIView{
     
     private func setup(){
         translatesAutoresizingMaskIntoConstraints = false
-        addSubviews(iconView, label)
+        addSubviews(iconView,label)
     }
     private func layout(){
         // iconImage
         NSLayoutConstraint.activate([
             iconView.widthAnchor.constraint(equalToConstant: 100),
             iconView.heightAnchor.constraint(equalToConstant: 100),
-            iconView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            iconView.centerXAnchor.constraint(equalTo: centerXAnchor),
             iconView.topAnchor.constraint(equalTo: topAnchor)
         ])
         

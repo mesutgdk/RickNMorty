@@ -39,6 +39,7 @@ final class AppSearchView: UIView {
         addSubviews(noResultView)
         backgroundColor = .red
         translatesAutoresizingMaskIntoConstraints = false
+        noResultView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func layout (){
@@ -46,8 +47,8 @@ final class AppSearchView: UIView {
         NSLayoutConstraint.activate([
             noResultView.centerXAnchor.constraint(equalTo:centerXAnchor),
             noResultView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            noResultView.widthAnchor.constraint(equalToConstant: 175),
-            noResultView.heightAnchor.constraint(equalToConstant: 175)
+            noResultView.widthAnchor.constraint(equalToConstant: 170),
+            noResultView.heightAnchor.constraint(equalToConstant: 170)
         ])
  
     }

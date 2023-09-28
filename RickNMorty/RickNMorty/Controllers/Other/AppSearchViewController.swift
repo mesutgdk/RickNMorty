@@ -14,6 +14,7 @@ import UIKit
 
 final class AppSearchViewController: UIViewController {
 
+    
     /// Configuration for search
     struct Config {
         enum `Type` {
@@ -38,9 +39,16 @@ final class AppSearchViewController: UIViewController {
     
     private let config: Config
     
+    private let searchView : AppSearchView
+    
+    private let viewModel : AppSearchViewViewModel
+    
     // MARK: - Init
     init(config: Config) {
+        let viewModel = AppSearchViewViewModel(config: config)
+        self.viewModel = viewModel
         self.config = config
+        self.searchView = AppSearchView(frame: .zero, viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -53,11 +61,22 @@ final class AppSearchViewController: UIViewController {
         super.viewDidLoad()
 
         setup()
+        layout()
     }
     
     private func setup(){
         title = config.type.title
         view.backgroundColor = .systemBackground
+        view.addSubview(searchView)
+    }
+    
+    private func layout(){
+        NSLayoutConstraint.activate([
+            searchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            searchView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            searchView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 
 }
