@@ -16,11 +16,9 @@ final class AppSearchView: UIView {
     // MARK: - SearchInPutView(bar, selection buttons)
     
     // MARK: - No result View
+    private let noResultView = AppNoSearchResultView()
     
     // MARK: - Result collectionView
-
-
-
 
     
     // MARK: - Init
@@ -38,12 +36,20 @@ final class AppSearchView: UIView {
     }
     
     private func setup(){
+        addSubviews(noResultView)
         backgroundColor = .red
         translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func layout (){
-        
+        // noResultView
+        NSLayoutConstraint.activate([
+            noResultView.centerXAnchor.constraint(equalTo:centerXAnchor),
+            noResultView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            noResultView.widthAnchor.constraint(equalToConstant: 175),
+            noResultView.heightAnchor.constraint(equalToConstant: 175)
+        ])
+ 
     }
     
 }
