@@ -42,7 +42,7 @@ final class AppSearchInputView: UIView {
     private func setup(){
         addSubviews(searchBar)
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .systemCyan
+        backgroundColor = .secondarySystemBackground
     }
     
     private func layout(){
@@ -56,14 +56,54 @@ final class AppSearchInputView: UIView {
     }
     
     private func createOptionSelectionView(options: [AppSearchInputViewViewModel.DynamicOption]){
-        for option in options {
-            print(option.rawValue)
+
+        let stackView = createOptionStackView()
+        
+        for x in 0..<options.count {
+            let option = options[x]
+            let button = UIButton()
+            button.setTitle(option.rawValue, for: .normal)
+            button.backgroundColor = .systemYellow
+            button.setTitleColor(.label, for: .normal)
+            button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
+            
+            stackView.addArrangedSubview(button)
+//            print(option.rawValue)
         }
+    }
+    
+    @objc func didTapButton(_ sender: UIButton){
+        guard let viewModel = viewModel?.options else {
+            return
+        }
+        
+    }
+    
+    private func createOptionStackView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        stackView.backgroundColor = .systemPink
+        addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            stackView.leftAnchor.constraint(equalTo: leftAnchor),
+            stackView.rightAnchor.constraint(equalTo: rightAnchor),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        return stackView
     }
     
     public func configure(with viewModel: AppSearchInputViewViewModel){
         searchBar.placeholder = viewModel.searchPlaceHolderText
         // toDo: fix height of input view for episode with no option
         self.viewModel = viewModel
+    }
+    
+    public func presentKeyboard(){
+        searchBar.becomeFirstResponder()
     }
 }

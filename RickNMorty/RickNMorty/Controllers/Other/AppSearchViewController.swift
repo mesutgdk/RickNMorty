@@ -64,6 +64,11 @@ final class AppSearchViewController: UIViewController {
         layout()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        searchView.presentKeyboard()
+    }
+    
     private func setup(){
         title = config.type.title
         view.backgroundColor = .systemBackground

@@ -52,7 +52,7 @@ final class AppSearchView: UIView {
             searchInputView.topAnchor.constraint(equalTo: topAnchor),
             searchInputView.leftAnchor.constraint(equalTo: leftAnchor),
             searchInputView.rightAnchor.constraint(equalTo: rightAnchor),
-            searchInputView.heightAnchor.constraint(equalToConstant: 100)
+            searchInputView.heightAnchor.constraint(equalToConstant: viewModel.config.type == .episode ? 55 : 110)
         ])
         // noResultView
         NSLayoutConstraint.activate([
@@ -61,8 +61,9 @@ final class AppSearchView: UIView {
             noResultView.widthAnchor.constraint(equalToConstant: 170),
             noResultView.heightAnchor.constraint(equalToConstant: 170)
         ])
-       
- 
+    }
+    func presentKeyboard() {
+        searchInputView.presentKeyboard()
     }
     
 }
