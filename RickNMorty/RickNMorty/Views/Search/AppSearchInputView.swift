@@ -73,9 +73,12 @@ final class AppSearchInputView: UIView {
     }
     
     @objc func didTapButton(_ sender: UIButton){
-        guard let viewModel = viewModel?.options else {
+        guard let options = viewModel?.options else {
             return
         }
+        let tag = sender.tag
+        let selectedOption = options[tag]
+        print("Did tap \(selectedOption.rawValue)")
         
     }
     
@@ -85,7 +88,7 @@ final class AppSearchInputView: UIView {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .center
-        stackView.backgroundColor = .systemPink
+        stackView.backgroundColor = .secondarySystemBackground
         addSubview(stackView)
         
         NSLayoutConstraint.activate([
@@ -97,6 +100,8 @@ final class AppSearchInputView: UIView {
         return stackView
     }
     
+    // MARK: - Public
+
     public func configure(with viewModel: AppSearchInputViewViewModel){
         searchBar.placeholder = viewModel.searchPlaceHolderText
         // toDo: fix height of input view for episode with no option
