@@ -39,6 +39,8 @@ final class AppSearchInputView: UIView {
         fatalError()
     }
     
+    // MARK: - Private
+
     private func setup(){
         addSubviews(searchBar)
         translatesAutoresizingMaskIntoConstraints = false
@@ -62,10 +64,20 @@ final class AppSearchInputView: UIView {
         for x in 0..<options.count {
             let option = options[x]
             let button = UIButton()
-            button.setTitle(option.rawValue, for: .normal)
-            button.backgroundColor = .systemYellow
+            button.setAttributedTitle(NSAttributedString(string:  option.rawValue,
+                                                         attributes: [
+                                                            .font:UIFont.systemFont(ofSize: 18,weight: .medium),
+                                                            .foregroundColor: UIColor.label
+                                                         ]
+                                                        ),
+                                      for: .normal) 
+            
+//            button.setTitle(option.rawValue, for: .normal)
+//            button.backgroundColor = .secondarySystemFill
             button.setTitleColor(.label, for: .normal)
             button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
+            
+            button.tag = x
             
             stackView.addArrangedSubview(button)
 //            print(option.rawValue)
