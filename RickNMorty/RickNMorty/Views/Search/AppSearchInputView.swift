@@ -44,7 +44,7 @@ final class AppSearchInputView: UIView {
     private func setup(){
         addSubviews(searchBar)
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .secondarySystemBackground
+        backgroundColor = .systemBackground
     }
     
     private func layout(){
@@ -64,23 +64,25 @@ final class AppSearchInputView: UIView {
         for x in 0..<options.count {
             let option = options[x]
             let button = UIButton()
-            button.setAttributedTitle(NSAttributedString(string:  option.rawValue,
-                                                         attributes: [
-                                                            .font:UIFont.systemFont(ofSize: 18,weight: .medium),
-                                                            .foregroundColor: UIColor.label
-                                                         ]
-                                                        ),
-                                      for: .normal) 
             
-//            button.setTitle(option.rawValue, for: .normal)
-//            button.backgroundColor = .secondarySystemFill
-            button.setTitleColor(.label, for: .normal)
+            button.setAttributedTitle(
+                NSAttributedString(
+                    string:  option.rawValue,
+                    attributes: [
+                        .font:UIFont.systemFont(ofSize: 18,weight: .medium),
+                        .foregroundColor: UIColor.label
+                    ]
+                ),
+                for: .normal)
+            
+            button.backgroundColor = .secondarySystemFill
+//            button.setTitleColor(.label, for: .normal)
             button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
             
             button.tag = x
             
             stackView.addArrangedSubview(button)
-//            print(option.rawValue)
+            //            print(option.rawValue)
         }
     }
     
@@ -98,6 +100,7 @@ final class AppSearchInputView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
+        stackView.spacing = 6
         stackView.distribution = .fillEqually
         stackView.alignment = .center
         stackView.backgroundColor = .secondarySystemBackground
