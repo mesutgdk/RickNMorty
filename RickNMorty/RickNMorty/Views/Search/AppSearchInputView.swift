@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol AppSearchInputViewDelegate: AnyObject{
+    func searchInputView(_ interview: AppSearchInputView, didSelectOption option: AppSearchInputViewViewModel.DynamicOption)
+}
+
 final class AppSearchInputView: UIView {
+    
+    weak var delegate : AppSearchInputViewDelegate?
 
     private let searchBar : UISearchBar = {
         let searchBar = UISearchBar()
@@ -77,7 +83,9 @@ final class AppSearchInputView: UIView {
         }
         let tag = sender.tag
         let selectedOption = options[tag]
-        print("Did tap \(selectedOption.rawValue)")
+        
+        delegate?.searchInputView(self, didSelectOption: selectedOption)
+//        print("Did tap \(selectedOption.rawValue)")
         
     }
     

@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol AppSearchViewDelegate: AnyObject{
+    func appSearchView(_ searchView: AppSearchView, didSelectOption option: AppSearchInputViewViewModel.DynamicOption)
+}
+
 final class AppSearchView: UIView {
+    
+    weak var delegate : AppSearchViewDelegate?
     
     private let viewModel: AppSearchViewViewModel
     
@@ -44,6 +50,8 @@ final class AppSearchView: UIView {
         searchInputView.translatesAutoresizingMaskIntoConstraints = false
         
         searchInputView.configure(with: AppSearchInputViewViewModel(type: viewModel.config.type))
+        
+        searchInputView.delegate = self
     }
     
     private func layout (){
@@ -83,5 +91,11 @@ extension AppSearchView: UICollectionViewDelegate, UICollectionViewDataSource{
         collectionView.deselectItem(at: indexPath, animated: true)
     }
     
+}
+// MARK: - AppSearchInputViewDelegate
+extension AppSearchView: AppSearchInputViewDelegate{
+    func searchInputView(_ interview: AppSearchInputView, didSelectOption option: AppSearchInputViewViewModel.DynamicOption) {
+        delegate?.appSearchView(self, didSelectOption: option)
+    }
 }
 

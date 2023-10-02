@@ -74,6 +74,8 @@ final class AppSearchViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(searchView)
         addSearchButton()
+        
+        searchView.delegate = self
     }
     
     private func layout(){
@@ -99,6 +101,13 @@ extension AppSearchViewController {
 //        let vc = AppSearchViewController(config: AppSearchViewController.Config(type: .character))
 //        vc.navigationItem.largeTitleDisplayMode = .never
 //        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+// MARK: - AppSearchViewDelegate
+
+extension AppSearchViewController: AppSearchViewDelegate{
+    func appSearchView(_ searchView: AppSearchView, didSelectOption option: AppSearchInputViewViewModel.DynamicOption) {
+        print("should take the picker \(option.rawValue)")
     }
 }
 
