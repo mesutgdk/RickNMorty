@@ -11,6 +11,8 @@ final class AppSearchOptionPickerViewController: UIViewController {
 
     private let option : AppSearchInputViewViewModel.DynamicOption
     
+    private let selectionBlock: ((String)->Void)
+    
     private let tableView : UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -19,7 +21,8 @@ final class AppSearchOptionPickerViewController: UIViewController {
     } ()
     // MARK: - Init
 
-    init(option: AppSearchInputViewViewModel.DynamicOption){
+    init(option: AppSearchInputViewViewModel.DynamicOption, selection: @escaping (String)->Void){
+        self.selectionBlock = selection
         self.option = option
         super.init(nibName: nil, bundle: nil)
     }
@@ -74,6 +77,9 @@ extension AppSearchOptionPickerViewController: UITableViewDataSource, UITableVie
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let choice = option.choices[indexPath.row]
+        self.selectionBlock(choice)
+        dismiss(animated: true)
     }
     
     

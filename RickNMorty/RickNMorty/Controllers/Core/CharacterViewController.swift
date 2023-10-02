@@ -11,7 +11,6 @@ final class CharacterViewController: UIViewController {
 
     private let characterListView = AppCharacterListView()
     
-    
     private var switchLayoutBarButtonItem: UIBarButtonItem?
     
     override func viewDidLoad() {
