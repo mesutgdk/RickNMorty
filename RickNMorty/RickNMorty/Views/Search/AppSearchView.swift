@@ -50,8 +50,8 @@ final class AppSearchView: UIView {
         // inputView
         NSLayoutConstraint.activate([
             searchInputView.topAnchor.constraint(equalTo: topAnchor),
-            searchInputView.leftAnchor.constraint(equalTo: leftAnchor),
-            searchInputView.rightAnchor.constraint(equalTo: rightAnchor),
+            searchInputView.leftAnchor.constraint(equalTo: leftAnchor,constant: 5),
+            searchInputView.rightAnchor.constraint(equalTo: rightAnchor,constant: -5),
             searchInputView.heightAnchor.constraint(equalToConstant: viewModel.config.type == .episode ? 55 : 110)
         ])
         // noResultView

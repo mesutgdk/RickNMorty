@@ -63,24 +63,9 @@ final class AppSearchInputView: UIView {
         
         for x in 0..<options.count {
             let option = options[x]
-            let button = UIButton()
             
-            button.setAttributedTitle(
-                NSAttributedString(
-                    string:  option.rawValue,
-                    attributes: [
-                        .font:UIFont.systemFont(ofSize: 18,weight: .medium),
-                        .foregroundColor: UIColor.label
-                    ]
-                ),
-                for: .normal)
-            
-            button.backgroundColor = .secondarySystemFill
-//            button.setTitleColor(.label, for: .normal)
-            button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
-            
-            button.tag = x
-            
+            let button = createOptionButton(with: option, tag : x)
+
             stackView.addArrangedSubview(button)
             //            print(option.rawValue)
         }
@@ -103,7 +88,7 @@ final class AppSearchInputView: UIView {
         stackView.spacing = 6
         stackView.distribution = .fillEqually
         stackView.alignment = .center
-        stackView.backgroundColor = .secondarySystemBackground
+        stackView.backgroundColor = .systemBackground
         addSubview(stackView)
         
         NSLayoutConstraint.activate([
@@ -113,6 +98,29 @@ final class AppSearchInputView: UIView {
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         return stackView
+    }
+    
+    private func createOptionButton(with option: AppSearchInputViewViewModel.DynamicOption, tag: Int )-> UIButton{
+        let button = UIButton()
+        
+        button.setAttributedTitle(
+            NSAttributedString(
+                string:  option.rawValue,
+                attributes: [
+                    .font:UIFont.systemFont(ofSize: 18,weight: .medium),
+                    .foregroundColor: UIColor.label
+                ]
+            ),
+            for: .normal)
+        
+        button.backgroundColor = .secondarySystemFill
+//            button.setTitleColor(.label, for: .normal)
+        button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
+        
+        button.tag = tag
+        button.layer.cornerRadius = 6
+        
+        return button
     }
     
     // MARK: - Public
