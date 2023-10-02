@@ -167,6 +167,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		630606C72ACB292800F25253 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				63A478832AB448C8007A6B12 /* AppSearchViewController.swift */,
+				630606C52ACB275500F25253 /* AppSearchOptionPickerViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		630DE4FB2A7B947F005ACA2F /* CharacterDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,11 +211,10 @@
 		630E6B992A58223C00C17EFB /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				630606C72ACB292800F25253 /* Search */,
 				630E6B9A2A58226400C17EFB /* AppCharacterDetailedViewController.swift */,
 				6340E98D2AB1E8B100A55885 /* AppEpisodeDetailViewController.swift */,
-				63A478832AB448C8007A6B12 /* AppSearchViewController.swift */,
 				636EB2E82AC15BC400E5A91B /* AppLocationDetailedViewController.swift */,
-				630606C52ACB275500F25253 /* AppSearchOptionPickerViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";

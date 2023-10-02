@@ -15,6 +15,17 @@ final class AppSearchInputViewViewModel {
         case status = "Status"
         case gender = "Gender"
         case locationType = "Location Type"
+        
+        var choices: [String] {
+            switch self {
+            case .status:
+                return ["Alive","Dead","Unknown"]
+            case .gender:
+                return ["Male","Female","Genderless","Unknown"]
+            case .locationType:
+                return ["Cluster","Planet","Microverse"]
+            }
+        }
     }
     
     init(type: AppSearchViewController.Config.`Type`){

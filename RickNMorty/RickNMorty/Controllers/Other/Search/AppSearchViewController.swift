@@ -107,8 +107,9 @@ extension AppSearchViewController {
 
 extension AppSearchViewController: AppSearchViewDelegate{
     func appSearchView(_ searchView: AppSearchView, didSelectOption option: AppSearchInputViewViewModel.DynamicOption) {
-        let vc = AppSearchOptionPickerViewController()
+        let vc = AppSearchOptionPickerViewController(option: option)
         vc.sheetPresentationController?.detents = [.medium()]
+        vc.sheetPresentationController?.prefersGrabberVisible = true
         present(vc, animated: true)
 //        print("should take the picker \(option.rawValue)")
     }
