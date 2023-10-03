@@ -107,8 +107,12 @@ extension AppSearchViewController {
 
 extension AppSearchViewController: AppSearchViewDelegate{
     func appSearchView(_ searchView: AppSearchView, didSelectOption option: AppSearchInputViewViewModel.DynamicOption) {
-        let vc = AppSearchOptionPickerViewController(option: option) { selection in
-            print("Did select \(selection)")
+        let vc = AppSearchOptionPickerViewController(option: option) { [weak self] selection in
+            DispatchQueue.main.async {
+                self?.viewModel.set(value: selection, for: option)
+    //            print("Did select \(selection)")
+            }
+
         }
         vc.sheetPresentationController?.detents = [.medium()]
         vc.sheetPresentationController?.prefersGrabberVisible = true
