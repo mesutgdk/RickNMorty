@@ -97,10 +97,8 @@ extension AppSearchViewController {
     }
     
     @objc private func didTapSearchButton(){
-//        viewModel.executeSearch()
-//        let vc = AppSearchViewController(config: AppSearchViewController.Config(type: .character))
-//        vc.navigationItem.largeTitleDisplayMode = .never
-//        navigationController?.pushViewController(vc, animated: true)
+        viewModel.executeSearch()
+
     }
 }
 // MARK: - AppSearchViewDelegate
