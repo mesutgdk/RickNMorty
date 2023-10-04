@@ -145,11 +145,23 @@ final class AppSearchInputView: UIView {
     }
     
     public func updateTitle(option: AppSearchInputViewViewModel.DynamicOption, value: String ){
-        guard let buttons = stackView?.arrangedSubviews, let options = viewModel?.options else {
+        guard let buttons = stackView?.arrangedSubviews as? [UIButton],
+              let allOptions = viewModel?.options,
+              let index = allOptions.firstIndex(of: option) else {
             return
         }
-        for button in buttons {
-            <#body#>
-        }
+        
+        let button : UIButton = buttons[index]
+        button.setAttributedTitle(
+            NSAttributedString(
+                string: value.uppercased(),
+                attributes: [
+                    .font:UIFont.systemFont(ofSize: 18,weight: .medium),
+                    .foregroundColor: UIColor.link
+                    
+                ]
+            ),
+            for: .normal)
+        
     }
 }
