@@ -38,36 +38,35 @@ final class AppSearchViewViewModel{
             Notify view of result, no result, or error
          */
     public func executeSearch(){
+        var querryParameter: [URLQueryItem] = []
+        
         switch config.type {
-        case .character:
-            searchText = "Rich"
-            var urlString = "https://rickandmortyapi.com/api/character/"
-            urlString += "?name=\(searchText)"
-            
-            for (option, value) in optionMap {
-                urlString += "&\(option.querryArgument)=\(value)"
-            }
-            
-            guard let url = URL(string: urlString) else {
-                return
-            }
-            
-            guard let request = AppRequest(url: url) else {
-                return
-            }
-            
-            AppService.shared.execute(request, expecting: AppGetAllCharactersResponse.self) { result in
-                switch result {
-                case .success(let model):
-                    print("search results are: \(model.results.count)")
-                case .failure(let error):
-                    fatalError("cant take request")
-                }
-            }
-        case .episode:
-            break
+        case .character, .episode:
+            searchText = "Rick"
+            querryParameter.append(URLQueryItem(name: "name", value: searchText))
         case .location:
-            break
+            querryParameter.append(URLQueryItem(name: "name", value: searchText))
+        }
+        // Add options
+        querryParameter.append(contentsOf: optionMap.enumerated().compactMap({
+            _,element in
+            let key :AppSearchInputViewViewModel.DynamicOption = element.key
+            let value : String = element.value
+            return URLQueryItem(name: key.querryArgument, value: value)
+        }))
+        
+        // Create request
+        let request = AppRequest(endPoint: config.type.endpoint,
+                                 queryParameters: querryParameter)
+        
+        AppService.shared.execute(request, expecting: AppGetAllCharactersResponse.self) { result in
+            switch result {
+            case .success(let model):
+                print("search results are: \(model.results.count)")
+            case .failure(let error):
+                fatalError(String(describing: error))
+                
+            }
         }
     }
     

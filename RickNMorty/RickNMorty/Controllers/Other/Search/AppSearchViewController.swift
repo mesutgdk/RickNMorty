@@ -32,6 +32,17 @@ final class AppSearchViewController: UIViewController {
                     return "Search Location"
                 }
             }
+            
+            var endpoint: AppEndpoint {
+                switch self{
+                case .character:
+                    return .character
+                case .episode:
+                    return .episode
+                case .location:
+                    return .location
+                }
+            }
         }
         
         let type : `Type`
