@@ -23,6 +23,7 @@ final class AppSearchViewViewModel{
     
     private var optionMapUpdateBlock: (((AppSearchInputViewViewModel.DynamicOption, String)) -> Void)?
     
+    private var registerSearchResultHandler: (() -> Void)?
     // MARK: - Init
 
     init(config: AppSearchViewController.Config) {
@@ -30,6 +31,10 @@ final class AppSearchViewViewModel{
     }
     
     // MARK: - Public
+    
+    public func registerSearchResultHandler(_ block: @escaping () -> Void){
+        self.registerSearchResultHandler = block
+    }
         /*  Create request based on filters
          https://rickandmortyapi.com/api/character/
          ?name= += "rick"
@@ -39,10 +44,11 @@ final class AppSearchViewViewModel{
          */
     public func executeSearch(){
         var querryParameter: [URLQueryItem] = []
+        searchText = "Rick"
         
         switch config.type {
         case .character, .episode:
-            searchText = "Rick"
+            
             querryParameter.append(URLQueryItem(name: "name", value: searchText))
         case .location:
             querryParameter.append(URLQueryItem(name: "name", value: searchText))
@@ -59,12 +65,14 @@ final class AppSearchViewViewModel{
         let request = AppRequest(endPoint: config.type.endpoint,
                                  queryParameters: querryParameter)
         
+        print(request.url?.absoluteString)
+        
         AppService.shared.execute(request, expecting: AppGetAllCharactersResponse.self) { result in
             switch result {
             case .success(let model):
                 print("search results are: \(model.results.count)")
             case .failure(let error):
-                fatalError(String(describing: error))
+                print("no Result")
                 
             }
         }
