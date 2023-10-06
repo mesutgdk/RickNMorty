@@ -58,14 +58,14 @@ final class AppSettingsViewCollectionViewCell: UICollectionViewCell {
     }
     
     private func layout(){
-        //titleLabel
+        //imageView
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8),
             imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.2)
         ])
-        //valueLabel
+        //titleLabel
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             titleLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 4),

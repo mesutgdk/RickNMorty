@@ -69,7 +69,7 @@ final class AppCharacterInfoCollectionViewCell: UICollectionViewCell {
     
     private func setUpConstraints() {
         
-        // titleContaineView
+        // titleContainerView
         NSLayoutConstraint.activate([
             titleContainerView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             titleContainerView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
