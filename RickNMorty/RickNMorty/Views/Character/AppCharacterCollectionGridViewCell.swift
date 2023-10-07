@@ -68,11 +68,7 @@ final class AppCharacterCollectionGridViewCell: UICollectionViewCell {
         contentView.layer.shadowOpacity = 0.3
         contentView.layer.shadowOffset = CGSize(width: -2, height: 2)
         contentView.layer.shadowRadius = 8
-        
-//        nameLabel.backgroundColor = .gray
-//        statusLabel.backgroundColor = .systemRed
-//        imageView.backgroundColor = .systemGreen
-        
+     
     }
     
     private func layout(){

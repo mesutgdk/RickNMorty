@@ -136,6 +136,7 @@ final class AppSearchInputView: UIView {
 
     public func configure(with viewModel: AppSearchInputViewViewModel){
         searchBar.placeholder = viewModel.searchPlaceHolderText
+        
         // toDo: fix height of input view for episode with no option
         self.viewModel = viewModel
     }
