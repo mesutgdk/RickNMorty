@@ -67,8 +67,6 @@ final class AppSettingsView: UIView {
 }
 
 extension AppSettingsView: AppSettingsCollectionViewViewModelDelegate{
-
-    
     func didSelectUrl(_ url: URL) {
         delegate?.appSettingsUrlView(self, didSelectUrl: url)
     }
