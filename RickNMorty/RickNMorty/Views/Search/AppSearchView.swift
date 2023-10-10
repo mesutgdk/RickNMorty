@@ -105,9 +105,11 @@ extension AppSearchView: AppSearchInputViewDelegate{
         delegate?.appSearchView(self, didSelectOption: option)
     }
     
-    func searchInputViewDidChangeText(_ inputview: AppSearchInputView, didChangeText text: String?) {
-        //
+    func searchInputViewDidChangeText(_ inputview: AppSearchInputView, didChangeText text: String) {
+        viewModel.set(query: text)
     }
-    
+    func searchInputViewDidTapSearchEnterButton(_ inputview: AppSearchInputView) {
+        viewModel.executeSearch()
+    }
 }
 

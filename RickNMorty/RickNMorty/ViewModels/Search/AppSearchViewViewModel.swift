@@ -43,8 +43,9 @@ final class AppSearchViewViewModel{
             Notify view of result, no result, or error
          */
     public func executeSearch(){
+        print("search text: \(searchText)")
         var querryParameter: [URLQueryItem] = []
-        searchText = "Rick"
+//        searchText = "Rick"
         
         switch config.type {
         case .character, .episode:

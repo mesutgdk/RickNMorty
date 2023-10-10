@@ -10,9 +10,9 @@ import UIKit
 protocol AppSearchInputViewDelegate: AnyObject{
     func searchInputViewDidSelectOption(_ inputview: AppSearchInputView, didSelectOption option: AppSearchInputViewViewModel.DynamicOption)
     
-    func searchInputViewDidChangeText(_ inputview: AppSearchInputView, didChangeText text: String?)
+    func searchInputViewDidChangeText(_ inputview: AppSearchInputView, didChangeText text: String)
     
-    func searchInputViewDidChangeText(_ inputview: AppSearchInputView)
+    func searchInputViewDidTapSearchEnterButton(_ inputview: AppSearchInputView)
 
 
 }
@@ -181,6 +181,9 @@ extension AppSearchInputView: UISearchBarDelegate{
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // Execute search
-        
+        searchBar.resignFirstResponder() // keyboarddan kurtulalım
+        delegate?.searchInputViewDidTapSearchEnterButton(self)
     }
+    
+   
 }
