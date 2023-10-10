@@ -45,14 +45,13 @@ final class AppSearchViewViewModel{
     public func executeSearch(){
         print("search text: \(searchText)")
         var querryParameter: [URLQueryItem] = []
-//        searchText = "Rick"
         
         switch config.type {
         case .character, .episode:
             
-            querryParameter.append(URLQueryItem(name: "name", value: searchText))
+            querryParameter.append(URLQueryItem(name: "name", value: searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))) // aramada arada boşluk konuluyorsa hatadan kurtulma yolu
         case .location:
-            querryParameter.append(URLQueryItem(name: "name", value: searchText))
+            querryParameter.append(URLQueryItem(name: "name", value: searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)))
         }
         // Add options
         querryParameter.append(contentsOf: optionMap.enumerated().compactMap({
