@@ -100,8 +100,14 @@ extension AppSearchView: UICollectionViewDelegate, UICollectionViewDataSource{
 }
 // MARK: - AppSearchInputViewDelegate
 extension AppSearchView: AppSearchInputViewDelegate{
-    func searchInputView(_ interview: AppSearchInputView, didSelectOption option: AppSearchInputViewViewModel.DynamicOption) {
+
+    func searchInputViewDidSelectOption(_ interview: AppSearchInputView, didSelectOption option: AppSearchInputViewViewModel.DynamicOption) {
         delegate?.appSearchView(self, didSelectOption: option)
     }
+    
+    func searchInputViewDidChangeText(_ inputview: AppSearchInputView, didChangeText text: String?) {
+        //
+    }
+    
 }
 

@@ -8,9 +8,15 @@
 import UIKit
 
 protocol AppSearchInputViewDelegate: AnyObject{
-    func searchInputView(_ interview: AppSearchInputView, didSelectOption option: AppSearchInputViewViewModel.DynamicOption)
-}
+    func searchInputViewDidSelectOption(_ inputview: AppSearchInputView, didSelectOption option: AppSearchInputViewViewModel.DynamicOption)
+    
+    func searchInputViewDidChangeText(_ inputview: AppSearchInputView, didChangeText text: String?)
+    
+    func searchInputViewDidChangeText(_ inputview: AppSearchInputView)
 
+
+}
+// view for top part of search screen with search bar
 final class AppSearchInputView: UIView {
     
     weak var delegate : AppSearchInputViewDelegate?
@@ -52,6 +58,8 @@ final class AppSearchInputView: UIView {
         addSubviews(searchBar)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .systemBackground
+        
+        searchBar.delegate = self
     }
     
     private func layout(){
@@ -85,7 +93,7 @@ final class AppSearchInputView: UIView {
         let tag = sender.tag
         let selectedOption = options[tag]
         
-        delegate?.searchInputView(self, didSelectOption: selectedOption)
+        delegate?.searchInputViewDidSelectOption(self, didSelectOption: selectedOption)
 //        print("Did tap \(selectedOption.rawValue)")
         
     }
@@ -163,6 +171,16 @@ final class AppSearchInputView: UIView {
                 ]
             ),
             for: .normal)
+    }
+}
+extension AppSearchInputView: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Notify delegate of change the text
+//        print(searchText)
+        delegate?.searchInputViewDidChangeText(self, didChangeText: searchText)
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Execute search
         
     }
 }
