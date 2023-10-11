@@ -23,7 +23,7 @@ final class AppSearchViewViewModel{
     
     private var optionMapUpdateBlock: (((AppSearchInputViewViewModel.DynamicOption, String)) -> Void)?
     
-    private var registerSearchResultHandler: (() -> Void)?
+    private var searchResultHandler: ((AppSearchResultViewModel) -> Void)?
     // MARK: - Init
     
     init(config: AppSearchViewController.Config) {
@@ -32,8 +32,8 @@ final class AppSearchViewViewModel{
     
     // MARK: - Public
     
-    public func registerSearchResultHandler(_ block: @escaping () -> Void){
-        self.registerSearchResultHandler = block
+    public func registerSearchResultHandler(_ block: @escaping (AppSearchResultViewModel) -> Void){
+        self.searchResultHandler = block
     }
     /*  Create request based on filters
      https://rickandmortyapi.com/api/character/
@@ -96,17 +96,38 @@ final class AppSearchViewViewModel{
     }
     
     private func processSearchResults(model: Codable){
+        var resultsVM: AppSearchResultViewModel?
+        
         if let characterResults = model as? AppGetAllCharactersResponse{
-            print("Results: \(characterResults.results)")
+//            print("Results: \(characterResults.results)")
+            resultsVM = .characters(characterResults.results.compactMap({
+                return AppCharacterCollectionViewCellViewModel(
+                    characterName: $0.name,
+                    characterStatus: $0.status,
+                    characterImageUrl: URL(string: $0.url))
+            }))
         }
         else if let episodeResults = model as? AppGetAllEpisodesResponse{
-            print("Results: \(episodeResults.results)")
+//            print("Results: \(episodeResults.results)")
+            resultsVM = .episodes(episodeResults.results.compactMap({
+                return AppCharacterEpisodeCollectionViewCellViewModel(episodeDataUrl: URL(string: $0.url))
+            }))
         }
         else if let locationResults = model as? AppGetAllLocationsResponse{
-            print("Results: \(locationResults.results)")
+//            print("Results: \(locationResults.results)")
+            resultsVM = .locations(locationResults.results.compactMap({
+                return AppLocationTableViewCellViewModel(location: $0)
+            }))
         }
         else {
             // error: No Results
+        }
+        
+        if let results = resultsVM {
+            self.searchResultHandler?(results)
+            
+        } else {
+            // fallback error
         }
     }
     
