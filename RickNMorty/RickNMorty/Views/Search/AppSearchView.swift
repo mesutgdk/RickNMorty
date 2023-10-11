@@ -60,7 +60,7 @@ final class AppSearchView: UIView {
         }
         
         viewModel.registerSearchResultHandler {
-            <#code#>
+            
         }
     }
     

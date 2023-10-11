@@ -7,11 +7,11 @@
 
 import Foundation
 
-/* 
+/*
  Responsibilties
  - show search resurchs
  - show no result view
- - kick off API request 
+ - kick off API request
  */
 final class AppSearchViewViewModel{
     
@@ -25,7 +25,7 @@ final class AppSearchViewViewModel{
     
     private var registerSearchResultHandler: (() -> Void)?
     // MARK: - Init
-
+    
     init(config: AppSearchViewController.Config) {
         self.config = config
     }
@@ -35,13 +35,13 @@ final class AppSearchViewViewModel{
     public func registerSearchResultHandler(_ block: @escaping () -> Void){
         self.registerSearchResultHandler = block
     }
-        /*  Create request based on filters
-         https://rickandmortyapi.com/api/character/
-         ?name= += "rick"
-         &status=alive
-            Send API Call
-            Notify view of result, no result, or error
-         */
+    /*  Create request based on filters
+     https://rickandmortyapi.com/api/character/
+     ?name= += "rick"
+     &status=alive
+     Send API Call
+     Notify view of result, no result, or error
+     */
     public func executeSearch(){
         print("search text: \(searchText)")
         var querryParameter: [URLQueryItem] = []
@@ -65,17 +65,48 @@ final class AppSearchViewViewModel{
         let request = AppRequest(endPoint: config.type.endpoint,
                                  queryParameters: querryParameter)
         
-        print(request.url?.absoluteString)
+        //        print(request.url?.absoluteString)
         
-        AppService.shared.execute(request, expecting: AppGetAllCharactersResponse.self) { result in
+        // search yaparken gruba göre endpoint oluşturabilmek için
+        switch config.type.endpoint {
+        case .character:
+            makeSearchAPICall(AppGetAllCharactersResponse.self, request: request)
+        case .location:
+            makeSearchAPICall(AppGetAllLocationsResponse.self, request: request)
+        case .episode:
+            makeSearchAPICall(AppGetAllEpisodesResponse.self, request: request)
+        }
+        
+    }
+    private func makeSearchAPICall<T:Codable>(_ type: T.Type, request: AppRequest){
+        
+        AppService.shared.execute(request, expecting: type) { [weak self] result in
+            
+//            notify view of results, no results, or error
             switch result {
             case .success(let model):
                 //Episodes-Characters-> CollectionView / Localition -> TableView
-                print("search results are: \(model.results.count)")
+                self?.processSearchResults(model: model)
+//                print("search results are: \(model.results.count)")
             case .failure(let error):
                 print("no Result")
-                
+                break
             }
+        }
+    }
+    
+    private func processSearchResults(model: Codable){
+        if let characterResults = model as? AppGetAllCharactersResponse{
+            print("Results: \(characterResults.results)")
+        }
+        else if let episodeResults = model as? AppGetAllEpisodesResponse{
+            print("Results: \(episodeResults.results)")
+        }
+        else if let locationResults = model as? AppGetAllLocationsResponse{
+            print("Results: \(locationResults.results)")
+        }
+        else {
+            // error: No Results
         }
     }
     
@@ -92,5 +123,5 @@ final class AppSearchViewViewModel{
     public func registerOptionChangeBlock(_ block: @escaping ((AppSearchInputViewViewModel.DynamicOption, String)) -> Void){
         self.optionMapUpdateBlock = block
     }
-
+    
 }

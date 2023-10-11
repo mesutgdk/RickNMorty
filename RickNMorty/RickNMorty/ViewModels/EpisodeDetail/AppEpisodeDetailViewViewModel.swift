@@ -83,7 +83,7 @@ final class AppEpisodeDetailViewViewModel {
         }
         
         cellViewModels = [
-            .information(viewModes: [
+            .information(viewModels: [
                 .init(title: "Episode Name", value: episode.name),
                 .init(title: "Air Date", value: episode.air_date),
                 .init(title: "Episode", value: episode.episode),
