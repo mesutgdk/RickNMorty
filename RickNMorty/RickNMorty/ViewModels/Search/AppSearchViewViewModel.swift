@@ -70,6 +70,7 @@ final class AppSearchViewViewModel{
         AppService.shared.execute(request, expecting: AppGetAllCharactersResponse.self) { result in
             switch result {
             case .success(let model):
+                //Episodes-Characters-> CollectionView / Localition -> TableView
                 print("search results are: \(model.results.count)")
             case .failure(let error):
                 print("no Result")

@@ -25,7 +25,7 @@ final class AppEpisodeDetailViewViewModel {
     public weak var delegate: AppEpisodeDetailViewViewModelDelegate?
     
     enum SectionType{
-        case information(viewModes: [AppEpisodeInfoCollectionViewCellViewModel])
+        case information(viewModels: [AppEpisodeInfoCollectionViewCellViewModel])
         case character(viewModel: [AppCharacterCollectionViewCellViewModel])
     }
     

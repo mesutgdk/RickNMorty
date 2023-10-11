@@ -139,8 +139,8 @@ extension AppEpisodeDetailView: UICollectionViewDelegate,UICollectionViewDataSou
             
             return cell
             
-        case .character(let viewModels):
-            let cellViewModel = viewModels[indexPath.row]
+        case .character(let viewModel):
+            let cellViewModel = viewModel[indexPath.row]
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionGridViewCell.cellIdentifier, for: indexPath) as? AppCharacterCollectionGridViewCell else {
                 fatalError("")
             }
