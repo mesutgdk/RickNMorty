@@ -27,7 +27,7 @@ final class AppSearchView: UIView {
     
     // MARK: - Result collectionView
 
-    
+    private let resultView = AppSearchResultView()
     // MARK: - Init
 
     init(frame: CGRect, viewModel: AppSearchViewViewModel) {
