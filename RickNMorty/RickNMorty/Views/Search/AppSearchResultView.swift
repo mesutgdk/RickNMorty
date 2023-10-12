@@ -12,7 +12,7 @@ final class AppSearchResultView: UIView {
     
     private var viewModel: AppSearchResultViewModel? {
         didSet {
-           
+            self.processViewModel()
         }
     }
     

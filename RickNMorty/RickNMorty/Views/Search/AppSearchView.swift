@@ -26,10 +26,10 @@ final class AppSearchView: UIView {
     private let noResultView = AppNoSearchResultView()
     
     // MARK: - Result collectionView
-
+    
     private let resultView = AppSearchResultView()
     // MARK: - Init
-
+    
     init(frame: CGRect, viewModel: AppSearchViewViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame)
@@ -43,7 +43,7 @@ final class AppSearchView: UIView {
     }
     
     private func setup(){
-        addSubviews(noResultView, searchInputView)
+        addSubviews(resultView, noResultView, searchInputView)
         backgroundColor = .systemBackground
         translatesAutoresizingMaskIntoConstraints = false
         noResultView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,16 +53,7 @@ final class AppSearchView: UIView {
         
         searchInputView.delegate = self
         
-        viewModel.registerOptionChangeBlock{ tuple in
-            // tuple : Option | newValue
-//            print(String(describing: tuple))
-            self.searchInputView.updateTitle(option: tuple.0, value: tuple.1)
-        }
         
-        viewModel.registerSearchResultHandler {results in
-            print(results)
-            
-        }
     }
     
     private func layout (){
@@ -80,15 +71,41 @@ final class AppSearchView: UIView {
             noResultView.widthAnchor.constraint(equalToConstant: 170),
             noResultView.heightAnchor.constraint(equalToConstant: 170)
         ])
+        // resultView
+        NSLayoutConstraint.activate([
+            resultView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            resultView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            resultView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            resultView.topAnchor.constraint(equalTo: searchInputView.bottomAnchor)
+        ])
+    }
+    
+    private func setupHandlers(){
+        viewModel.registerOptionChangeBlock{ tuple in
+            // tuple : Option | newValue
+            //            print(String(describing: tuple))
+            self.searchInputView.updateTitle(option: tuple.0, value: tuple.1)
+        }
+        
+        viewModel.registerSearchResultHandler {results in
+            print(results)
+        }
+        
+        viewModel.registerNoResultsHandler { [weak self] in
+            DispatchQueue.main.async {
+                self?.noResultView.isHidden = false
+                self?.resultView.isHidden = true
+            }
+        }
+        
     }
     func presentKeyboard() {
         searchInputView.presentKeyboard()
     }
-    
 }
 // MARK: - CollectionView Delegate and DataSource
 extension AppSearchView: UICollectionViewDelegate, UICollectionViewDataSource{
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 0
     }
@@ -105,7 +122,7 @@ extension AppSearchView: UICollectionViewDelegate, UICollectionViewDataSource{
 }
 // MARK: - AppSearchInputViewDelegate
 extension AppSearchView: AppSearchInputViewDelegate{
-
+    
     func searchInputViewDidSelectOption(_ interview: AppSearchInputView, didSelectOption option: AppSearchInputViewViewModel.DynamicOption) {
         delegate?.appSearchView(self, didSelectOption: option)
     }

@@ -24,6 +24,8 @@ final class AppSearchViewViewModel{
     private var optionMapUpdateBlock: (((AppSearchInputViewViewModel.DynamicOption, String)) -> Void)?
     
     private var searchResultHandler: ((AppSearchResultViewModel) -> Void)?
+    
+    private var noResultsHandler: (() -> Void)?
     // MARK: - Init
     
     init(config: AppSearchViewController.Config) {
@@ -35,6 +37,11 @@ final class AppSearchViewViewModel{
     public func registerSearchResultHandler(_ block: @escaping (AppSearchResultViewModel) -> Void){
         self.searchResultHandler = block
     }
+    
+    public func registerNoResultsHandler(_ block: @escaping () -> Void){
+        self.noResultsHandler = block
+    }
+    
     /*  Create request based on filters
      https://rickandmortyapi.com/api/character/
      ?name= += "rick"
@@ -43,7 +50,7 @@ final class AppSearchViewViewModel{
      Notify view of result, no result, or error
      */
     public func executeSearch(){
-        print("search text: \(searchText)")
+//        print("search text: \(searchText)")
         var querryParameter: [URLQueryItem] = []
         
         switch config.type {
@@ -89,7 +96,8 @@ final class AppSearchViewViewModel{
                 self?.processSearchResults(model: model)
 //                print("search results are: \(model.results.count)")
             case .failure(let error):
-                print("no Result")
+//                print("no Result")
+                self?.handleNoResult()
                 break
             }
         }
@@ -119,16 +127,19 @@ final class AppSearchViewViewModel{
                 return AppLocationTableViewCellViewModel(location: $0)
             }))
         }
-        else {
-            // error: No Results
-        }
         
         if let results = resultsVM {
             self.searchResultHandler?(results)
             
         } else {
             // fallback error
+            self.handleNoResult()
         }
+    }
+    
+    private func handleNoResult(){
+//        print("no Result")
+        noResultsHandler?()
     }
     
     public func set(query text: String){
