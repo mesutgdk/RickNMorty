@@ -36,6 +36,8 @@ final class AppSearchView: UIView {
         
         setup()
         layout()
+        
+        setupHandlers()
     }
     
     required init?(coder: NSCoder) {
@@ -52,7 +54,6 @@ final class AppSearchView: UIView {
         searchInputView.configure(with: AppSearchInputViewViewModel(type: viewModel.config.type))
         
         searchInputView.delegate = self
-        
         
     }
     
@@ -87,8 +88,13 @@ final class AppSearchView: UIView {
             self.searchInputView.updateTitle(option: tuple.0, value: tuple.1)
         }
         
-        viewModel.registerSearchResultHandler {results in
-            print(results)
+        viewModel.registerSearchResultHandler { [weak self] results in
+//            print(results)
+            DispatchQueue.main.async {
+                self?.resultView.configure(with: results)
+                self?.noResultView.isHidden = true
+                self?.resultView.isHidden = false
+            }
         }
         
         viewModel.registerNoResultsHandler { [weak self] in

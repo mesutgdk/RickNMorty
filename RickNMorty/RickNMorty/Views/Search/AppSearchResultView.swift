@@ -16,6 +16,13 @@ final class AppSearchResultView: UIView {
         }
     }
     
+    private let tableView: UITableView = {
+        let table = UITableView()
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.register(AppLocationTableViewCell.self, forCellReuseIdentifier: AppLocationTableViewCell.cellIdentifier)
+        table.isHidden = true
+        return table
+    }()
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,13 +38,19 @@ final class AppSearchResultView: UIView {
     private func setup(){
         translatesAutoresizingMaskIntoConstraints = false
         isHidden = true
-        backgroundColor = .red
+        addSubviews(tableView)
+//        backgroundColor = .red
     }
     
     private func layout(){
+        //TableView
         NSLayoutConstraint.activate([
-            
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            tableView.leftAnchor.constraint(equalTo: leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: rightAnchor)
         ])
+        tableView.backgroundColor = .yellow
     }
     
     private func processViewModel(){
@@ -46,14 +59,25 @@ final class AppSearchResultView: UIView {
         }
         switch viewModel {
         case .characters(let viewModels):
-            break
+            setupCollectionView()
+            
         case .episodes(let viewModels):
-            break
+            setupCollectionView()
+            
         case .locations(let viewModels):
-            break
+            setupTableView()
+            
         }
     }
   
+    private func setupCollectionView(){
+        
+    }
+    
+    private func setupTableView() {
+        tableView.isHidden = false
+    }
+    
     public func configure(with viewModel: AppSearchResultViewModel){
         self.viewModel = viewModel
     }

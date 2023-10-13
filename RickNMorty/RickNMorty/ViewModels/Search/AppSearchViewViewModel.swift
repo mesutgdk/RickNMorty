@@ -93,12 +93,16 @@ final class AppSearchViewViewModel{
             switch result {
             case .success(let model):
                 //Episodes-Characters-> CollectionView / Localition -> TableView
+                
                 self?.processSearchResults(model: model)
-//                print("search results are: \(model.results.count)")
+                
+//                print("search results are: \(model)")
+                
             case .failure(let error):
+                
 //                print("no Result")
+                
                 self?.handleNoResult()
-                break
             }
         }
     }
