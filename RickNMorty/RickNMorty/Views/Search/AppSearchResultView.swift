@@ -100,6 +100,8 @@ final class AppSearchResultView: UIView {
     private func setupCollectionView(){
         self.tableView.isHidden = true
         self.collectionView.isHidden = false
+        
+        collectionView.backgroundColor = .red
         collectionView.reloadData()
     }
     
@@ -117,7 +119,7 @@ final class AppSearchResultView: UIView {
         self.viewModel = viewModel
     }
 }
-
+// MARK: - UITableView Delegate and DataSource
 extension AppSearchResultView: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -135,6 +137,20 @@ extension AppSearchResultView: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         delegate?.appSearchResultViewDidSelectRow(self, didTapLocationAt: indexPath.row)
+    }
+}
+// MARK: - UICollectionView Delegate and DataSource
+extension AppSearchResultView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // Character and Episode
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Handle Tap item
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
     
 }
