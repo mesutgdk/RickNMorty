@@ -106,12 +106,12 @@ extension AppSearchViewController {
                                                             style: .done ,
                                                             target: self,
                                                             action: #selector(didTapSearchButton))
-       
+        
     }
     
     @objc private func didTapSearchButton(){
         viewModel.executeSearch()
-
+        
     }
 }
 // MARK: - AppSearchViewDelegate
@@ -121,14 +121,19 @@ extension AppSearchViewController: AppSearchViewDelegate{
         let vc = AppSearchOptionPickerViewController(option: option) { [weak self] selection in
             DispatchQueue.main.async {
                 self?.viewModel.set(value: selection, for: option)
-    //            print("Did select \(selection)")
+                //            print("Did select \(selection)")
             }
-
+            
         }
         vc.sheetPresentationController?.detents = [.medium()]
         vc.sheetPresentationController?.prefersGrabberVisible = true
         present(vc, animated: true)
-//        print("should take the picker \(option.rawValue)")
+        //        print("should take the picker \(option.rawValue)")
+    }
+    func appSearchViewLocation(_ searchView: AppSearchView, didSelectLocation location: AppLocation) {
+        let vc = AppLocationDetailedViewController(location: location)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

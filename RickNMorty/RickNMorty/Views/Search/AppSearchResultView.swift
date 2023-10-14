@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol AppSearchResultViewDelegate: AnyObject{
+    func appSearchResultViewDidSelectRow(_ resultView: AppSearchResultView, didTapLocationAt: Int)
+
+}
 // Show search results UI(collection or tableView as needed)
 final class AppSearchResultView: UIView {
+    
+    weak var delegate: AppSearchResultViewDelegate?
     
     private var viewModel: AppSearchResultViewModel? {
         didSet {
@@ -82,6 +88,7 @@ final class AppSearchResultView: UIView {
         tableView.delegate = self
         
         self.locationCellViewModels = viewModels
+        tableView.reloadData()
     }
     
     public func configure(with viewModel: AppSearchResultViewModel){
@@ -105,7 +112,7 @@ extension AppSearchResultView: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        delegate?.appSearchResultViewDidSelectRow(self, didTapLocationAt: indexPath.row)
     }
     
 }

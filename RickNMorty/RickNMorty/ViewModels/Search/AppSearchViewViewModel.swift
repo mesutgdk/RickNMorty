@@ -26,6 +26,8 @@ final class AppSearchViewViewModel{
     private var searchResultHandler: ((AppSearchResultViewModel) -> Void)?
     
     private var noResultsHandler: (() -> Void)?
+    
+    private var searchResultModel : Codable?
     // MARK: - Init
     
     init(config: AppSearchViewController.Config) {
@@ -132,6 +134,7 @@ final class AppSearchViewViewModel{
         }
         
         if let results = resultsVM {
+            self.searchResultModel = model // to select the row after searching view
             self.searchResultHandler?(results)
             
         } else {
@@ -159,4 +162,10 @@ final class AppSearchViewViewModel{
         self.optionMapUpdateBlock = block
     }
     
+    public func locationSearchResult(at index: Int) -> AppLocation? {
+        guard let searchModel = searchResultModel as? AppGetAllLocationsResponse else {
+            return nil
+        }
+        return searchModel.results[index]
+    }
 }

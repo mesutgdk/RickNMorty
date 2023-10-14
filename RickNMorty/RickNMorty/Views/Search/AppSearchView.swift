@@ -9,6 +9,8 @@ import UIKit
 
 protocol AppSearchViewDelegate: AnyObject{
     func appSearchView(_ searchView: AppSearchView, didSelectOption option: AppSearchInputViewViewModel.DynamicOption)
+    
+    func appSearchViewLocation(_ searchView: AppSearchView, didSelectLocation location: AppLocation)
 }
 
 final class AppSearchView: UIView {
@@ -53,7 +55,9 @@ final class AppSearchView: UIView {
         
         searchInputView.configure(with: AppSearchInputViewViewModel(type: viewModel.config.type))
         
+        //Delegates
         searchInputView.delegate = self
+        resultView.delegate = self
         
     }
     
@@ -140,4 +144,16 @@ extension AppSearchView: AppSearchInputViewDelegate{
         viewModel.executeSearch()
     }
 }
+
+// MARK: - AppSearchResultViewDelegate
+extension AppSearchView :AppSearchResultViewDelegate {
+    func appSearchResultViewDidSelectRow(_ resultView: AppSearchResultView, didTapLocationAt index: Int) {
+        guard let locationModel = viewModel.locationSearchResult(at: index) else {
+            return
+        }
+        print("Location tapped \(locationModel)")
+        delegate?.appSearchViewLocation(self, didSelectLocation: locationModel)
+    }
+}
+
 
