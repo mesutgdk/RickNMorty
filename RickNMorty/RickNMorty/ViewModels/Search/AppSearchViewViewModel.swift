@@ -99,8 +99,7 @@ final class AppSearchViewViewModel{
 //                print("search results are: \(model)")
                 
             case .failure(let error):
-                
-//                print("no Result")
+                print(String(describing: error))
                 
                 self?.handleNoResult()
             }

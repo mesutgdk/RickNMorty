@@ -23,6 +23,8 @@ final class AppSearchResultView: UIView {
         table.isHidden = true
         return table
     }()
+    
+    private var locationCellViewModels : [AppLocationTableViewCellViewModel] = []
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,7 +41,7 @@ final class AppSearchResultView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         isHidden = true
         addSubviews(tableView)
-//        backgroundColor = .red
+        backgroundColor = .systemBackground
     }
     
     private func layout(){
@@ -50,7 +52,7 @@ final class AppSearchResultView: UIView {
             tableView.leftAnchor.constraint(equalTo: leftAnchor),
             tableView.rightAnchor.constraint(equalTo: rightAnchor)
         ])
-        tableView.backgroundColor = .yellow
+//        tableView.backgroundColor = .yellow
     }
     
     private func processViewModel(){
@@ -65,7 +67,7 @@ final class AppSearchResultView: UIView {
             setupCollectionView()
             
         case .locations(let viewModels):
-            setupTableView()
+            setupTableView(viewModels: viewModels)
             
         }
     }
@@ -74,11 +76,36 @@ final class AppSearchResultView: UIView {
         
     }
     
-    private func setupTableView() {
+    private func setupTableView(viewModels: [AppLocationTableViewCellViewModel]) {
         tableView.isHidden = false
+        tableView.dataSource = self // datasource önce olması lazım
+        tableView.delegate = self
+        
+        self.locationCellViewModels = viewModels
     }
     
     public func configure(with viewModel: AppSearchResultViewModel){
         self.viewModel = viewModel
     }
+}
+
+extension AppSearchResultView: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return locationCellViewModels.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AppLocationTableViewCell.cellIdentifier, for: indexPath) as? AppLocationTableViewCell else {
+            fatalError("failed to dequeue tableCell")
+        }
+//        cell.backgroundColor = .systemGray3
+        cell.configure(with: locationCellViewModels[indexPath.row])
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
+    
 }
