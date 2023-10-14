@@ -30,6 +30,19 @@ final class AppSearchResultView: UIView {
         return table
     }()
     
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.isHidden = true
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(AppCharacterCollectionGridViewCell.self, forCellWithReuseIdentifier: AppCharacterCollectionGridViewCell.cellIdentifier)
+        collectionView.register(AppEpisodeInfoCollectionViewCell.self, forCellWithReuseIdentifier: AppEpisodeInfoCollectionViewCell.cellIdentifier)
+        collectionView.register(AppFooterLoadingCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: AppFooterLoadingCollectionReusableView.identifier)
+        return collectionView
+    } ()
+    
     private var locationCellViewModels : [AppLocationTableViewCellViewModel] = []
     // MARK: - Init
     override init(frame: CGRect) {
@@ -46,7 +59,7 @@ final class AppSearchResultView: UIView {
     private func setup(){
         translatesAutoresizingMaskIntoConstraints = false
         isHidden = true
-        addSubviews(tableView)
+        addSubviews(tableView, collectionView)
         backgroundColor = .systemBackground
     }
     
@@ -58,7 +71,13 @@ final class AppSearchResultView: UIView {
             tableView.leftAnchor.constraint(equalTo: leftAnchor),
             tableView.rightAnchor.constraint(equalTo: rightAnchor)
         ])
-//        tableView.backgroundColor = .yellow
+        //CollectionView
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: rightAnchor)
+        ])
     }
     
     private func processViewModel(){
@@ -79,11 +98,14 @@ final class AppSearchResultView: UIView {
     }
   
     private func setupCollectionView(){
-        
+        self.tableView.isHidden = true
+        self.collectionView.isHidden = false
+        collectionView.reloadData()
     }
     
     private func setupTableView(viewModels: [AppLocationTableViewCellViewModel]) {
         tableView.isHidden = false
+        collectionView.isHidden = true
         tableView.dataSource = self // datasource önce olması lazım
         tableView.delegate = self
         
