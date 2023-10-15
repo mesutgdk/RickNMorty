@@ -38,12 +38,14 @@ final class AppSearchResultView: UIView {
         collectionView.isHidden = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(AppCharacterCollectionGridViewCell.self, forCellWithReuseIdentifier: AppCharacterCollectionGridViewCell.cellIdentifier)
-        collectionView.register(AppEpisodeInfoCollectionViewCell.self, forCellWithReuseIdentifier: AppEpisodeInfoCollectionViewCell.cellIdentifier)
+        collectionView.register(AppCharacterEpisodeCollectionViewCell.self, forCellWithReuseIdentifier: AppCharacterEpisodeCollectionViewCell.cellIdentifier)
         collectionView.register(AppFooterLoadingCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: AppFooterLoadingCollectionReusableView.identifier)
         return collectionView
     } ()
     
     private var locationCellViewModels : [AppLocationTableViewCellViewModel] = []
+    
+    private var collectionViewCellViewModels: [any Hashable] = []
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -86,9 +88,11 @@ final class AppSearchResultView: UIView {
         }
         switch viewModel {
         case .characters(let viewModels):
+            self.collectionViewCellViewModels = viewModels
             setupCollectionView()
             
         case .episodes(let viewModels):
+            self.collectionViewCellViewModels = viewModels
             setupCollectionView()
             
         case .locations(let viewModels):
@@ -101,8 +105,12 @@ final class AppSearchResultView: UIView {
         self.tableView.isHidden = true
         self.collectionView.isHidden = false
         
-        collectionView.backgroundColor = .red
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        collectionView.backgroundColor = .systemBackground
         collectionView.reloadData()
+        
     }
     
     private func setupTableView(viewModels: [AppLocationTableViewCellViewModel]) {
@@ -143,19 +151,38 @@ extension AppSearchResultView: UITableViewDelegate, UITableViewDataSource{
 extension AppSearchResultView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return collectionViewCellViewModels.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // Character and Episode
-        fatalError("")
+        let currentViewModel = collectionViewCellViewModels[indexPath.row]
+        if let currentVM = currentViewModel as? AppCharacterCollectionViewCellViewModel {
+            // CharacterCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionGridViewCell.cellIdentifier, for: indexPath) as? AppCharacterCollectionGridViewCell else {
+                fatalError("problem with dequeue")
+            }
+            cell.configure(with: currentVM)
+
+            return cell
+        }
+        // EpisodeCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterEpisodeCollectionViewCell.cellIdentifier, for: indexPath) as? AppCharacterEpisodeCollectionViewCell else {
+            fatalError("problem with dequeue")
+        }
+        if let episodeVM = currentViewModel as? AppCharacterEpisodeCollectionViewCellViewModel {
+            cell.configure(viewModel: episodeVM)
+        }
+        
+        return cell
+        
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Handle Tap item
-        collectionView.deselectItem(at: indexPath, animated: true)
+//        collectionView.deselectItem(at: indexPath, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .zero
+        return CGSize(width: 100, height: 200)
     }
     
 }

@@ -118,11 +118,12 @@ final class AppCharacterCollectionGridViewCell: UICollectionViewCell {
     // MARK: - Configure
 
     public func configure(with viewModel: AppCharacterCollectionViewCellViewModel){
-        
+
         nameLabel.text = viewModel.characterName
         statusLabel.text = viewModel.characterStatusText
         statusLabel.textColor = viewModel.characterStatusTextColor
         imageView.layer.borderColor = viewModel.characterStatusTextColor.cgColor
+        
         viewModel.fetchImage { [weak self] result in    // to avoid retain cycle
             switch result {
             case .success(let data):
@@ -135,5 +136,6 @@ final class AppCharacterCollectionGridViewCell: UICollectionViewCell {
                 break
             }
         }
+
     }
 }
