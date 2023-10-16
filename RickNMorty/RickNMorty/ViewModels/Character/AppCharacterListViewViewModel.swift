@@ -127,8 +127,6 @@ final class AppCharacterListViewViewModel:NSObject {
     private var shouldLoadMoreIndicator: Bool {
         return apiInfo?.next != nil
     }
-    
-    
 }
 // MARK: - CollectionView datasource
 

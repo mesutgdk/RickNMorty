@@ -30,6 +30,10 @@ final class AppLocationViewViewModel{
     
     private var apiInfo: AppGetAllLocationsResponse.Info?
     
+    public var shouldLoadMoreIndicator: Bool {
+        return apiInfo?.next != nil
+    }
+    
     public private(set) var cellViewModels : [AppLocationTableViewCellViewModel] = []
     
     private var hasMoreResult: Bool {

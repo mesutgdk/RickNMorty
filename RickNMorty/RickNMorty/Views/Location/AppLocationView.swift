@@ -15,6 +15,8 @@ final class AppLocationView: UIView {
     
     weak var delegate: AppLocationViewDelegate?
     
+    private var isLoadingMoreLocations: Bool = false
+    
     private var viewModel : AppLocationViewViewModel? {
         didSet {
             spinner.stopAnimating()
@@ -85,9 +87,7 @@ final class AppLocationView: UIView {
     public func configure(with viewModel:AppLocationViewViewModel){
         self.viewModel = viewModel
     }
-
 }
-
 extension AppLocationView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,5 +115,89 @@ extension AppLocationView: UITableViewDelegate {
             return
         }
         delegate?.selectTheRow(self, didSelect: locationViewModel)
+    }
+}
+extension AppLocationView: UIScrollViewDelegate{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        guard let viewModel = viewModel,
+              !viewModel.cellViewModels.isEmpty,
+              viewModel.shouldLoadMoreIndicator,
+              !isLoadingMoreLocations,
+              let nextUrlString = apiInfo?.next,
+              let url = URL(string: nextUrlString) else {
+            return
+        }
+        /*
+         offset scrollview'in y uç noktası
+         if statument: gives us that the edge of the scrollview and updates the page
+         -120 is the size of footer's y
+          we dicard to fetch n times with using isLoadingMoreChar in fetchAdCh, after using isLo it works only one times
+        */
+        // timer is for the problem that offset detects top
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] tmr in
+            let offset = scrollView.contentOffset.y
+            let totalContentHeight = scrollView.contentSize.height
+            let totalScrollViewFixedHeight = scrollView.frame.size.height
+
+            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+                self?.fetchAdditionalLocations(url:url)
+            }
+            tmr.invalidate()
+        }
+    }
+    
+    /// Paginate if additional locations are needed
+    public func fetchAdditionalLocations(url:URL){
+        // ensure it is false, fetch new characters
+        guard !isLoadingMoreLocations else{
+            return
+        }
+
+        isLoadingMoreEpisodes = true
+        
+        guard let request = AppRequest(url: url) else {
+            isLoadingMoreEpisodes = false
+            print("Failed to create a request")
+            return
+        }
+        
+        AppService.shared.execute(request, expecting: AppGetAllEpisodesResponse.self) { [weak self] result in
+            guard let strongSelf = self else {
+                return
+            }
+            switch result {
+            case .success(let responseModel):
+//                print("pre-update:\(strongSelf.cellViewModels.count)")
+                
+                let moreResults = responseModel.results
+                let info = responseModel.info
+                strongSelf.apiInfo = info
+             
+                let originalCount = strongSelf.episodes.count
+                let newCount  = moreResults.count
+                let totalCount = originalCount + newCount
+                let startingIndex = totalCount - newCount
+                
+                let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap {
+                    return IndexPath(row: $0, section: 0)
+                }
+
+                strongSelf.episodes.append(contentsOf: moreResults)
+                
+                
+                DispatchQueue.main.async {
+
+                    strongSelf.delegate?.didLoadMoreEpisodes(with: indexPathsToAdd)
+                    strongSelf.isLoadingMoreEpisodes = false
+
+                }
+
+            case .failure(let failure):
+                print(String(describing: failure))
+                strongSelf.isLoadingMoreEpisodes = false
+            }
+        }
+
     }
 }
