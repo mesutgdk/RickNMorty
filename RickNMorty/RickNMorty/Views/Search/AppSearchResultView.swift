@@ -182,7 +182,25 @@ extension AppSearchResultView: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 200)
+        
+        let currentViewModel = collectionViewCellViewModels[indexPath.row]
+        
+        let bounds = collectionView.bounds
+        
+        if currentViewModel is AppCharacterCollectionViewCellViewModel {
+            // character
+            let width = (bounds.width - 30) / 2
+            return CGSize(
+                width: width,
+                height: width*1.5
+            )
+        }
+        // Episode
+        let width = (bounds.width - 20)
+        return CGSize(
+            width: width,
+            height: 100
+        )
     }
     
 }
