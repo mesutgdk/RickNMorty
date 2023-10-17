@@ -30,15 +30,19 @@ final class AppLocationViewViewModel{
     
     private var apiInfo: AppGetAllLocationsResponse.Info?
     
+    private var hasMoreResult: Bool {
+        return false
+    }
+    
+    public var isLoadingMoreLocations: Bool = false
+
+    
     public var shouldLoadMoreIndicator: Bool {
         return apiInfo?.next != nil
     }
     
     public private(set) var cellViewModels : [AppLocationTableViewCellViewModel] = []
     
-    private var hasMoreResult: Bool {
-        return false
-    }
     // MARK: - Init
     
     init(){
@@ -69,5 +73,64 @@ final class AppLocationViewViewModel{
         }
     }
     
+    /// Paginate if additional locations are needed
+    public func fetchAdditionalLocations(){
+        // ensure it is false, fetch new characters
+        guard !isLoadingMoreLocations else{
+            return
+        }
+
+        guard let nextUrlString = apiInfo?.next,
+              let url = URL(string: nextUrlString) else {
+            return
+        }
+        
+        isLoadingMoreLocations = true
+        
+        guard let request = AppRequest(url: url) else {
+            isLoadingMoreLocations = false
+            print("Failed to create a request")
+            return
+        }
+        
+        AppService.shared.execute(request, expecting: AppGetAllLocationsResponse.self) { [weak self] result in
+            guard let strongSelf = self else {
+                return
+            }
+            switch result {
+            case .success(let responseModel):
+//                print("pre-update:\(strongSelf.cellViewModels.count)")
+                
+                let moreResults = responseModel.results
+                let info = responseModel.info
+                print("Result: \(moreResults.count)")
+//                strongSelf.apiInfo = info
+//
+//                let originalCount = strongSelf.episodes.count
+//                let newCount  = moreResults.count
+//                let totalCount = originalCount + newCount
+//                let startingIndex = totalCount - newCount
+//
+//                let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap {
+//                    return IndexPath(row: $0, section: 0)
+//                }
+//
+//                strongSelf.episodes.append(contentsOf: moreResults)
+//
+//
+//                DispatchQueue.main.async {
+//
+//                    strongSelf.delegate?.didLoadMoreEpisodes(with: indexPathsToAdd)
+//                    strongSelf.isLoadingMoreLocations = false
+//
+//                }
+
+            case .failure(let failure):
+                print(String(describing: failure))
+                self?.isLoadingMoreLocations = false
+            }
+        }
+
+    }
     
 }
