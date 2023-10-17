@@ -152,6 +152,9 @@ extension AppLocationView: UIScrollViewDelegate{
         }
     }
     private func showLoadingIndicator() {
-        tableView.tableFooterView = AppTableLoadingFooterView()
+        let footer = AppTableLoadingFooterView()
+        footer.backgroundColor = .red
+        footer.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 100)
+        tableView.tableFooterView = footer
     }
 }

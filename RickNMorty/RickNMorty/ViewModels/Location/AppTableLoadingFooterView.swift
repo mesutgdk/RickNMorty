@@ -26,13 +26,24 @@ final class AppTableLoadingFooterView: UIView {
     }
     
     private func setup(){
-        translatesAutoresizingMaskIntoConstraints = false
+//        translatesAutoresizingMaskIntoConstraints = false
         addSubview(spinner)
         spinner.startAnimating()
     }
     
     private func layout(){
-        
+        // spinner
+        NSLayoutConstraint.activate([
+            spinner.widthAnchor.constraint(equalToConstant: 55),
+            spinner.heightAnchor.constraint(equalToConstant: 55),
+            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+//        // self
+//        NSLayoutConstraint.activate([
+//            self.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+//            self.heightAnchor.constraint(equalToConstant: 100)
+//        ])
     }
     
     
