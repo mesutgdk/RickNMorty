@@ -104,26 +104,15 @@ final class AppLocationViewViewModel{
                 let moreResults = responseModel.results
                 let info = responseModel.info
                 print("Result: \(moreResults.count)")
-//                strongSelf.apiInfo = info
-//
-//                let originalCount = strongSelf.episodes.count
-//                let newCount  = moreResults.count
-//                let totalCount = originalCount + newCount
-//                let startingIndex = totalCount - newCount
-//
-//                let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap {
-//                    return IndexPath(row: $0, section: 0)
-//                }
-//
-//                strongSelf.episodes.append(contentsOf: moreResults)
-//
-//
-//                DispatchQueue.main.async {
-//
-//                    strongSelf.delegate?.didLoadMoreEpisodes(with: indexPathsToAdd)
-//                    strongSelf.isLoadingMoreLocations = false
-//
-//                }
+                strongSelf.apiInfo = info
+
+                strongSelf.cellViewModels.append(contentsOf: moreResults.compactMap({
+                    return AppLocationTableViewCellViewModel(location: $0)
+                }))
+                
+                DispatchQueue.main.async {
+                    strongSelf.isLoadingMoreLocations = false
+                }
 
             case .failure(let failure):
                 print(String(describing: failure))

@@ -99,6 +99,9 @@ final class AppCharacterListViewViewModel:NSObject {
                 let totalCount = originalCount + newCount
                 let startingIndex = totalCount - newCount
                 
+                strongSelf.apiInfo = info
+
+
                 let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap {
                     return IndexPath(row: $0, section: 0)
                 }

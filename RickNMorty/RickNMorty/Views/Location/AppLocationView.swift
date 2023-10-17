@@ -147,13 +147,17 @@ extension AppLocationView: UIScrollViewDelegate{
                     self?.showLoadingIndicator()
                 }
                 viewModel.fetchAdditionalLocations()
+                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+//                    print("refreshing table row")
+                    self?.tableView.reloadData()
+                })
             }
             tmr.invalidate()
         }
     }
     private func showLoadingIndicator() {
         let footer = AppTableLoadingFooterView()
-        footer.backgroundColor = .red
+//        footer.backgroundColor = .red
         footer.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 100)
         tableView.tableFooterView = footer
     }
