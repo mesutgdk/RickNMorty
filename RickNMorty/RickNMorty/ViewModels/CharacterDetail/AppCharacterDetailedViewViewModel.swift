@@ -63,7 +63,7 @@ final class AppCharacterDetailedViewViewModel{
   func createPhotoSectionLayout() -> NSCollectionLayoutSection {
      let item = NSCollectionLayoutItem(
          layoutSize: NSCollectionLayoutSize(
-             widthDimension: .fractionalWidth(1.0),
+            widthDimension: .fractionalWidth(1.0),
              heightDimension: .fractionalHeight(1.0)
          )
      )

@@ -199,7 +199,7 @@ extension AppEpisodeDetailView{
         item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 10, bottom: 2, trailing: 10)
         let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(70)),
+            heightDimension: .fractionalHeight(0.1)),
                                                      subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
@@ -217,7 +217,7 @@ extension AppEpisodeDetailView{
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .absolute(180)),
+                heightDimension: .fractionalHeight(0.3)),
             subitems: [item, item, item]
         )
         

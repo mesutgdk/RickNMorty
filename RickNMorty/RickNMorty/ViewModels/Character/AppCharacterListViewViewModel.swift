@@ -166,7 +166,7 @@ extension AppCharacterListViewViewModel: UICollectionViewDataSource {
 
 extension AppCharacterListViewViewModel:UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let bounds = UIScreen.main.bounds
+        let bounds = collectionView.bounds
         if !isList{
             let width = (bounds.width-50)/2
             return CGSize(
