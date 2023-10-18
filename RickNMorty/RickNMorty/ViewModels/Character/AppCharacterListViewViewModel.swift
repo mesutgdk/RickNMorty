@@ -166,9 +166,21 @@ extension AppCharacterListViewViewModel: UICollectionViewDataSource {
 
 extension AppCharacterListViewViewModel:UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let isIphone = UIDevice.current.userInterfaceIdiom == .phone
+        
         let bounds = collectionView.bounds
+        let width : CGFloat
         if !isList{
-            let width = (bounds.width-50)/2
+            //iphone
+            if isIphone{
+                width = (bounds.width-50)/2
+                return CGSize(
+                    width: width,
+                    height: width * 1.2)
+            }
+            //mac|| ipad
+            width = (bounds.width-50)/4
             return CGSize(
                 width: width,
                 height: width * 1.2)
