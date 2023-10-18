@@ -109,8 +109,9 @@ final class AppLocationViewViewModel{
                 
                 let moreResults = responseModel.results
                 let info = responseModel.info
-//                print("Result: \(moreResults.count)")
+               
                 strongSelf.apiInfo = info
+//                print(info.next) 
 
                 strongSelf.cellViewModels.append(contentsOf: moreResults.compactMap({
                     return AppLocationTableViewCellViewModel(location: $0)

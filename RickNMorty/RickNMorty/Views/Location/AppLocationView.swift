@@ -23,6 +23,14 @@ final class AppLocationView: UIView {
             UIView.animate(withDuration: 0.3) {
                 self.tableView.alpha = 1
             }
+            viewModel?.registerDidFinishPagination { [weak self] in // to avoid retain cycle
+                DispatchQueue.main.async { // because of being UI operation, it is needed to DPQ async
+                    self?.tableView.tableFooterView = nil // after new page, footer is not necessary, go bye bye
+                    // to reload data
+                    self?.tableView.reloadData()
+                }
+            }
+
         }
     }
     
@@ -49,14 +57,6 @@ final class AppLocationView: UIView {
         layout()
         configureTableView()
         
-        viewModel?.registerDidFinishPagination { [weak self] in // to avoid retain cycle
-            DispatchQueue.main.async { // because of being UI operation, it is needed to DPQ async
-                self?.tableView.tableFooterView = nil // after new page, footer is not necessary, go bye bye
-                // to reload data
-                self?.tableView.reloadData()
-//                self?.tableView.insertRows(at: <#T##[IndexPath]#>, with: <#T##UITableView.RowAnimation#>)
-            }
-        }
         
         
     }
