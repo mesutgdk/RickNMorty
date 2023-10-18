@@ -34,6 +34,8 @@ final class AppLocationViewViewModel{
         return false
     }
     
+    private var finishPagination: (()-> Void)?
+    
     public var isLoadingMoreLocations: Bool = false
 
     
@@ -46,6 +48,10 @@ final class AppLocationViewViewModel{
     // MARK: - Init
     
     init(){
+    }
+    
+    public func registerDidFinishPagination(_ block: @escaping () -> Void ) {
+        self.finishPagination = block
     }
     
     public func location(at index: Int) -> AppLocation? {
@@ -112,6 +118,9 @@ final class AppLocationViewViewModel{
                 
                 DispatchQueue.main.async {
                     strongSelf.isLoadingMoreLocations = false
+                    
+                    // notify via callback
+                    strongSelf.finishPagination?()
                 }
 
             case .failure(let failure):

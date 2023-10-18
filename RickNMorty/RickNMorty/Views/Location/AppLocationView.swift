@@ -49,6 +49,16 @@ final class AppLocationView: UIView {
         layout()
         configureTableView()
         
+        viewModel?.registerDidFinishPagination { [weak self] in // to avoid retain cycle
+            DispatchQueue.main.async { // because of being UI operation, it is needed to DPQ async
+                self?.tableView.tableFooterView = nil // after new page, footer is not necessary, go bye bye
+                // to reload data
+                self?.tableView.reloadData()
+//                self?.tableView.insertRows(at: <#T##[IndexPath]#>, with: <#T##UITableView.RowAnimation#>)
+            }
+        }
+        
+        
     }
     
     required init?(coder: NSCoder) {
@@ -147,10 +157,10 @@ extension AppLocationView: UIScrollViewDelegate{
                     self?.showLoadingIndicator()
                 }
                 viewModel.fetchAdditionalLocations()
-                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
-//                    print("refreshing table row")
-                    self?.tableView.reloadData()
-                })
+//                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+////                    print("refreshing table row")
+//                    self?.tableView.reloadData()
+//                })
             }
             tmr.invalidate()
         }
