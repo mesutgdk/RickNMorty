@@ -52,6 +52,11 @@ final class AppSearchViewViewModel{
      Notify view of result, no result, or error
      */
     public func executeSearch(){
+        // boş olarak arama yapamamak için
+        guard !searchText.trimmingCharacters(in: .whitespaces).isEmpty else {
+            return
+        }
+        
 //        print("search text: \(searchText)")
         var querryParameter: [URLQueryItem] = []
         
