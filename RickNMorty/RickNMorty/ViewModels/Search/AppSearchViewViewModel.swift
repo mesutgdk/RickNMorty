@@ -122,7 +122,7 @@ final class AppSearchViewViewModel{
                 return AppCharacterCollectionViewCellViewModel(
                     characterName: $0.name,
                     characterStatus: $0.status,
-                    characterImageUrl: URL(string: $0.url))
+                    characterImageUrl: URL(string: $0.image))
             }))
         }
         else if let episodeResults = model as? AppGetAllEpisodesResponse{

@@ -93,6 +93,7 @@ final class AppSearchResultView: UIView {
             self.collectionViewCellViewModels = viewModels
             setupCollectionView()
             
+            
         case .episodes(let viewModels):
             self.collectionViewCellViewModels = viewModels
             setupCollectionView()
