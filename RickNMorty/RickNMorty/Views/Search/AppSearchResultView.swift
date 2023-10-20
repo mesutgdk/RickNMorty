@@ -43,8 +43,10 @@ final class AppSearchResultView: UIView {
         return collectionView
     } ()
     
+    // TableView ViewModels
     private var locationCellViewModels : [AppLocationTableViewCellViewModel] = []
     
+    // CollectionView ViewModels
     private var collectionViewCellViewModels: [any Hashable] = []
     // MARK: - Init
     override init(frame: CGRect) {
@@ -86,7 +88,7 @@ final class AppSearchResultView: UIView {
         guard let viewModel = viewModel else {
             return
         }
-        switch viewModel {
+        switch viewModel.result {
         case .characters(let viewModels):
             self.collectionViewCellViewModels = viewModels
             setupCollectionView()
@@ -202,5 +204,51 @@ extension AppSearchResultView: UICollectionViewDelegate, UICollectionViewDataSou
             height: 100
         )
     }
-    
 }
+// MARK: - ScrollViewDelegate, Pagination for TableView
+
+extension AppSearchResultView: UIScrollViewDelegate{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        guard let viewModel = viewModel else {
+            return
+        }
+        
+//              !viewModel.cellViewModels.isEmpty,
+//              viewModel.shouldLoadMoreIndicator,
+//              !viewModel.isLoadingMoreLocations else {
+//            return
+//        }
+//        /*
+//         offset scrollview'in y uç noktası
+//         if statument: gives us that the edge of the scrollview and updates the page
+//         -120 is the size of footer's y
+//          we dicard to fetch n times with using isLoadingMoreChar in fetchAdCh, after using isLo it works only one times
+//        */
+//        // timer is for the problem that offset detects top
+//        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] tmr in
+//            let offset = scrollView.contentOffset.y
+//            let totalContentHeight = scrollView.contentSize.height
+//            let totalScrollViewFixedHeight = scrollView.frame.size.height
+//
+//            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+//                DispatchQueue.main.async {
+//                    self?.showLoadingIndicator()
+//                }
+//                viewModel.fetchAdditionalLocations()
+////                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+//////                    print("refreshing table row")
+////                    self?.tableView.reloadData()
+////                })
+//            }
+//            tmr.invalidate()
+//        }
+    }
+    private func showLoadingIndicator() {
+        let footer = AppTableLoadingFooterView()
+//        footer.backgroundColor = .red
+        footer.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 100)
+        tableView.tableFooterView = footer
+    }
+}
+

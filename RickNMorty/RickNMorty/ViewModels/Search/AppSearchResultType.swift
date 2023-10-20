@@ -7,10 +7,12 @@
 
 import Foundation
 
-enum AppSearchResultViewModel{
+struct AppSearchResultViewModel{
+    let result: AppSearchResultType
+}
+
+enum AppSearchResultType{
     case characters([AppCharacterCollectionViewCellViewModel])
     case episodes([AppCharacterEpisodeCollectionViewCellViewModel])
     case locations([AppLocationTableViewCellViewModel])
-    
-    
 }

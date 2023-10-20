@@ -114,7 +114,7 @@ final class AppSearchViewViewModel{
     }
     
     private func processSearchResults(model: Codable){
-        var resultsVM: AppSearchResultViewModel?
+        var resultsVM: AppSearchResultType?
         
         if let characterResults = model as? AppGetAllCharactersResponse{
 //            print("Results: \(characterResults.results)")
@@ -140,7 +140,10 @@ final class AppSearchViewViewModel{
         
         if let results = resultsVM {
             self.searchResultModel = model // to select the row after searching view
-            self.searchResultHandler?(results)
+            
+            let VM = AppSearchResultViewModel(result: results)
+            
+            self.searchResultHandler?(VM)
             
         } else {
             // fallback error
