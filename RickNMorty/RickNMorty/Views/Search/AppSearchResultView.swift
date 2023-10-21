@@ -211,22 +211,20 @@ extension AppSearchResultView: UICollectionViewDelegate, UICollectionViewDataSou
 extension AppSearchResultView: UIScrollViewDelegate{
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        guard let viewModel = viewModel else {
+        guard let viewModel = viewModel,
+              !locationCellViewModels.isEmpty,
+              viewModel.shouldLoadMoreIndicator,
+              !viewModel.isLoadingMoreResults
+        else {
             return
         }
-        
-//              !viewModel.cellViewModels.isEmpty,
-//              viewModel.shouldLoadMoreIndicator,
-//              !viewModel.isLoadingMoreLocations else {
-//            return
-//        }
-//        /*
-//         offset scrollview'in y uç noktası
-//         if statument: gives us that the edge of the scrollview and updates the page
-//         -120 is the size of footer's y
-//          we dicard to fetch n times with using isLoadingMoreChar in fetchAdCh, after using isLo it works only one times
-//        */
-//        // timer is for the problem that offset detects top
+        /*
+         offset scrollview'in y uç noktası
+         if statument: gives us that the edge of the scrollview and updates the page
+         -120 is the size of footer's y
+          we dicard to fetch n times with using isLoadingMoreChar in fetchAdCh, after using isLo it works only one times
+        */
+        // timer is for the problem that offset detects top
 //        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] tmr in
 //            let offset = scrollView.contentOffset.y
 //            let totalContentHeight = scrollView.contentSize.height
