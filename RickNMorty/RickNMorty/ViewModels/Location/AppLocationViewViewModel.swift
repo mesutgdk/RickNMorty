@@ -74,6 +74,7 @@ final class AppLocationViewViewModel{
                     self?.delegate?.didFetchInitialLocation()
                 }
             case .failure(let error):
+                print(String(describing: error))
                 break
             }
         }
