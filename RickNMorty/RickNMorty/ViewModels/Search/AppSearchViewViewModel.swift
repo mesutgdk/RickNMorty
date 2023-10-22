@@ -115,6 +115,7 @@ final class AppSearchViewViewModel{
     
     private func processSearchResults(model: Codable){
         var resultsVM: AppSearchResultType?
+        var nextUrl: String?
         
         if let characterResults = model as? AppGetAllCharactersResponse{
 //            print("Results: \(characterResults.results)")
@@ -124,24 +125,27 @@ final class AppSearchViewViewModel{
                     characterStatus: $0.status,
                     characterImageUrl: URL(string: $0.image))
             }))
+            nextUrl = characterResults.info.next
         }
         else if let episodeResults = model as? AppGetAllEpisodesResponse{
 //            print("Results: \(episodeResults.results)")
             resultsVM = .episodes(episodeResults.results.compactMap({
                 return AppCharacterEpisodeCollectionViewCellViewModel(episodeDataUrl: URL(string: $0.url))
             }))
+            nextUrl = episodeResults.info.next
         }
         else if let locationResults = model as? AppGetAllLocationsResponse{
 //            print("Results: \(locationResults.results)")
             resultsVM = .locations(locationResults.results.compactMap({
                 return AppLocationTableViewCellViewModel(location: $0)
             }))
+            nextUrl = locationResults.info.next
         }
         
         if let results = resultsVM {
             self.searchResultModel = model // to select the row after searching view
             
-            let VM = AppSearchResultViewModel(result: results)
+            let VM = AppSearchResultViewModel(result: results, next: nextUrl)
             
             self.searchResultHandler?(VM)
             

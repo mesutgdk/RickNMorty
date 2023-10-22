@@ -221,27 +221,24 @@ extension AppSearchResultView: UIScrollViewDelegate{
         /*
          offset scrollview'in y uç noktası
          if statument: gives us that the edge of the scrollview and updates the page
-         -120 is the size of footer's y
+         -100 is the size of footer's y
           we dicard to fetch n times with using isLoadingMoreChar in fetchAdCh, after using isLo it works only one times
         */
         // timer is for the problem that offset detects top
-//        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] tmr in
-//            let offset = scrollView.contentOffset.y
-//            let totalContentHeight = scrollView.contentSize.height
-//            let totalScrollViewFixedHeight = scrollView.frame.size.height
-//
-//            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
-//                DispatchQueue.main.async {
-//                    self?.showLoadingIndicator()
-//                }
-//                viewModel.fetchAdditionalLocations()
-////                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
-//////                    print("refreshing table row")
-////                    self?.tableView.reloadData()
-////                })
-//            }
-//            tmr.invalidate()
-//        }
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] tmr in
+            let offset = scrollView.contentOffset.y
+            let totalContentHeight = scrollView.contentSize.height
+            let totalScrollViewFixedHeight = scrollView.frame.size.height
+
+            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 100) {
+                DispatchQueue.main.async {
+                    self?.showLoadingIndicator()
+                }
+                viewModel.fetchAdditionalLocations()
+
+            }
+            tmr.invalidate()
+        }
     }
     private func showLoadingIndicator() {
         let footer = AppTableLoadingFooterView()

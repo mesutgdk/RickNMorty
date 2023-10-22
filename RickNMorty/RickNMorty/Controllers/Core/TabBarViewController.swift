@@ -33,8 +33,8 @@ final class TabBarViewController: UITabBarController {
         let navSetVC = UINavigationController(rootViewController: settingsVC)
         
         navCharVC.tabBarItem = UITabBarItem(title: "Characters", image: UIImage(systemName: "person.3.fill"), tag: 1)
-        navLocVC.tabBarItem = UITabBarItem(title: "Locations", image: UIImage(systemName:"photo.artframe.circle"), tag: 2)
-        navEpiVC.tabBarItem = UITabBarItem(title: "Episodes", image: UIImage(systemName:"movieclapper"), tag: 3)
+        navLocVC.tabBarItem = UITabBarItem(title: "Locations", image: UIImage(systemName:"globe"), tag: 2)
+        navEpiVC.tabBarItem = UITabBarItem(title: "Episodes", image: UIImage(systemName:"sparkles.tv"), tag: 3)
         navSetVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName:"gearshape.fill"), tag: 4)
         
         for nav in [navCharVC,navLocVC,navEpiVC,navSetVC] {
