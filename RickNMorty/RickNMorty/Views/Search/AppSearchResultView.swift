@@ -12,6 +12,8 @@ protocol AppSearchResultViewDelegate: AnyObject{
 
 }
 // Show search results UI(collection or tableView as needed)
+
+// there is a bug when pagination is ended, spinner still turns
 final class AppSearchResultView: UIView {
     
     weak var delegate: AppSearchResultViewDelegate?
@@ -39,6 +41,8 @@ final class AppSearchResultView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(AppCharacterCollectionGridViewCell.self, forCellWithReuseIdentifier: AppCharacterCollectionGridViewCell.cellIdentifier)
         collectionView.register(AppCharacterEpisodeCollectionViewCell.self, forCellWithReuseIdentifier: AppCharacterEpisodeCollectionViewCell.cellIdentifier)
+        
+        // Footer for loading and pagination
         collectionView.register(AppFooterLoadingCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: AppFooterLoadingCollectionReusableView.identifier)
         return collectionView
     } ()
