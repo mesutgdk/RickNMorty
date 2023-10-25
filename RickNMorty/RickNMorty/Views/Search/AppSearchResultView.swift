@@ -236,7 +236,7 @@ extension AppSearchResultView: UICollectionViewDelegate, UICollectionViewDataSou
         return CGSize(width: collectionView.frame.width, height: 100)
     }
 }
-// MARK: - ScrollViewDelegate, Pagination for TableView
+// MARK: - ScrollViewDelegate, Pagination for TableView and CollectionView
 
 extension AppSearchResultView: UIScrollViewDelegate{
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -248,6 +248,7 @@ extension AppSearchResultView: UIScrollViewDelegate{
         }
     }
     
+    // TableView Pagination Handle Function
     private func handleLocationSearchPagination(scrollView: UIScrollView){
             guard let viewModel = viewModel,
                   !locationCellViewModels.isEmpty,
@@ -270,9 +271,9 @@ extension AppSearchResultView: UIScrollViewDelegate{
 
                 if offset >= (totalContentHeight - totalScrollViewFixedHeight - 100) {
                     DispatchQueue.main.async {
-                        self?.showLoadingIndicator()
+                        self?.showLoadingTableIndicator()
                     }
-                    viewModel.fetchAdditionalSearchPage{ [weak self] newResults in  // to pass write newresult near köşeli parantez
+                    viewModel.fetchAdditionalLocationPage{ [weak self] newResults in  // to pass write newresult near köşeli parantez
                         // Refresh TableView
                         self?.tableView.tableFooterView = nil
                         self?.locationCellViewModels = newResults
@@ -284,11 +285,42 @@ extension AppSearchResultView: UIScrollViewDelegate{
             }
     }
     
+    // CollectionView Pagination Handle Function
     private func handleCharacterOrEpisodeSearchPagination(scrollView: UIScrollView) {
-        
+        guard let viewModel = viewModel,
+              !collectionViewCellViewModels.isEmpty,
+              viewModel.shouldLoadMoreIndicator,
+              !viewModel.isLoadingMoreResults
+        else {
+            return
+        }
+        /*
+         offset scrollview'in y uç noktası
+         if statument: gives us that the edge of the scrollview and updates the page
+         -100 is the size of footer's y
+          we dicard to fetch n times with using isLoadingMoreChar in fetchAdCh, after using isLo it works only one times
+        */
+        // timer is for the problem that offset detects top
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] tmr in
+            let offset = scrollView.contentOffset.y
+            let totalContentHeight = scrollView.contentSize.height
+            let totalScrollViewFixedHeight = scrollView.frame.size.height
+
+            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 100) {
+
+                viewModel.fetchAdditionalResults{ [weak self] newResults in  // to pass write newresult near köşeli parantez
+           
+                    self?.collectionViewCellViewModels = newResults
+                    
+                    print("Should add more results cells for search result \(newResults.count)")
+                }
+
+            }
+            tmr.invalidate()
+        }
     }
     
-    private func showLoadingIndicator() {
+    private func showLoadingTableIndicator() {
         let footer = AppTableLoadingFooterView()
 //        footer.backgroundColor = .red
         footer.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 100)
