@@ -43,7 +43,7 @@ final class AppFooterLoadingCollectionReusableView: UICollectionReusableView {
         ])
     }
     
-    public func startAnimatiıng(){
+    public func startAnimating(){
         spinner.startAnimating()
     }
 }

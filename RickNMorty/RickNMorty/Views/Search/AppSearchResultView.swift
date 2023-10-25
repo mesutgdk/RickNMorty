@@ -209,6 +209,32 @@ extension AppSearchResultView: UICollectionViewDelegate, UICollectionViewDataSou
             height: 100
         )
     }
+    
+    // CollectionView Footer
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionFooter,
+              let footer = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: AppFooterLoadingCollectionReusableView.identifier,
+                for: indexPath
+              ) as? AppFooterLoadingCollectionReusableView else {
+            fatalError("Unsupported")
+        }
+        
+        if let viewModel = viewModel, viewModel.shouldLoadMoreIndicator {
+            footer.startAnimating()
+        }
+        
+        return footer
+    }
+    /// resize the footer
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        guard let viewModel = viewModel,
+            viewModel.shouldLoadMoreIndicator else {
+            return .zero
+        }
+        return CGSize(width: collectionView.frame.width, height: 100)
+    }
 }
 // MARK: - ScrollViewDelegate, Pagination for TableView
 

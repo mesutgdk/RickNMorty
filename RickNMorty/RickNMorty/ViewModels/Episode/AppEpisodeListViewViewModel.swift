@@ -217,7 +217,7 @@ extension AppEpisodeListViewViewModel {
             fatalError("Unsupported")
         }
         
-        footer.startAnimatiıng()
+        footer.startAnimating()
         
         return footer
     }

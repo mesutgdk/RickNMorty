@@ -238,14 +238,15 @@ extension AppCharacterListViewViewModel: UIScrollViewDelegate {
 extension AppCharacterListViewViewModel {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == UICollectionView.elementKindSectionFooter,
-                let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: AppFooterLoadingCollectionReusableView.identifier,
-                                                                             for: indexPath
-                ) as? AppFooterLoadingCollectionReusableView else {
+              let footer = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: AppFooterLoadingCollectionReusableView.identifier,
+                for: indexPath
+              ) as? AppFooterLoadingCollectionReusableView else {
             fatalError("Unsupported")
         }
         
-        footer.startAnimatiıng()
+        footer.startAnimating()
         
         return footer
     }
