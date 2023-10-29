@@ -319,7 +319,6 @@ extension AppSearchResultView: UIScrollViewDelegate{
             tmr.invalidate()
         }
     }
-    
     private func showLoadingTableIndicator() {
         let footer = AppTableLoadingFooterView()
 //        footer.backgroundColor = .red
