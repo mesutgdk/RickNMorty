@@ -305,23 +305,42 @@ extension AppSearchResultView: UIScrollViewDelegate{
             let offset = scrollView.contentOffset.y
             let totalContentHeight = scrollView.contentSize.height
             let totalScrollViewFixedHeight = scrollView.frame.size.height
-
+            
             if offset >= (totalContentHeight - totalScrollViewFixedHeight - 100) {
-
+                
                 viewModel.fetchAdditionalResults{ [weak self] newResults in  // to pass write newresult near köşeli parantez
-           
-                    self?.collectionViewCellViewModels = newResults
                     
-                    print("Should add more results cells for search result \(newResults.count)")
-                }
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    strongSelf.tableView.tableFooterView = nil
+                    
 
+                    let originalResults = strongSelf.collectionViewCellViewModels // ilk yüklenmiş hali, ilk model
+                    
+                    let originalCount = strongSelf.collectionViewCellViewModels.count
+                    let newCount  = newResults.count
+                    let totalCount = originalCount + newCount
+                    let startingIndex = totalCount - newCount
+                    
+                    let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap {
+                        return IndexPath(row: $0, section: 0)
+                    }
+                    print("Should add more results cells for search result \(newResults.count)")
+
+                    strongSelf.collectionView.insertItems(at: indexPathsToAdd)
+                    
+                    strongSelf.collectionViewCellViewModels = newResults
+
+                }
+                
             }
             tmr.invalidate()
         }
     }
     private func showLoadingTableIndicator() {
         let footer = AppTableLoadingFooterView()
-//        footer.backgroundColor = .red
+        //        footer.backgroundColor = .red
         footer.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 100)
         tableView.tableFooterView = footer
     }
