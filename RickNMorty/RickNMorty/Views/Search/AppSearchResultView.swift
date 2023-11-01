@@ -321,14 +321,14 @@ extension AppSearchResultView: UIScrollViewDelegate{
                         
                         let originalCount = strongSelf.collectionViewCellViewModels.count
                         let newCount  = (newResults.count - originalCount)
-                        print(newCount)
+//                        print("newcount is: \(newCount)")
                         let totalCount = originalCount + newCount
                         let startingIndex = totalCount - newCount
                         
                         let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap {
                             return IndexPath(row: $0, section: 0)
                         }
-                        print("Should add more results cells for search result \(newResults.count)")
+//                        print("Should add more results cells for search result \(newResults.count)")
                         strongSelf.collectionViewCellViewModels = newResults
                         strongSelf.collectionView.insertItems(at: indexPathsToAdd)
                         
