@@ -208,15 +208,16 @@ extension AppLocationDetailView{
     func createCharacterLayout () -> NSCollectionLayoutSection {
         
         let item = NSCollectionLayoutItem(layoutSize: .init(
-            widthDimension: .fractionalWidth(0.33),
+            widthDimension: .fractionalWidth(UIDevice.isIphone ? 0.5 : 0.33),
             heightDimension: .fractionalHeight(1)))
         
         item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 10, bottom: 2, trailing: 10)
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(0.3)),
-            subitems: [item, item, item]
+                heightDimension: .absolute(UIDevice.isIphone ? 260 : 350)),
+//                        .fractionalHeight(0.3)),
+            subitems: UIDevice.isIphone  ? [item, item] : [item, item, item]
         )
         
         let section = NSCollectionLayoutSection(group: group)
