@@ -169,7 +169,7 @@ extension AppCharacterListViewViewModel:UICollectionViewDelegate, UICollectionVi
         
         let bounds = collectionView.bounds
         let width : CGFloat
-        if !isList{
+        if !isList{ // grid'se
             //iphone
             if UIDevice.isIphone{  // from static in extension file to uidevice <<--
                 width = (bounds.width-50)/2
@@ -182,11 +182,11 @@ extension AppCharacterListViewViewModel:UICollectionViewDelegate, UICollectionVi
             return CGSize(
                 width: width,
                 height: width * 1.2)
-        } else {
+        } else { // list'se
             let width = bounds.width-16
             return CGSize(
                 width: width,
-                height: 100)
+                height: UIDevice.isIphone ? 100 : 140)
         }
         
     }

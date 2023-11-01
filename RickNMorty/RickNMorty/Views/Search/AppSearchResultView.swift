@@ -152,6 +152,7 @@ extension AppSearchResultView: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         delegate?.appSearchResultViewDidSelectRow(self, didTapLocationAt: indexPath.row)
+        
     }
 }
 // MARK: - UICollectionView Delegate and DataSource
@@ -185,7 +186,7 @@ extension AppSearchResultView: UICollectionViewDelegate, UICollectionViewDataSou
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Handle Tap item
-//        collectionView.deselectItem(at: indexPath, animated: true)
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -196,7 +197,7 @@ extension AppSearchResultView: UICollectionViewDelegate, UICollectionViewDataSou
         
         if currentViewModel is AppCharacterCollectionViewCellViewModel {
             // character
-            let width = (bounds.width - 30) / 2
+            let width = UIDevice.isIphone ? (bounds.width - 30) / 2 : (bounds.width-50)/4
             return CGSize(
                 width: width,
                 height: width*1.5
@@ -206,7 +207,7 @@ extension AppSearchResultView: UICollectionViewDelegate, UICollectionViewDataSou
         let width = (bounds.width - 20)
         return CGSize(
             width: width,
-            height: 100
+            height: UIDevice.isIphone ? 100 : 130
         )
     }
     

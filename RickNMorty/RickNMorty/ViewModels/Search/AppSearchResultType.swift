@@ -22,6 +22,7 @@ final class AppSearchResultViewModel{
     public var shouldLoadMoreIndicator: Bool {
         return next != nil
     }
+    
     public func fetchAdditionalLocationPage(completion: @escaping ([AppLocationTableViewCellViewModel]) -> Void){
         // ensure it is false, fetch new characters
         guard !isLoadingMoreResults else{
@@ -81,6 +82,7 @@ final class AppSearchResultViewModel{
         }
 
     }
+    
     public func fetchAdditionalResults(completion: @escaping ([any Hashable]) -> Void){
         // ensure it is false, fetch new characters
         guard !isLoadingMoreResults else{

@@ -83,7 +83,7 @@ final class AppCharacterDetailedViewViewModel{
   func createInfoSectionLayout() -> NSCollectionLayoutSection {
      let item = NSCollectionLayoutItem(
          layoutSize: NSCollectionLayoutSize(
-             widthDimension: .fractionalWidth(0.5),
+            widthDimension: .fractionalWidth(UIDevice.isIphone ? 0.5 : 0.25), // ekranın ya yarısı kadar ya da çeyreği kadar
              heightDimension: .fractionalHeight(1.0)
          )
      )
@@ -98,7 +98,7 @@ final class AppCharacterDetailedViewViewModel{
              widthDimension: .fractionalWidth(1.0),
              heightDimension: .absolute(150)  // height of cell
          ),
-         subitems: [item, item]
+         subitems: UIDevice.isIphone ? [item, item] : [item, item, item, item]
      )
      let section = NSCollectionLayoutSection(group: group)
      return section
@@ -111,7 +111,11 @@ final class AppCharacterDetailedViewViewModel{
              heightDimension: .fractionalHeight(1.0)
          )
      )
-     item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 2, bottom: 5, trailing: 2) // layout of cell
+     item.contentInsets = NSDirectionalEdgeInsets(
+        top: 10,
+        leading: 2,
+        bottom: 5, 
+        trailing: 2) // layout of cell
      
      let group = NSCollectionLayoutGroup.horizontal(
          layoutSize: NSCollectionLayoutSize(
