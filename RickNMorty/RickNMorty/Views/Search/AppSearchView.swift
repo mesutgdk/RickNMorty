@@ -11,6 +11,9 @@ protocol AppSearchViewDelegate: AnyObject{
     func appSearchView(_ searchView: AppSearchView, didSelectOption option: AppSearchInputViewViewModel.DynamicOption)
     
     func appSearchViewLocation(_ searchView: AppSearchView, didSelectLocation location: AppLocation)
+    func appSearchViewCharacter(_ searchView: AppSearchView, didSelectCharacter Character: AppCharacter)
+    func appSearchViewEpisode(_ searchView: AppSearchView, didSelectEpisode Episode: AppEpisode)
+
 }
 
 final class AppSearchView: UIView {
@@ -147,6 +150,7 @@ extension AppSearchView: AppSearchInputViewDelegate{
 
 // MARK: - AppSearchResultViewDelegate
 extension AppSearchView :AppSearchResultViewDelegate {
+    
     func appSearchResultViewDidSelectRow(_ resultView: AppSearchResultView, didTapLocationAt index: Int) {
         guard let locationModel = viewModel.locationSearchResult(at: index) else {
             return
@@ -154,6 +158,23 @@ extension AppSearchView :AppSearchResultViewDelegate {
         print("Location tapped \(locationModel)")
         delegate?.appSearchViewLocation(self, didSelectLocation: locationModel)
     }
+    
+    func appSearchResultViewDidSelectRow(_ resultView: AppSearchResultView, didTapCharacterAt index: Int) {
+        guard let characterModel = viewModel.characterSearchResult(at: index) else {
+            return
+        }
+        print("character tapped \(characterModel)")
+        delegate?.appSearchViewCharacter(self, didSelectCharacter: characterModel)
+    }
+    
+    func appSearchResultViewDidSelectRow(_ resultView: AppSearchResultView, didTapEpisodeAt index: Int) {
+        guard let episodeModel = viewModel.episodeSearchResult(at: index) else {
+            return
+        }
+        print("episode tapped \(episodeModel)")
+        delegate?.appSearchViewEpisode(self, didSelectEpisode: episodeModel)
+    }
+    
 }
 
 

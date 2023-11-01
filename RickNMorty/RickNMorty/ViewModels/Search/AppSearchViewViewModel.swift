@@ -180,4 +180,16 @@ final class AppSearchViewViewModel{
         }
         return searchModel.results[index]
     }
+    public func characterSearchResult(at index: Int) -> AppCharacter? {
+        guard let searchModel = searchResultModel as? AppGetAllCharactersResponse else {
+            return nil
+        }
+        return searchModel.results[index]
+    }
+    public func episodeSearchResult(at index: Int) -> AppEpisode? {
+        guard let searchModel = searchResultModel as? AppGetAllEpisodesResponse else {
+            return nil
+        }
+        return searchModel.results[index]
+    }
 }

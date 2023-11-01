@@ -9,7 +9,8 @@ import UIKit
 
 protocol AppSearchResultViewDelegate: AnyObject{
     func appSearchResultViewDidSelectRow(_ resultView: AppSearchResultView, didTapLocationAt: Int)
-
+    func appSearchResultViewDidSelectRow(_ resultView: AppSearchResultView, didTapCharacterAt: Int)
+    func appSearchResultViewDidSelectRow(_ resultView: AppSearchResultView, didTapEpisodeAt: Int)
 }
 // Show search results UI(collection or tableView as needed)
 
@@ -149,10 +150,10 @@ extension AppSearchResultView: UITableViewDelegate, UITableViewDataSource{
         cell.configure(with: locationCellViewModels[indexPath.row])
         return cell
     }
+    // DidTapFunction for tableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         delegate?.appSearchResultViewDidSelectRow(self, didTapLocationAt: indexPath.row)
-        
     }
 }
 // MARK: - UICollectionView Delegate and DataSource
@@ -184,9 +185,20 @@ extension AppSearchResultView: UICollectionViewDelegate, UICollectionViewDataSou
         return cell
         
     }
+    // CharacterResultView and EpisodeResultView With CollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Handle Tap item
-        collectionView.deselectItem(at: indexPath, animated: true)
+        guard let viewModel = viewModel else {
+            return
+        }
+        switch viewModel.results {
+        case .characters:
+            delegate?.appSearchResultViewDidSelectRow(self, didTapCharacterAt: indexPath.row)
+        case .episodes:
+            delegate?.appSearchResultViewDidSelectRow(self, didTapEpisodeAt: indexPath.row)
+        case .locations:
+            break
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -211,7 +223,7 @@ extension AppSearchResultView: UICollectionViewDelegate, UICollectionViewDataSou
         )
     }
     
-    // CollectionView Footer
+    /// CollectionView Footer
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == UICollectionView.elementKindSectionFooter,
               let footer = collectionView.dequeueReusableSupplementaryView(
@@ -280,7 +292,6 @@ extension AppSearchResultView: UIScrollViewDelegate{
                         self?.locationCellViewModels = newResults
                         self?.tableView.reloadData()
                     }
-
                 }
                 tmr.invalidate()
             }
@@ -348,4 +359,5 @@ extension AppSearchResultView: UIScrollViewDelegate{
         tableView.tableFooterView = footer
     }
 }
+
 
