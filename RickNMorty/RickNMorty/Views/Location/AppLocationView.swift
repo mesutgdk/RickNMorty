@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Interface to relay location view events,
 protocol AppLocationViewDelegate: AnyObject{
     func selectTheRow(_ locaitonView: AppLocationView, didSelect location: AppLocation)
 }
@@ -152,11 +153,12 @@ extension AppLocationView: UIScrollViewDelegate{
             let totalContentHeight = scrollView.contentSize.height
             let totalScrollViewFixedHeight = scrollView.frame.size.height
 
-            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 100) {
                 DispatchQueue.main.async {
-                    self?.showLoadingIndicator()
-                }
                 viewModel.fetchAdditionalLocations()
+                }
+                self?.showLoadingIndicator()
+                
 //                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
 ////                    print("refreshing table row")
 //                    self?.tableView.reloadData()
@@ -170,5 +172,8 @@ extension AppLocationView: UIScrollViewDelegate{
 //        footer.backgroundColor = .red
         footer.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 100)
         tableView.tableFooterView = footer
+        
+        //oto scrolldown
+//        tableView.setContentOffset(CGPoint(x: 0, y: tableView.contentSize.height), animated: true)
     }
 }

@@ -20,3 +20,4 @@ This application follows the MVVM (Model-View-ViewModel) architecture pattern.
 - Dark Mode - Light Mode allowed
 - In the application, the characters can be sorted and filtered according to the specified criteria.
 
+
