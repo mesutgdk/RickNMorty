@@ -26,3 +26,14 @@ This application follows the MVVM (Model-View-ViewModel) architecture pattern.
 ![charDetail](https://github.com/mesutgdk/RickNMorty/assets/112901255/c4348f8d-0ae6-4aec-a60e-985ae76b593f)
 ![loc](https://github.com/mesutgdk/RickNMorty/assets/112901255/994e5edd-7e25-427e-aedd-88576ce9d385)
 ![locaDetail](https://github.com/mesutgdk/RickNMorty/assets/112901255/b43f5f19-7df1-4867-adcc-f25479b824c2)
+
+
+![epiAndDetail](https://github.com/mesutgdk/RickNMorty/assets/112901255/f792d5d0-d60a-49bb-91e8-7ef908201083)
+![set](https://github.com/mesutgdk/RickNMorty/assets/112901255/e9597bb9-5656-4add-85c8-ba8678a598f9)
+![epiSearch](https://github.com/mesutgdk/RickNMorty/assets/112901255/688d6e8b-643c-42a2-b8c7-73fb1f767fcc)
+![charSerch](https://github.com/mesutgdk/RickNMorty/assets/112901255/8d7c4b58-0f30-4b32-873b-8923375c4c29)
+![locSearcj](https://github.com/mesutgdk/RickNMorty/assets/112901255/66cb2371-4222-4110-a3d0-2df8f63d6ea9)
+
+
+
+
