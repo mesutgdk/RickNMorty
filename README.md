@@ -20,6 +20,7 @@ This application follows the MVVM (Model-View-ViewModel) architecture pattern.
 - Dark Mode - Light Mode allowed
 - Splash Screen with Opening
 - In the application, the characters can be sorted and filtered according to the specified criteria.
+- Color display of picture frames depending on whether the characters are alive or not.
 
 ![splash](https://github.com/mesutgdk/RickNMorty/assets/112901255/7dad65b1-dfda-49c9-bd4b-11b6b4a950d0)
 ![charListToGrid](https://github.com/mesutgdk/RickNMorty/assets/112901255/bcdd629d-f59e-46e5-908e-da5fffe2f2aa)
