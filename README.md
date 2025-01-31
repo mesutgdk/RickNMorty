@@ -10,7 +10,7 @@ This application follows the MVVM (Model-View-ViewModel) architecture pattern.
 - Model View : The view model layer acts as a mediator between the view and model layers, processing user input and providing data to the view layer.
 
 ## Features
-- Programmatically UI design
+- UIKit - Programmatically UI design
 - It has high testability and readability with MVVM and Clean architecture.
 - Cross-screen root control without using storyboard
 - The images are kept in the cache with NSCache and the loading of the images is made easier 
@@ -21,6 +21,10 @@ This application follows the MVVM (Model-View-ViewModel) architecture pattern.
 - Splash Screen with Opening
 - In the application, the characters can be sorted and filtered according to the specified criteria.
 - Color display of picture frames depending on whether the characters are alive or not.
+- No 3rd-party framwork used
+- Communicate with the API using URLSession
+- Filtering Character by name
+- Singleton Design Pattern/Dispatch Group/async-await/Diffable Data Sources
 
 ![splash](https://github.com/mesutgdk/RickNMorty/assets/112901255/7dad65b1-dfda-49c9-bd4b-11b6b4a950d0)
 ![charListToGrid](https://github.com/mesutgdk/RickNMorty/assets/112901255/bcdd629d-f59e-46e5-908e-da5fffe2f2aa)
