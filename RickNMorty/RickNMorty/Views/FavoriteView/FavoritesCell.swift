@@ -10,12 +10,14 @@ import Foundation
 import UIKit
 
 protocol FavoritesCellDelegate: AnyObject {
-    func didTapDeleteButton(selectedForDelete: AppCombinedCharacter)
+    func didTapDeleteButton(selectedForDelete: AppCharacter)
 }
 
 class FavoritesCell: UICollectionViewCell {
-    static let identifier = "favortiteCell"
-    private var favoriteCharacter: AppCombinedCharacter?
+    
+    static let cellIdentifier = String(describing: FavoritesCell.self)
+    
+    private var favoriteCharacter: AppCharacter?
     weak var delegate: FavoritesCellDelegate?
     
     
@@ -48,18 +50,24 @@ class FavoritesCell: UICollectionViewCell {
         configureCell()
     }
     
-    func setCell(character: AppCombinedCharacter) {
+    func setCell(character: AppCharacter) {
         self.favoriteCharacter = character
-        DispatchQueue.main.async {
-            self.characterLabel.text = character.name
-            self.characterImageView.backgroundColor = .label
+        self.characterLabel.text = character.name
+        self.characterImageView.backgroundColor = .label
             
-            guard let url = URL(string: character.image ?? "") else {
-                print("URL Error")
-                return
-            }
-            self.characterImageView
+        guard let url = URL(string: character.image ?? "") else {
+            print("URL Error")
+            return
         }
+        AppImageLoader.shared.downloadImage(url) { [weak self] result in
+            switch result {
+            case .success(let data):
+                    self?.characterImageView.image = UIImage(data: data)
+            case .failure(let error):
+                    print("Error downloading image: \(error)")
+            }
+        }
+        
     }
     
     private func configureCell() {

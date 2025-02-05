@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum AppCharacterStatus: String, Codable {
+enum AppCharacterStatus: String, Codable, Equatable {
     // 'Alive, 'Dead', or 'unknown'
     case alive = "Alive"
     case dead = "Dead"

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AppCharacter: Codable {
+struct AppCharacter: Codable, Equatable {
     let id: Int
     let name: String
     let status: AppCharacterStatus

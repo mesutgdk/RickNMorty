@@ -12,58 +12,75 @@ enum ActionType {
     case remove
 }
 
-enum UserDefaultsService {
+enum AppFavoriteManager {
     static private let defaults = UserDefaults.standard
     
-    enum Keys {
+    enum Keys{
         static let favorites = "favorites"
     }
     
-    static private func saveFavorites(favorites: [AppCombinedCharacter]) -> AppError? {
-        do {
-            let encoder = JSONEncoder()
-            let encodedFavorites = try encoder.encode(favorites)
-            defaults.setValue(encodedFavorites, forKey: Keys.favorites)
-            return nil
-        } catch {
-            return .alreadyFavorited
-        }
-    }
-    
-    static func getFavorites(completion: @escaping (Result<[AppCombinedCharacter], Error>) -> Void) {
-        if let favoritesData = defaults.data(forKey: Keys.favorites) {
-            do {
-                let decoder = JSONDecoder()
-                let favorites = try decoder.decode([AppCombinedCharacter].self, from: favoritesData)
-                completion(.success(favorites))
-            } catch {
-                print("Decoding error: \(error)")
-                completion(.failure(error))
-            }
-        } else {
-            print("No data found for key \(Keys.favorites)")
-            completion(.success([]))
-        }
-    }
-    
-    static func updateFavorites(favorite: AppCombinedCharacter, actionType: ActionType, completion: @escaping (AppError?) -> ()) {
-        getFavorites { result in
+    static func updateWith(favoriteChar: AppCharacter,
+                           actionType: ActionType,
+                           completed: @escaping(AppError?)-> Void) {
+        retriveFavorites { result in
             switch result {
-            case .success(var favorites):
+            case .success(let favorites):
+                var retrievedFollowers = favorites
+                
                 switch actionType {
                 case .add:
-                    guard !favorites.contains(favorite) else {
-                        completion(.alreadyFavorited)
+                    guard !retrievedFollowers.contains(favoriteChar) else {
+                        completed(.alreadyFavorited)
                         return
                     }
-                    favorites.append(favorite)
+                    
+                    retrievedFollowers.append(favoriteChar)
+                    
                 case .remove:
-                    favorites.removeAll { $0.name == favorite.name }
+                    retrievedFollowers.removeAll {$0.name == favoriteChar.name}
                 }
-                completion(saveFavorites(favorites: favorites))
-            case .failure(_):
-                completion(.unableToFavorite)
+                
+                completed(save(favorites: retrievedFollowers))
+                
+            case .failure(let error):
+                completed(error)
             }
         }
     }
+    
+    // MARK: - takeing favorites from defaults
+
+    static func retriveFavorites(completed: @escaping (Result<[AppCharacter], AppError>)-> Void){
+        guard let favoritesData = defaults.object(forKey: Keys.favorites) as? Data else {
+            completed(.success([]))
+            return
+        }
+        do{
+            let decoder = JSONDecoder()
+            
+            let favorites = try decoder.decode([AppCharacter].self, from: favoritesData)
+            
+            
+            completed(.success(favorites)) // işlem başarılı, decode ettiğimizi yukarı atıyoruz
+        } catch{
+            completed(.failure(.unableToFavorite))
+        }
+    }
+    
+    // MARK: - saving favorites to defaults
+    
+    static func save(favorites: [AppCharacter])-> AppError?{
+        
+        do{
+            let encoder = JSONEncoder()
+            let encodedFavorite = try encoder.encode(favorites)
+            
+            defaults.set(encodedFavorite, forKey: Keys.favorites)
+            return nil
+        }
+        catch {
+            return AppError.unableToFavorite
+        }
+    }
+
 }
