@@ -71,15 +71,9 @@ extension CharacterViewController {
     }
     
     @objc private func favoritesButtonTapped(){
-        
-        AppFavoriteManager.retriveFavorites { [weak self] result in
-            switch result {
-            case .success(let favorites):
-                print(favorites)
-            case .failure(let failure):
-                print(failure.errorDescription)
-            }
-        }
+        let favoriteVC = FavoriteViewController()
+        favoriteVC.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(favoriteVC, animated: true)
     }
 }
 

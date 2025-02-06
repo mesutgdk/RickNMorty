@@ -13,11 +13,11 @@ protocol FavoriteViewModelDelegate: AnyObject {
     func didSelectCharacter(_ character: AppCharacter)  //for going into detailed view
 }
 ///  View Model to handle character list view logic
-final class FavoriteViewModel:NSObject {
+final class FavoriteViewViewModel:NSObject {
     
     public weak var delegate: FavoriteViewModelDelegate?
 
-    var favoriteCharacters: [AppCharacter] = [] {
+    private var favoriteCharacters: [AppCharacter] = [] {
         didSet {
 //            print("Creating viewModels!")
             for character in favoriteCharacters {
@@ -62,7 +62,7 @@ final class FavoriteViewModel:NSObject {
 }
 // MARK: - CollectionView datasource
 
-extension FavoriteViewModel: UICollectionViewDataSource {
+extension FavoriteViewViewModel: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cellViewModels.count
     }
@@ -81,7 +81,7 @@ extension FavoriteViewModel: UICollectionViewDataSource {
 }
 // MARK: - Collectionview delegate
 
-extension FavoriteViewModel:UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension FavoriteViewViewModel:UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let bounds = collectionView.bounds
