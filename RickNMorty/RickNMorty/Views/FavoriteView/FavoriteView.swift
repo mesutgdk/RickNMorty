@@ -12,7 +12,7 @@ protocol FavoritesViewDelegate: AnyObject {
 
 }
 
-class FavoriteView: UIView {
+final class FavoriteView: UIView {
     public weak var delegate: FavoritesViewDelegate?
 
     let viewModel = FavoriteViewViewModel()
@@ -93,6 +93,7 @@ class FavoriteView: UIView {
 extension FavoriteView: FavoriteViewModelDelegate {
     func didSelectCharacter(_ character: AppCharacter) {
         delegate?.favoritedDetailedListView(self, didSelectCharacter: character)
+//        print(character.name)
     }
     
     func didLoadInitialCharacter() {

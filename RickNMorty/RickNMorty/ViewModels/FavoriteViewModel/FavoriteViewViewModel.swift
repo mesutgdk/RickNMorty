@@ -100,5 +100,7 @@ extension FavoriteViewViewModel:UICollectionViewDelegate, UICollectionViewDelega
         let character = favoriteCharacters[indexPath.row]
         delegate?.didSelectCharacter(character)
     }
+    
+    
 }
 

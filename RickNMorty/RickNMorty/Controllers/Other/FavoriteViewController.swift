@@ -16,7 +16,6 @@ final class FavoriteViewController: UIViewController {
         
         setup()
         layout()
-
     }
 
     private func setup() {
@@ -25,7 +24,7 @@ final class FavoriteViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = "Favorites"
         
-//        characterListView.delegate = self
+        favoriteView.delegate = self
     }
     
     private func layout() {
@@ -36,5 +35,15 @@ final class FavoriteViewController: UIViewController {
             favoriteView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             favoriteView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+}
+extension FavoriteViewController: FavoritesViewDelegate {
+    func favoritedDetailedListView(_ characterListView: FavoriteView, didSelectCharacter character: AppCharacter) {
+        // open a detailed controller for that character
+        let viewModel = AppCharacterDetailedViewViewModel(character: character)
+        let detailedVC = AppCharacterDetailedViewController(viewModel: viewModel)
+        
+        detailedVC.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(detailedVC, animated: true)  // charVC is a rootVC with navC, so navC will push
     }
 }

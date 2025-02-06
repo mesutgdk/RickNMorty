@@ -18,8 +18,8 @@ final class CharacterViewController: UIViewController {
         
         setup()
         layout()
-        addSearchFavoriteButtons()
-        addListGridBarButton()
+        addSearchButton()
+        addListGridAndFavoriteBarButtons()
     }
 
     private func setup() {
@@ -56,11 +56,9 @@ extension CharacterViewController: AppCharacterViewDelegate {
 
 // MARK: - Search Button
 extension CharacterViewController {
-    private func addSearchFavoriteButtons(){
+    private func addSearchButton(){
         let searchBarButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
-        let favoritedBarButton = UIBarButtonItem(image: UIImage(systemName: Constants.favoriteImage), style: .plain, target: self, action: #selector(favoritesButtonTapped))
-        navigationItem.rightBarButtonItems = [searchBarButton, favoritedBarButton]
-        
+        navigationItem.rightBarButtonItem = searchBarButton
     }
     
     @objc private func searchButtonTapped(){
@@ -77,11 +75,12 @@ extension CharacterViewController {
     }
 }
 
-// MARK: - Grid-List Change Button
+// MARK: - Grid-List Change Button - Favorites Button
 extension CharacterViewController {
-    private func addListGridBarButton(){
+    private func addListGridAndFavoriteBarButtons(){
         switchLayoutBarButtonItem = UIBarButtonItem(image: Constants.gridLayoutImage, style: .plain, target: self, action: #selector(listGridButtonTapped))
-        navigationItem.leftBarButtonItem = switchLayoutBarButtonItem
+        let favoritedBarButton = UIBarButtonItem(image: UIImage(systemName: Constants.favoriteImage), style: .plain, target: self, action: #selector(favoritesButtonTapped))
+        navigationItem.leftBarButtonItems = [ switchLayoutBarButtonItem!, favoritedBarButton]
     }
     
     @objc private func listGridButtonTapped(){
