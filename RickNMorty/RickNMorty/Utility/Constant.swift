@@ -11,8 +11,8 @@ enum Constants {
     static let firstLaunchScreen = "openScreen"
     static let secondLaunchScreen = "breakingBad"
     static let menuHeaderNibName = "MenuHeaderView"
-    static let favoriteImage = UIImage(systemName: "star.fill")
-    static let notFavoriteImage = UIImage(systemName: "star")
+    static let favoriteImage = "star.fill"
+    static let notFavoriteImage = "star"
     static let listRowHeight: CGFloat = 112
     static let gridRowHeight: CGFloat = 170
     static let listLayoutImage = UIImage(systemName: "rectangle.split.1x2.fill")

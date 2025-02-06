@@ -129,3 +129,16 @@ final class AppCharacterDetailedViewViewModel{
      return section
  }
 }
+extension AppCharacterDetailedViewViewModel{
+    func addCharacterToFavorites(){
+        AppFavoriteManager.updateWith(favoriteChar: character, actionType: .add) { [weak self] error in
+            guard let self = self else { return }
+            
+            guard let error = error else {
+                print("Character is Successfully Added to Favorites")
+                return
+            }
+            print(error.errorDescription)
+        }
+    }
+}

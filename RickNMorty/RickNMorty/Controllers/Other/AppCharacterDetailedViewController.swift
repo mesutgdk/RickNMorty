@@ -9,7 +9,6 @@ import UIKit
 
 final class AppCharacterDetailedViewController: UIViewController {
     
-
     private let viewModel: AppCharacterDetailedViewViewModel
     
     private let detailedView : AppCharacterDetailedView
@@ -38,11 +37,7 @@ final class AppCharacterDetailedViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = viewModel.title
         view.addSubview(detailedView)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .action,
-            target: self,
-            action: #selector(didTapShare)
-        )
+        createRightBarButtons()
 //        viewModel.fetchCharacterData()
         detailedView.collectionView?.delegate = self
         detailedView.collectionView?.dataSource = self
@@ -57,9 +52,24 @@ final class AppCharacterDetailedViewController: UIViewController {
         ])
     }
     
+    private func createRightBarButtons(){
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action,
+            target: self,
+            action: #selector(didTapShare)
+        )
+        
+        let favoriteButton = UIBarButtonItem(image: UIImage(systemName: Constants.notFavoriteImage), style: .plain, target: self, action: #selector(didTapFavorite))
+        navigationItem.rightBarButtonItems = [shareButton,favoriteButton]
+    }
+    
     @objc func didTapShare(){
 //        to share character info
         print("share button pressed")
+    }
+    @objc func didTapFavorite(){
+//        print("favorite button pressed")
+        
+        viewModel.addCharacterToFavorites()
     }
 }
 
