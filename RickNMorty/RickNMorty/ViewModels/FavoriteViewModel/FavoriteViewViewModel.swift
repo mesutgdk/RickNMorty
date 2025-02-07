@@ -15,6 +15,8 @@ protocol FavoriteViewModelDelegate: AnyObject {
 ///  View Model to handle character list view logic
 final class FavoriteViewViewModel:NSObject {
     
+    var isDeleteButtonTapped: Bool = false
+    
     public weak var delegate: FavoriteViewModelDelegate?
 
     private var favoriteCharacters: [AppCharacter] = [] {
@@ -37,9 +39,7 @@ final class FavoriteViewViewModel:NSObject {
     }
     
     private var cellViewModels: [AppCharacterCollectionViewCellViewModel] = []
-    
-    private var apiInfo: AppGetAllCharactersResponse.Info? = nil
-    
+        
     public func retrieveFavoritedCharacters(){
         
         AppFavoriteManager.retriveFavorites { [weak self] result in
@@ -56,9 +56,6 @@ final class FavoriteViewViewModel:NSObject {
             }
         }
     }
-    
-    
-    
 }
 // MARK: - CollectionView datasource
 
@@ -69,14 +66,13 @@ extension FavoriteViewViewModel: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionListViewCell.cellIdentifier, for: indexPath) as? AppCharacterCollectionListViewCell else {
+            fatalError("Unsupported Cell")
+        }
+        let viewModel = cellViewModels[indexPath.row]
         
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCharacterCollectionListViewCell.cellIdentifier, for: indexPath) as? AppCharacterCollectionListViewCell else {
-                fatalError("Unsupported Cell")
-            }
-            let viewModel = cellViewModels[indexPath.row]
-            
-            cell.configure(with: viewModel)
-            return cell
+        cell.configure(with: viewModel)
+        return cell
     }
 }
 // MARK: - Collectionview delegate
@@ -85,20 +81,20 @@ extension FavoriteViewViewModel:UICollectionViewDelegate, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let bounds = collectionView.bounds
-        
-        
-        // list'se
-            let width = bounds.width-16
-            return CGSize(
-                width: width,
-                height: UIDevice.isIphone ? 100 : 140)
-        
+        let width = bounds.width-16
+        return CGSize(
+            width: width,
+            height: UIDevice.isIphone ? 100 : 140)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        let character = favoriteCharacters[indexPath.row]
-        delegate?.didSelectCharacter(character)
+        if isDeleteButtonTapped {
+            
+        } else {
+            let character = favoriteCharacters[indexPath.row]
+            delegate?.didSelectCharacter(character)
+        }
     }
     
     

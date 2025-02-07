@@ -11,6 +11,8 @@ final class FavoriteViewController: UIViewController {
     
     private let favoriteView = FavoriteView()
     
+    private var deleteBarButton: UIBarButtonItem?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +27,8 @@ final class FavoriteViewController: UIViewController {
         title = "Favorites"
         
         favoriteView.delegate = self
+        
+        addDeleteButton()
     }
     
     private func layout() {
@@ -35,6 +39,34 @@ final class FavoriteViewController: UIViewController {
             favoriteView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             favoriteView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+}
+extension FavoriteViewController{
+    private func addDeleteButton(){
+        deleteBarButton = UIBarButtonItem(image: UIImage(systemName: Constants.delete), style: .plain, target: self, action: #selector(deleteBarButtonTapped))
+        navigationItem.rightBarButtonItem = deleteBarButton
+    }
+    
+    @objc private func deleteBarButtonTapped(){
+//        print("delete button tapped")
+//        favoriteView.deleteButtonTapped()
+        actionsForDeleteButton()
+    }
+    private func actionsForDeleteButton() {
+       
+        let isDeletingWanted = favoriteView.viewModel.isDeleteButtonTapped
+        favoriteView.deleteButtonTapped()
+        
+        //true
+        if !isDeletingWanted {// true-Delete istenmiyor, detaylı karakter seçimi yapılabilir
+            favoriteView.viewModel.isDeleteButtonTapped = true
+            self.deleteBarButton?.image = UIImage(systemName: Constants.deleteSelected)
+
+        } else {// false-delete isteniyorsa, detaylı karaktere geçiş engellenir
+            
+            favoriteView.viewModel.isDeleteButtonTapped = false
+            self.deleteBarButton?.image = UIImage(systemName: Constants.delete)
+        }
     }
 }
 extension FavoriteViewController: FavoritesViewDelegate {

@@ -55,7 +55,7 @@ class FavoritesCell: UICollectionViewCell {
         self.characterLabel.text = character.name
         self.characterImageView.backgroundColor = .label
             
-        guard let url = URL(string: character.image ?? "") else {
+        guard let url = URL(string: character.image) else {
             print("URL Error")
             return
         }

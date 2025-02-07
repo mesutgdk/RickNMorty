@@ -86,7 +86,17 @@ final class FavoriteView: UIView {
     private func setupCollectionView(){
         collectionView.dataSource = viewModel
         collectionView.delegate = viewModel
-        
+    }
+    
+    
+    func deleteButtonTapped(){
+        if viewModel.isDeleteButtonTapped {
+            collectionView.allowsMultipleSelection = true
+            collectionView.alpha = 1
+        } else{
+            collectionView.allowsMultipleSelection = false
+            collectionView.alpha = 0.5
+        }
     }
 }
 
@@ -104,5 +114,6 @@ extension FavoriteView: FavoriteViewModelDelegate {
             self.collectionView.alpha = 1
         }
     }
+
 }
 
