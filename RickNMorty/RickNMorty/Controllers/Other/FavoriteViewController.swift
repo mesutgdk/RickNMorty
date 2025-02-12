@@ -81,11 +81,8 @@ extension FavoriteViewController: FavoritesViewDelegate {
         
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
             self.favoriteView.viewModel.deleteFavorite(character: character)
-            self.favoriteView.viewModel.deleteWanted = true
                 }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
-//            print("cancel button pressed")
-            self?.favoriteView.collectionView.reloadData()
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in 
             return
                 }
         

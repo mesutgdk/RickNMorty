@@ -18,7 +18,7 @@ final class FavoriteViewViewModel:NSObject {
     
     var isDeleteButtonTapped: Bool = false
     
-    var deleteWanted: Bool = false
+    private var deleteWantedItem: Int?
     
     public weak var delegate: FavoriteViewModelDelegate?
 
@@ -65,6 +65,12 @@ final class FavoriteViewViewModel:NSObject {
             guard let error = error else { return }
             print(error)
         }
+        guard let item = deleteWantedItem else { return }
+//        print(item)
+        favoriteCharacters.remove(at: item)
+        cellViewModels.remove(at: item)
+        
+        delegate?.didLoadInitialCharacter()
     }
 }
 // MARK: - CollectionView datasource
@@ -84,6 +90,8 @@ extension FavoriteViewViewModel: UICollectionViewDataSource {
         cell.configure(with: viewModel)
         return cell
     }
+    
+
 }
 // MARK: - Collectionview delegate
 
@@ -96,27 +104,20 @@ extension FavoriteViewViewModel:UICollectionViewDelegate, UICollectionViewDelega
             width: width,
             height: UIDevice.isIphone ? 100 : 140)
     }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         if isDeleteButtonTapped {
+            
             let character = favoriteCharacters[indexPath.row]
             delegate?.didDeleteCharacter(character)
             
-            if deleteWanted {
-                cellViewModels.remove(at: indexPath.row)
-                DispatchQueue.main.async {
-                    collectionView.reloadData()
-                }
-            }
-            deleteWanted = false
+            deleteWantedItem = indexPath.row
             
         } else {
             let character = favoriteCharacters[indexPath.row]
             delegate?.didSelectCharacter(character)
         }
     }
-    
     
 }
 

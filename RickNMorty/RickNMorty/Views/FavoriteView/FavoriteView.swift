@@ -89,12 +89,15 @@ final class FavoriteView: UIView {
         collectionView.delegate = viewModel
     }
     
-    
     func deleteButtonTapped(){
         if viewModel.isDeleteButtonTapped {
-            collectionView.alpha = 1
+            collectionView.backgroundColor = .systemBackground
+
+ 
         } else{
-            collectionView.alpha = 0.5
+//            collectionView.alpha = 0.5
+            collectionView.backgroundColor = .systemGray3
+
         }
     }
 }
