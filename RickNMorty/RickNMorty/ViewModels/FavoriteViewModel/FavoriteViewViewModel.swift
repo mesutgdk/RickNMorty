@@ -11,11 +11,14 @@ import UIKit
 protocol FavoriteViewModelDelegate: AnyObject {
     func didLoadInitialCharacter() // to reload
     func didSelectCharacter(_ character: AppCharacter)  //for going into detailed view
+    func didDeleteCharacter(_ character: AppCharacter)
 }
 ///  View Model to handle character list view logic
 final class FavoriteViewViewModel:NSObject {
     
     var isDeleteButtonTapped: Bool = false
+    
+    var deleteWanted: Bool = false
     
     public weak var delegate: FavoriteViewModelDelegate?
 
@@ -56,6 +59,13 @@ final class FavoriteViewViewModel:NSObject {
             }
         }
     }
+    public func deleteFavorite(character: AppCharacter){
+//        print("deleted item = \(character)")
+        AppFavoriteManager.updateWith(favoriteChar: character, actionType: .remove) { error in
+            guard let error = error else { return }
+            print(error)
+        }
+    }
 }
 // MARK: - CollectionView datasource
 
@@ -90,6 +100,16 @@ extension FavoriteViewViewModel:UICollectionViewDelegate, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         if isDeleteButtonTapped {
+            let character = favoriteCharacters[indexPath.row]
+            delegate?.didDeleteCharacter(character)
+            
+            if deleteWanted {
+                cellViewModels.remove(at: indexPath.row)
+                DispatchQueue.main.async {
+                    collectionView.reloadData()
+                }
+            }
+            deleteWanted = false
             
         } else {
             let character = favoriteCharacters[indexPath.row]

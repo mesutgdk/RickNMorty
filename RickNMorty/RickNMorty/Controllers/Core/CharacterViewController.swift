@@ -54,7 +54,7 @@ extension CharacterViewController: AppCharacterViewDelegate {
     }
 }
 
-// MARK: - Search Button
+// MARK: - Search Button and Favorite Button
 extension CharacterViewController {
     private func addSearchButton(){
         let searchBarButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))

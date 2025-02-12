@@ -70,6 +70,15 @@ final class AppCharacterDetailedViewController: UIViewController {
 //        print("favorite button pressed")
         
         viewModel.addCharacterToFavorites()
+        
+        let favoritedCharName = viewModel.title
+        
+        let alert = UIAlertController(title: "Congratulations", message: "\(favoritedCharName) is successfully added to favorites", preferredStyle: UIAlertController.Style.alert)
+        
+        let favoritedAlert = UIAlertAction(title: "Ok", style: .default)
+
+        alert.addAction(favoritedAlert)
+        present(alert, animated: true)
     }
 }
 

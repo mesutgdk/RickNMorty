@@ -9,6 +9,7 @@ import UIKit
 
 protocol FavoritesViewDelegate: AnyObject {
     func favoritedDetailedListView(_ characterListView: FavoriteView, didSelectCharacter character: AppCharacter)
+    func deleteFavoritedListView(_ characterListView: FavoriteView, didDeleteCharacter character: AppCharacter)
 
 }
 
@@ -91,16 +92,18 @@ final class FavoriteView: UIView {
     
     func deleteButtonTapped(){
         if viewModel.isDeleteButtonTapped {
-            collectionView.allowsMultipleSelection = true
             collectionView.alpha = 1
         } else{
-            collectionView.allowsMultipleSelection = false
             collectionView.alpha = 0.5
         }
     }
 }
 
 extension FavoriteView: FavoriteViewModelDelegate {
+    func didDeleteCharacter(_ character: AppCharacter) {
+        delegate?.deleteFavoritedListView(self, didDeleteCharacter: character)
+    }
+    
     func didSelectCharacter(_ character: AppCharacter) {
         delegate?.favoritedDetailedListView(self, didSelectCharacter: character)
 //        print(character.name)

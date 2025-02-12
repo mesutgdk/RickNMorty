@@ -63,13 +63,37 @@ extension FavoriteViewController{
             self.deleteBarButton?.image = UIImage(systemName: Constants.deleteSelected)
 
         } else {// false-delete isteniyorsa, detaylı karaktere geçiş engellenir
-            
+
             favoriteView.viewModel.isDeleteButtonTapped = false
             self.deleteBarButton?.image = UIImage(systemName: Constants.delete)
         }
     }
+    func callAllert(){
+        
+        
+    }
 }
 extension FavoriteViewController: FavoritesViewDelegate {
+    // delete alert
+    func deleteFavoritedListView(_ characterListView: FavoriteView, didDeleteCharacter character: AppCharacter) {
+        
+        let alert = UIAlertController(title: "Deletion of this \(character.type)", message: "Really want to delete \(character.name)?", preferredStyle: UIAlertController.Style.alert)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            self.favoriteView.viewModel.deleteFavorite(character: character)
+            self.favoriteView.viewModel.deleteWanted = true
+                }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+//            print("cancel button pressed")
+            self?.favoriteView.collectionView.reloadData()
+            return
+                }
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
+    }
+    
     func favoritedDetailedListView(_ characterListView: FavoriteView, didSelectCharacter character: AppCharacter) {
         // open a detailed controller for that character
         let viewModel = AppCharacterDetailedViewViewModel(character: character)

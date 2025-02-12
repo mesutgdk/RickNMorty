@@ -11,7 +11,7 @@ enum Constants {
     static let firstLaunchScreen        = "openScreen"
     static let secondLaunchScreen       = "breakingBad"
     static let menuHeaderNibName        = "MenuHeaderView"
-    static let favoriteImage            = "star.fill"
+    static let favoriteImage            = "star"
     static let notFavoriteImage         = "star"
     static let delete                   = "trash"
     static let deleteSelected           = "trash.fill"
