@@ -39,6 +39,10 @@ This application follows the MVVM (Model-View-ViewModel) architecture pattern.
 ![charSerch](https://github.com/mesutgdk/RickNMorty/assets/112901255/8d7c4b58-0f30-4b32-873b-8923375c4c29)
 ![locSearcj](https://github.com/mesutgdk/RickNMorty/assets/112901255/66cb2371-4222-4110-a3d0-2df8f63d6ea9)
 
+## Updates
+Favorite-Unfavorite - Now you can favorite your character.
+
+
 
 
 
