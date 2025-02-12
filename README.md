@@ -42,6 +42,10 @@ This application follows the MVVM (Model-View-ViewModel) architecture pattern.
 ## Updates
 Favorite-Unfavorite - Now you can favorite your character.
 
+![favoritechars-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/0bd624d9-419a-490c-bb36-978a1a1736a3)
+![favoritedpage-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/5aa570c3-1727-43e5-9887-7a6b5ea578c5)
+![deletion-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/8343c431-0ead-464c-ac69-e7bd81ca3ebc)
+
 
 
 
